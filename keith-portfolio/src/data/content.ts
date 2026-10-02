@@ -3,6 +3,8 @@ import leadership from '../assets/leadership.webp';
 import systems from '../assets/systems.webp';
 import signalMark from '../assets/signal-mark.webp';
 
+import type { DiagramKind } from '../components/ProjectDiagram';
+
 export const images = { portrait, leadership, systems, signalMark };
 
 export const profile = {
@@ -85,32 +87,36 @@ export const projects = [
     name: 'Network project',
     body: 'Fortinet Firewall upgrade, Fortinet 48P Switches upgrade, Fortinet access point uplift, and network topology upgrade.',
     delivered: ['Fortinet firewall upgrade', 'Fortinet 48P switches upgrade', 'Fortinet access point uplift', 'Network topology upgrade'],
-    images: [systems, leadership] as [string, string],
-    position: ['center', 'center'] as [string, string],
+    diagram: 'network' as DiagramKind,
+    photo: systems,
+    photoPosition: 'center',
   },
   {
     category: 'Infrastructure',
     name: 'Server upgrade',
     body: 'Upgraded the server with existing VMs and services, migrated data, and configured updated network settings.',
     delivered: ['Server upgraded with existing VMs and services', 'Data migrated', 'Updated network settings configured'],
-    images: [leadership, systems] as [string, string],
-    position: ['70% 40%', '20% 60%'] as [string, string],
+    diagram: 'server' as DiagramKind,
+    photo: leadership,
+    photoPosition: '70% 40%',
   },
   {
     category: 'Endpoint',
     name: 'SCCM implementation',
     body: 'Installed and configured SCCM, prepared the required settings, and established the task-sequence process.',
     delivered: ['SCCM installed and configured', 'Required settings prepared', 'Task-sequence process established'],
-    images: [systems, leadership] as [string, string],
-    position: ['80% 20%', '30% 70%'] as [string, string],
+    diagram: 'sccm' as DiagramKind,
+    photo: systems,
+    photoPosition: '80% 20%',
   },
   {
     category: 'Voice',
     name: 'Microsoft Teams calling',
     body: 'Delivered number-porting support, call-flow and dial-plan design, user training, documentation, and adoption monitoring.',
     delivered: ['Number-porting support', 'Call-flow and dial-plan design', 'User training and documentation', 'Adoption monitoring'],
-    images: [leadership, systems] as [string, string],
-    position: ['50% 80%', '60% 30%'] as [string, string],
+    diagram: 'voice' as DiagramKind,
+    photo: leadership,
+    photoPosition: '50% 80%',
   },
 ];
 

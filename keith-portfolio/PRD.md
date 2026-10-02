@@ -36,6 +36,7 @@ Phase 1 has no forms, no logins, no secrets, so risk is low. External links use 
 
 ## Phase 1 status (done)
 - Content comes from Keith's existing portfolio: profile, 8 capabilities, 3 roles + 5 earlier roles, 4 projects, 10 certifications, contact details (all in `src/data/content.ts`).
+- Each project card has its own illustrative diagram (drawn from the deliverables in Keith's portfolio text; swap for real screenshots when available).
 - Sections: Hero (portrait), scrolling photo/skills rows, About, Capability, Experience, Projects (stacking cards), Credentials, Contact.
 - Photos and the Kanit font ship inside the site (no outside image hosts needed).
 - Tested at 360, 390, 768, 1024, 1440 and 1920 px wide: no sideways scroll, no console errors, all images load.

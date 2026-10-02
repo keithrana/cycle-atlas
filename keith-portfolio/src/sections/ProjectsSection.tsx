@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Check } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
+import ProjectDiagram from '../components/ProjectDiagram';
 import { projects } from '../data/content';
 
 type Project = (typeof projects)[number];
@@ -34,21 +35,35 @@ function ProjectCard({ project, index, total }: { project: Project; index: numbe
             {project.body}
           </p>
         </div>
-        <div className="flex gap-3 sm:gap-4">
-          <div className="flex w-[40%] flex-col gap-3 sm:gap-4">
-            <img src={project.images[0]} alt="" loading="lazy" className={`w-full object-cover ${radius}`} style={{ height: 'clamp(130px, 16vw, 230px)', objectPosition: project.position[0] }} />
-            <img src={project.images[1]} alt="" loading="lazy" className={`w-full object-cover ${radius}`} style={{ height: 'clamp(160px, 22vw, 340px)', objectPosition: project.position[1] }} />
+        <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <div className="flex flex-col gap-3 sm:w-[40%] sm:gap-4">
+            <img
+              src={project.photo}
+              alt=""
+              loading="lazy"
+              className={`hidden w-full object-cover sm:block ${radius}`}
+              style={{ height: 'clamp(130px, 16vw, 230px)', objectPosition: project.photoPosition }}
+            />
+            <div
+              className={`flex flex-1 flex-col justify-center gap-3 border border-[#D7E2EA]/25 p-5 sm:gap-4 sm:p-6 md:p-8 ${radius}`}
+              style={{ background: 'linear-gradient(135deg, #14161a, #1d2127)', minHeight: 'clamp(160px, 22vw, 340px)' }}
+            >
+              <span className="text-xs font-medium uppercase tracking-widest text-[#D7E2EA]/60 sm:text-sm">Delivered</span>
+              <ul className="flex flex-col gap-2 sm:gap-3">
+                {project.delivered.map((d) => (
+                  <li key={d} className="flex gap-2 font-light leading-snug text-[#D7E2EA]" style={{ fontSize: 'clamp(0.8rem, 1.3vw, 1.1rem)' }}>
+                    <Check className="mt-0.5 h-4 w-4 shrink-0" />
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className={`flex w-[60%] flex-col justify-center gap-3 border border-[#D7E2EA]/25 p-4 sm:gap-5 sm:p-8 md:p-12 ${radius}`} style={{ background: 'linear-gradient(135deg, #14161a, #1d2127)' }}>
-            <span className="text-xs font-medium uppercase tracking-widest text-[#D7E2EA]/60 sm:text-sm">Delivered</span>
-            <ul className="flex flex-col gap-2 sm:gap-4">
-              {project.delivered.map((d) => (
-                <li key={d} className="flex gap-2 font-light leading-snug text-[#D7E2EA] sm:gap-3" style={{ fontSize: 'clamp(0.8rem, 1.6vw, 1.35rem)' }}>
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 sm:mt-1 sm:h-5 sm:w-5" />
-                  <span>{d}</span>
-                </li>
-              ))}
-            </ul>
+          <div
+            className={`order-first flex items-center justify-center border border-[#D7E2EA]/25 p-3 sm:order-none sm:w-[60%] sm:p-5 md:p-8 ${radius}`}
+            style={{ background: 'linear-gradient(135deg, #14161a, #1d2127)' }}
+          >
+            <ProjectDiagram kind={project.diagram} className="h-auto w-full" style={{ maxHeight: "clamp(240px, 30vw, 430px)" }} />
           </div>
         </div>
       </motion.div>
