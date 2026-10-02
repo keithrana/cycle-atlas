@@ -39,10 +39,10 @@ function ProjectCard({ project, index, total }: { project: Project; index: numbe
           <div className="flex flex-col gap-3 sm:w-[40%] sm:gap-4">
             <img
               src={project.photo}
-              alt=""
+              alt={`${project.name}: illustrative photo`}
               loading="lazy"
-              className={`hidden w-full object-cover sm:block ${radius}`}
-              style={{ height: 'clamp(130px, 16vw, 230px)', objectPosition: project.photoPosition }}
+              className={`w-full object-cover ${radius}`}
+              style={{ height: 'clamp(150px, 16vw, 230px)', objectPosition: project.photoPosition }}
             />
             <div
               className={`flex flex-1 flex-col justify-center gap-3 border border-[#D7E2EA]/25 p-5 sm:gap-4 sm:p-6 md:p-8 ${radius}`}

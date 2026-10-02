@@ -2,6 +2,10 @@ import portrait from '../assets/portrait.jpg';
 import leadership from '../assets/leadership.webp';
 import systems from '../assets/systems.webp';
 import signalMark from '../assets/signal-mark.webp';
+import networkPhoto from '../assets/projects/network.jpg';
+import serverPhoto from '../assets/projects/server.jpg';
+import sccmPhoto from '../assets/projects/sccm.jpg';
+import voicePhoto from '../assets/projects/voice.jpg';
 
 import type { DiagramKind } from '../components/ProjectDiagram';
 
@@ -88,7 +92,7 @@ export const projects = [
     body: 'Fortinet Firewall upgrade, Fortinet 48P Switches upgrade, Fortinet access point uplift, and network topology upgrade.',
     delivered: ['Fortinet firewall upgrade', 'Fortinet 48P switches upgrade', 'Fortinet access point uplift', 'Network topology upgrade'],
     diagram: 'network' as DiagramKind,
-    photo: systems,
+    photo: networkPhoto,
     photoPosition: 'center',
   },
   {
@@ -97,8 +101,8 @@ export const projects = [
     body: 'Upgraded the server with existing VMs and services, migrated data, and configured updated network settings.',
     delivered: ['Server upgraded with existing VMs and services', 'Data migrated', 'Updated network settings configured'],
     diagram: 'server' as DiagramKind,
-    photo: leadership,
-    photoPosition: '70% 40%',
+    photo: serverPhoto,
+    photoPosition: 'center',
   },
   {
     category: 'Endpoint',
@@ -106,8 +110,8 @@ export const projects = [
     body: 'Installed and configured SCCM, prepared the required settings, and established the task-sequence process.',
     delivered: ['SCCM installed and configured', 'Required settings prepared', 'Task-sequence process established'],
     diagram: 'sccm' as DiagramKind,
-    photo: systems,
-    photoPosition: '80% 20%',
+    photo: sccmPhoto,
+    photoPosition: 'center',
   },
   {
     category: 'Voice',
@@ -115,8 +119,8 @@ export const projects = [
     body: 'Delivered number-porting support, call-flow and dial-plan design, user training, documentation, and adoption monitoring.',
     delivered: ['Number-porting support', 'Call-flow and dial-plan design', 'User training and documentation', 'Adoption monitoring'],
     diagram: 'voice' as DiagramKind,
-    photo: leadership,
-    photoPosition: '50% 80%',
+    photo: voicePhoto,
+    photoPosition: 'center',
   },
 ];
 
