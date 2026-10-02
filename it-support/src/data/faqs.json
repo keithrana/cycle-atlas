@@ -1,0 +1,698 @@
+[
+ {
+  "id": 1,
+  "category": "Access & logins",
+  "question": "I forgot my password",
+  "answer": "Most organisations have a self-service reset link on the sign-in page, usually 'Forgot password' or 'Can't access your account'. You'll be asked to verify your identity, normally with a code sent to a backup email or phone number you registered earlier. If there's no self-service option, or verification fails, your IT service desk can reset it after confirming your identity another way. Keep any backup codes you were given when MFA was set up somewhere safe, they're often the fastest way back in.",
+  "link": "https://support.microsoft.com/en-us/account-billing/how-to-reset-your-microsoft-account-password-eff4f067-5042-c1a3-fe72-b04d60556c37",
+  "linkLabel": "Microsoft: reset your password"
+ },
+ {
+  "id": 2,
+  "category": "Access & logins",
+  "question": "I'm locked out after too many failed attempts",
+  "answer": "This is a security feature, not a fault, it stops someone guessing your password repeatedly. Most systems clear the lockout automatically after a set time, often 15 to 30 minutes, so waiting is sometimes the fastest fix. If it's urgent, or the lockout doesn't clear itself, your IT service desk can unlock the account manually once they've verified it's really you.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 3,
+  "category": "Access & logins",
+  "question": "My multi-factor login (authenticator app) isn't working",
+  "answer": "If you've lost your phone or the authenticator app stopped generating valid codes, try a saved backup code first, most systems issue a set of one-time codes when MFA is first set up. If you don't have one, contact IT to re-register your MFA device, this normally requires an identity check (staff or student ID, or a manager confirming it's you) since it's effectively resetting your account security.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 4,
+  "category": "Access & logins",
+  "question": "My account is disabled or expired after returning from leave",
+  "answer": "Accounts are sometimes automatically disabled after a period of inactivity, or a leave period that wasn't flagged as 'returning' in the system. This is an account status issue in the directory (Active Directory or similar), not a password problem, ask IT to check whether the account itself is disabled or expired rather than resetting the password again.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 5,
+  "category": "Access & logins",
+  "question": "Single sign-on (SSO) keeps redirecting in a loop",
+  "answer": "An SSO loop, bouncing between your organisation's login page and the app without ever landing you in, is usually a cookie or session problem rather than your password. Try a private or incognito browser window first, if that works cleanly, clear cookies for your organisation's login domain. If it still loops, the connection between your identity provider and that specific app may need IT to check its configuration.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 6,
+  "category": "Access & logins",
+  "question": "A guest or contractor account isn't working",
+  "answer": "Guest and contractor accounts usually go through a separate approval process, often needing an internal sponsor, and typically expire automatically after a set period for security. If a guest account stops working, check with the person who sponsored the access first, then IT if they confirm it should still be active.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 7,
+  "category": "Access & logins",
+  "question": "My security questions aren't being accepted during recovery",
+  "answer": "Recovery answers need to match exactly what was originally entered, including capitalisation in some systems, so a common cause is simply misremembering the exact wording. If you've genuinely forgotten the answers, look for a 'try another way' option instead of repeatedly guessing, most recovery tools offer an alternative path such as an email or SMS code.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 8,
+  "category": "Access & logins",
+  "question": "A new password keeps being rejected as too weak or previously used",
+  "answer": "Organisations enforce password rules (minimum length, a mix of character types, and often a block on reusing recent passwords) to reduce the risk of a compromised account. A longer passphrase, three or four random unrelated words plus a number and symbol, is both stronger and easier to remember than a short complex one, and tends to pass these checks more easily. Avoid names, birthdays or the organisation's own name.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 9,
+  "category": "Network & wifi",
+  "question": "My wifi keeps dropping",
+  "answer": "Try moving closer to the access point, restarting your device's wifi, and checking if other devices nearby have the same problem, that tells you whether it's your device or the network. On a corporate or school network with certificate-based login (802.1x), an expired certificate is a common cause, IT can reissue it. A network adapter driver that's out of date after a Windows update is another very common cause worth ruling out.",
+  "link": "https://support.microsoft.com/en-us/windows/fix-wi-fi-connection-issues-in-windows-9424a1f7-6a3b-65a6-4d78-7f07eee84d2c",
+  "linkLabel": "Microsoft: fix Wi-Fi connection issues"
+ },
+ {
+  "id": 10,
+  "category": "Network & wifi",
+  "question": "The VPN won't connect",
+  "answer": "Check your normal internet connection works first. Then fully close and reopen the VPN app rather than just reconnecting, a half-open session is a common cause. Public wifi (cafes, hotels) sometimes blocks VPN traffic entirely until you've accepted its own login page in a browser first.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 11,
+  "category": "Network & wifi",
+  "question": "I can't reach a shared drive or folder",
+  "answer": "Confirm you're connected to the VPN or office network, shared drives usually don't work from the open internet. If it still fails, the folder permissions may have changed, ask IT to check your access rather than repeatedly trying to reconnect.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 12,
+  "category": "Network & wifi",
+  "question": "I'm getting an IP conflict or 'limited connectivity' message",
+  "answer": "This usually means your device didn't get a valid address from the network's DHCP server, often after being moved between networks or waking from sleep. Disconnecting and reconnecting to wifi, or running `ipconfig /release` then `ipconfig /renew` on Windows, fixes most cases. If it keeps happening on the same device, report it, it can indicate a DHCP address pool running low.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 13,
+  "category": "Network & wifi",
+  "question": "A captive portal (hotel or cafe wifi login page) won't load",
+  "answer": "If the login page doesn't appear automatically, try opening a plain, non-secure website, some networks only trigger the portal on unencrypted traffic. A corporate VPN client often blocks the portal from appearing at all, disconnect the VPN first, log in to the wifi, then reconnect the VPN.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 14,
+  "category": "Network & wifi",
+  "question": "Wifi shows connected but the internet is very slow",
+  "answer": "Being 'connected' only confirms a local network link, not that everything beyond it is fast. Run a speed test, then check whether it's isolated to one device (a device or driver issue) or affects everyone nearby, which usually points to the access point, the internet link itself, or a bandwidth-heavy device worth reporting to IT.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 15,
+  "category": "Network & wifi",
+  "question": "A mapped network drive keeps failing after a password change",
+  "answer": "A mapped drive often stores the old credentials separately, so it can keep failing silently even though you can log in to everything else fine. Disconnect the mapped drive and reconnect it fresh, entering the new password when prompted, rather than relying on the saved ones.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 16,
+  "category": "Network & wifi",
+  "question": "A Bluetooth device won't pair",
+  "answer": "Turn Bluetooth off and on again on both devices, and make sure the device is actually in pairing mode. If it was previously paired with a different computer, 'forget' or remove the old pairing on both ends first, most Bluetooth accessories only hold a limited number of paired connections at once.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 17,
+  "category": "Hardware",
+  "question": "The printer won't print",
+  "answer": "Check it's powered on, has paper and toner, and that you picked the right printer name in the print dialog. Network printers can show as 'offline' if they've lost wifi, turning them off and on again often fixes this.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 18,
+  "category": "Hardware",
+  "question": "An external monitor isn't detected",
+  "answer": "Check the cable is firmly in at both ends and try a different port or cable if you have one. Then open your display settings and click 'Detect'. A driver or graphics update can also help on older laptops.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 19,
+  "category": "Hardware",
+  "question": "A USB device isn't recognised",
+  "answer": "Try a different USB port, and a different cable if it's detachable. If it still doesn't show up, check Device Manager (Windows) or System Report (Mac) for a warning icon next to the device.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 20,
+  "category": "Hardware",
+  "question": "A laptop won't turn on at all",
+  "answer": "First rule out a flat battery, plug in the charger, check for a charging light, then leave it 15 to 30 minutes before trying again, some laptops won't start with a completely dead battery even while charging. If there's a charging light but still nothing on screen, try an external monitor, that tells you whether it's a screen problem or the laptop genuinely isn't starting.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 21,
+  "category": "Hardware",
+  "question": "The battery is draining fast or won't charge",
+  "answer": "Test the charger and cable on a different device or outlet first, to rule out a faulty charger rather than the laptop itself. Battery health does genuinely fade over 2 to 4 years of daily use, if the laptop is older and the drop was gradual, a battery replacement through IT asset management is often the real fix rather than a software setting.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 22,
+  "category": "Hardware",
+  "question": "The keyboard or trackpad isn't responding",
+  "answer": "Restart the device first, a stuck driver is a common and simple cause. If only specific keys are affected, check for anything physically stuck underneath, common after spills or crumbs, and try an external USB keyboard or mouse to confirm whether it's the built-in hardware or a wider fault.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 23,
+  "category": "Hardware",
+  "question": "A docking station isn't detecting monitors or peripherals",
+  "answer": "Confirm the dock itself has power, many need their own power cable, not just the laptop cable, and try unplugging the laptop from the dock and reconnecting it firmly. Docks that connect via USB-C or Thunderbolt can be picky about cable quality, swap the cable before assuming the dock has failed.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 24,
+  "category": "Hardware",
+  "question": "The webcam isn't detected by any app",
+  "answer": "Some laptops have a physical privacy shutter or a function-key toggle that disables the camera entirely, check for both before assuming it's broken. Checking Device Manager (Windows) or System Information (Mac) shows whether the operating system sees the camera at all, if it's not listed there, it's a driver or hardware fault rather than an app setting.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 25,
+  "category": "Software & apps",
+  "question": "My computer is running very slow",
+  "answer": "Restart it first, this clears a surprising number of slowdowns. After that, check how much storage is free and close programs you're not using that start automatically. If it's still slow, let IT know, it could be a background update or a bigger issue.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 26,
+  "category": "Software & apps",
+  "question": "An app keeps crashing or won't open",
+  "answer": "Close and reopen it, then restart your computer if that doesn't help. Check whether an update is available. If it's an approved work app that IT installed for you, they may need to reinstall it rather than you doing it yourself.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 27,
+  "category": "Software & apps",
+  "question": "My email isn't syncing or I'm missing messages",
+  "answer": "Check your internet connection and your junk or spam folder. Also check your mailbox isn't full, a full mailbox silently stops receiving mail in some systems. Outlook and Gmail both have a 'repair account' option worth trying.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 28,
+  "category": "Software & apps",
+  "question": "My camera isn't working in Microsoft Teams",
+  "answer": "Close other apps that might already be using the camera (like Zoom or FaceTime), unplug and reconnect it if it's external, and restart the device. Make a test call from Teams' device settings to check camera, mic and speaker together in one go.",
+  "link": "https://support.microsoft.com/en-US/teams/meetings/my-camera-isn-t-working-in-microsoft-teams",
+  "linkLabel": "Microsoft: Teams camera troubleshooting"
+ },
+ {
+  "id": 29,
+  "category": "Software & apps",
+  "question": "Zoom audio or video isn't working",
+  "answer": "Check the correct microphone, speaker and camera are selected inside Zoom's own settings, not just that your device isn't muted at the operating system level. If it's a browser-based meeting, the browser also needs camera and microphone permission granted specifically for that site.",
+  "link": "https://support.zoom.us/",
+  "linkLabel": "Zoom support"
+ },
+ {
+  "id": 30,
+  "category": "Software & apps",
+  "question": "Windows Update is stuck or won't install",
+  "answer": "Restart the device once and let it sit for at least 30 minutes, some updates genuinely take a long time on the 'working on updates' screen, and interrupting them can cause more problems than waiting. If it's still stuck well beyond that, or fails repeatedly, note the exact error code for IT, the built-in update troubleshooter resolves a lot of common stuck updates on its own.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 31,
+  "category": "Software & apps",
+  "question": "Office or Microsoft 365 shows 'unlicensed product' or won't activate",
+  "answer": "This usually means the app can't confirm your licence with Microsoft's servers, often because you're signed in with the wrong account, or you've been offline too long since the last successful check-in. Sign out and back in with your work or school account specifically, not a personal Microsoft account, and make sure you're online or on VPN when it tries to reactivate.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 32,
+  "category": "Software & apps",
+  "question": "'Access denied' or 'permission denied' opening a file",
+  "answer": "This is almost always a permissions setting on the file or folder itself, not a fault with your computer. Confirm you're opening it from the right location, a synced local copy can behave differently to the shared original, and if you believe you should have access, ask the file's owner or IT to check the permission list rather than trying to force it open.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 33,
+  "category": "Security",
+  "question": "I received a suspicious email, is it phishing?",
+  "answer": "Don't click links or open attachments. Check the sender's actual email address, not just the display name, and look for urgency or requests for passwords or gift cards, common phishing signs. Report it to your IT security team rather than deleting it, they may need to warn others across the organisation.",
+  "link": "https://www.cyber.gov.au/report-and-recover",
+  "linkLabel": "ACSC: report a cybercrime (ReportCyber)"
+ },
+ {
+  "id": 34,
+  "category": "Security",
+  "question": "My computer crashed or showed a blue screen",
+  "answer": "Note down any error code or message shown before it restarts, a photo on your phone is fine. Restart the computer. If it happens more than once, that error code is exactly what IT will need to diagnose it.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 35,
+  "category": "Security",
+  "question": "I think I've been hit by ransomware",
+  "answer": "If files suddenly become inaccessible with strange new extensions, or a ransom note appears, disconnect the device from the network immediately (unplug the cable or turn off wifi) without shutting it down, this can stop it spreading before you power off. Don't pay anything and don't try to remove it yourself, contact IT security immediately, this is treated as a priority incident.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 36,
+  "category": "Security",
+  "question": "I suspect my account has been compromised",
+  "answer": "Change your password immediately from a device you trust, and check for any MFA devices, mail forwarding rules, or app connections you don't recognise, attackers often quietly add a forwarding rule or a second MFA device to keep access even after the password changes. Report it to IT security even after you've changed the password, they may need to check for wider impact.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 37,
+  "category": "Security",
+  "question": "What actually makes a strong password or passphrase",
+  "answer": "Length matters more than complexity, three or four random unrelated words make a passphrase that's both stronger and easier to remember than a short complex one. Never reuse a password across personal and work accounts, and use a password manager rather than trying to remember unique passwords for everything, most organisations provide or approve one.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 38,
+  "category": "Security",
+  "question": "How to report a data breach or accidental data exposure",
+  "answer": "If personal or sensitive information was sent to the wrong person, uploaded somewhere public by mistake, or a device holding such data is lost or stolen, report it to IT and your privacy contact as soon as possible. Timing genuinely matters for breach response, and in government and other regulated sectors there can be mandatory notification obligations attached.",
+  "link": "https://www.cyber.gov.au/report-and-recover",
+  "linkLabel": "ACSC: report and recover"
+ },
+ {
+  "id": 39,
+  "category": "Security",
+  "question": "Windows is asking for a BitLocker recovery key",
+  "answer": "This usually appears after a hardware or firmware change, like a BIOS update, a new battery, or a changed boot order, that the encryption chip treats as suspicious, it's the protection working as intended, not a sign of a hack. The 48-digit recovery key is normally stored in your organisation's directory (Azure AD/Intune) or was saved separately when the device was set up, IT can retrieve it if you don't have it yourself. Microsoft itself cannot recover a lost key, so if neither you nor IT can locate it, the drive has to be reset.",
+  "link": "https://support.microsoft.com/en-us/help/4026181",
+  "linkLabel": "Microsoft: find your BitLocker recovery key"
+ },
+ {
+  "id": 40,
+  "category": "Security",
+  "question": "A Mac is asking for a FileVault recovery key",
+  "answer": "Similar to Windows BitLocker, this appears after certain hardware or firmware changes and is the encryption protecting your data working as designed. The recovery key is usually escrowed with your organisation's MDM (Jamf or similar), IT can retrieve it if it wasn't saved when the device was set up.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 41,
+  "category": "Security",
+  "question": "Antivirus or endpoint protection just quarantined a file or blocked something",
+  "answer": "Don't try to restore or override it yourself, even if you're confident the file is safe, false positives do happen but confirming that is IT security's job, not yours. Report exactly what you were doing and what the alert said, that detail is what determines whether it's a false positive or something needing wider action.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 42,
+  "category": "Security",
+  "question": "A USB drive or device is blocked by policy",
+  "answer": "Many organisations block USB storage devices entirely as a data-loss-prevention measure, this is deliberate policy rather than a fault, and it usually can't be worked around with a different port or drive. If you have a genuine business need to transfer files this way, request an exception through IT rather than trying another device.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 43,
+  "category": "Sector notes",
+  "question": "Why are some settings locked on my device?",
+  "answer": "Government, school and many corporate devices are deliberately locked down for security, this is policy, not a fault. Australian government agencies generally follow the ACSC's Essential Eight security controls, which is why things like installing your own software or changing certain settings are restricted to IT staff.",
+  "link": "https://www.cyber.gov.au/resources-business-and-government/essential-cybersecurity/essential-eight",
+  "linkLabel": "ACSC: Essential Eight explained"
+ },
+ {
+  "id": 44,
+  "category": "Sector notes",
+  "question": "School: why is a legitimate website or resource blocked?",
+  "answer": "Australian schools typically apply internet content filtering as required by state and territory education department policy, and manage student devices through a mobile device management (MDM) system. If a legitimate educational site is blocked, that's a filtering rule, not a fault, report it to the school's IT support so they can review or whitelist it rather than trying to work around the filter.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 45,
+  "category": "Sector notes",
+  "question": "Government: why can't I install software myself?",
+  "answer": "Restricting who can install software (application control) is one of the Essential Eight strategies Australian government agencies are expected to implement, it stops unapproved or malicious software running on government devices. If you need software for a work purpose, the usual path is a request to IT for review and installation through an approved, managed process.",
+  "link": "https://www.cyber.gov.au/resources-business-and-government/essential-cybersecurity/essential-eight",
+  "linkLabel": "ACSC: Essential Eight explained"
+ },
+ {
+  "id": 46,
+  "category": "Sector notes",
+  "question": "Corporate: why can't I do everything on my personal (BYOD) device?",
+  "answer": "A personal device enrolled for work access (BYOD) is usually only given a limited, contained work profile rather than full management of the whole device, protecting both your personal data and the organisation's. If a work app or file won't open, or copy-paste out of a work app is blocked, that's often a deliberate BYOD policy restriction rather than a technical fault.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 47,
+  "category": "How IT support works",
+  "question": "What do Level 1, 2, 3 (and 4) support actually mean?",
+  "answer": "Level 1 is the frontline help desk, handling common self-service issues like this page's Access, Wifi and Hardware topics, usually resolved in one call or ticket. Level 2 is more technical staff who handle things needing deeper diagnosis, like the Network Hardware topics here. Level 3 is specialist or senior engineers, often involved in design and complex incidents, and Level 4 is the vendor's own support (Cisco TAC, Fortinet support), brought in when the issue is inside the product itself, not the configuration.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 48,
+  "category": "How IT support works",
+  "question": "When should something be escalated to the next level?",
+  "answer": "As a general rule, escalate when the fix needs a permission, tool, or specialist knowledge the current level doesn't have, not simply because an issue is taking a long time. A good escalation includes what's already been tried, exact error messages, and which users or systems are affected, that context is what actually speeds up the next level's diagnosis.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 49,
+  "category": "How IT support works",
+  "question": "What's the difference between an incident, a request, and a problem?",
+  "answer": "An incident is something broken right now (the printer isn't printing, the VPN is down), the goal is to restore service quickly. A request is asking for something new (new software, more storage, account access), it follows an approval process rather than a fix. A problem is the underlying root cause behind repeated incidents, if the same printer fails every Monday, that pattern gets investigated as a problem so it stops recurring, rather than just fixed each time it happens.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 50,
+  "category": "How IT support works",
+  "question": "Where does a change request fit in?",
+  "answer": "A change request is a planned, deliberate modification to a system, like a firmware upgrade or a new firewall rule, done through an approval process because unplanned changes are one of the most common causes of new incidents. This is why network hardware changes especially are usually scheduled for a maintenance window rather than made on the spot.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 51,
+  "category": "Mobile & remote work",
+  "question": "A phone or tablet won't enrol in the company's mobile device management (MDM)",
+  "answer": "Confirm you're using the exact enrolment method IT specified (a QR code, an enrolment URL, or a specific app store link), a generic 'add work account' option in phone settings sometimes skips steps the proper enrolment method includes. Also check the device's operating system version meets what IT requires, MDM enrolment is commonly blocked on outdated OS versions for security reasons.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 52,
+  "category": "Mobile & remote work",
+  "question": "Work email or apps stopped working on a personal phone after an update",
+  "answer": "A phone OS update can reset app permissions or trigger a compliance re-check by the organisation's MDM, temporarily blocking access until the device is confirmed to still meet security requirements like having a passcode set. Check for a compliance or 'action needed' notification from the company portal app before assuming it's broken.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 53,
+  "category": "Mobile & remote work",
+  "question": "A mobile VPN drops every time the screen locks",
+  "answer": "Many phones aggressively kill background network connections to save battery, including VPN apps, unless the app is specifically excluded from battery optimisation. Check the phone's battery settings for an 'unrestricted' or 'no optimisation' option for that VPN app specifically.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 54,
+  "category": "Mobile & remote work",
+  "question": "A remote desktop (RDP) session freezes or won't connect",
+  "answer": "Confirm you're connected to the VPN first if the remote machine is inside a private network, RDP almost never works over the open internet directly, for good security reasons. If the VPN is connected but it still fails, check whether the remote machine is actually powered on and not asleep, a surprisingly common cause.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 55,
+  "category": "Mobile & remote work",
+  "question": "A VDI session (Citrix, Horizon) is slow or won't launch",
+  "answer": "Test your own internet connection's latency and stability first, VDI performance is very sensitive to a poor home connection in a way a locally installed app isn't. If your connection is fine, try a different VDI client version or a browser-based login as a workaround while reporting the failure to IT with the exact error shown.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 56,
+  "category": "Mobile & remote work",
+  "question": "Working from home, the VPN connects but internal apps still time out",
+  "answer": "Some VPN setups use 'split tunnelling', where only traffic for specific internal systems goes through the VPN and everything else uses your home internet directly, if a newer internal app isn't yet included in that list, it will time out even with the VPN connected. That's a configuration detail for IT to add, not something you can usually fix from your end.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 57,
+  "category": "Cloud storage & sync",
+  "question": "OneDrive is stuck on 'processing changes' or won't sync",
+  "answer": "Pause and resume syncing from the OneDrive icon in the system tray, this resets a stuck sync engine more often than you'd expect. A very long file path, a file open in another program, or special characters in a file name are the next most common causes of a stuck sync. Moving the affected file out of the synced folder and back in again can also clear a single stuck item without resetting the whole sync.",
+  "link": "https://support.microsoft.com/en-us/onedrive/fix-onedrive-sync-problems",
+  "linkLabel": "Microsoft: fix OneDrive sync problems"
+ },
+ {
+  "id": 58,
+  "category": "Cloud storage & sync",
+  "question": "Google Drive shows a red exclamation mark on a file",
+  "answer": "This means that specific file failed to sync, usually because it's open in another application, too large for your remaining storage quota, or has a file type or name Drive can't handle. Hover over the icon for the exact reason, then close the file elsewhere or check your storage quota before retrying.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 59,
+  "category": "Cloud storage & sync",
+  "question": "Cloud storage quota is full",
+  "answer": "Check what's actually taking up space first, large video files and old email attachments are common causes, rather than immediately requesting more storage. If you genuinely need more for legitimate work purposes, that's a request rather than an incident (see 'How IT support works'), so it goes through IT's normal approval process.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 60,
+  "category": "Cloud storage & sync",
+  "question": "A shared file link says 'access denied' for someone outside the organisation",
+  "answer": "Many organisations restrict external sharing by default for security, so a link that works fine internally can fail for an outside recipient. Check the specific sharing settings on that file or folder, external sharing is often something that needs to be deliberately enabled per-file or per-site, rather than being on by default.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 61,
+  "category": "Cloud storage & sync",
+  "question": "Files show as 'online-only' and won't open without internet",
+  "answer": "Cloud sync clients often keep infrequently used files as a placeholder to save local disk space, downloading the real content only when opened, which fails without an internet connection. Right-click the specific file or folder you need offline and choose 'always keep on this device' before you lose connectivity, before a flight or a site visit, for example.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 62,
+  "category": "macOS specific",
+  "question": "A Mac update is stuck or won't install",
+  "answer": "Confirm there's enough free disk space, macOS updates need significant free space to stage the install and fail silently without it. Restart once and try again from System Settings rather than clicking install repeatedly, which can leave the updater in a confused state.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 63,
+  "category": "macOS specific",
+  "question": "Time Machine backup keeps failing",
+  "answer": "Check the backup drive isn't full and is actually connected and mounted, an intermittent external drive connection is the most common cause. If backing up to a network location, confirm you can still reach that server or NAS at all, a backup failure is often really a network or permissions issue in disguise.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 64,
+  "category": "macOS specific",
+  "question": "A Mac keeps asking for the keychain password unexpectedly",
+  "answer": "This usually happens after a password change that the login keychain doesn't yet know about, since it's a separate password store from your account login. Go to Keychain Access and update or reset the login keychain's password to match your new account password, rather than repeatedly dismissing the prompt. Resetting the keychain does clear its saved passwords, so only do this if you can't recover the old one.",
+  "link": "https://support.apple.com/guide/keychain-access/kyca2429/mac",
+  "linkLabel": "Apple: update your keychain password"
+ },
+ {
+  "id": 65,
+  "category": "macOS specific",
+  "question": "A Mac won't join a corporate wifi network with certificate login",
+  "answer": "Confirm the required certificate is actually installed in the Mac's keychain, it's normally pushed automatically by MDM (Jamf or similar) but can fail to install if the Mac hasn't checked in with MDM recently. Manually forcing an MDM check-in (System Settings > general profile management) before retrying the wifi connection resolves this in many cases.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 66,
+  "category": "Network hardware (IT staff)",
+  "question": "A Cisco switch port shows no link light",
+  "answer": "Start at the physical layer: reseat the cable, try a different port, and check for a bad SFP. Then confirm the port isn't administratively shut down with `show interfaces status`, if it is, `no shutdown` brings it back up.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 67,
+  "category": "Network hardware (IT staff)",
+  "question": "A Cisco port went err-disabled",
+  "answer": "This means the switch shut the port down itself, usually after a security violation, a BPDU guard trip, or a duplex mismatch. Check the reason with `show interfaces status err-disabled`, fix the underlying cause, then cycle the port with `shutdown` then `no shutdown`.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 68,
+  "category": "Network hardware (IT staff)",
+  "question": "Devices can't reach each other across a Cisco VLAN or trunk",
+  "answer": "Confirm the VLAN exists on both switches with `show vlan brief`, then check the trunk with `show interfaces trunk`. A mismatched native VLAN or a VLAN missing from the allowed list is the most common cause.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 69,
+  "category": "Network hardware (IT staff)",
+  "question": "A Cisco router or Layer 3 switch can't reach a remote subnet",
+  "answer": "Check `show ip interface brief` to confirm the interface is up, then `show ip route` to confirm a route exists. `ping` and `traceroute` will show exactly where the path breaks.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 70,
+  "category": "Network hardware (IT staff)",
+  "question": "A Cisco device is running hot (high CPU)",
+  "answer": "Check `show processes cpu sorted` to see what's using it. A spanning-tree loop or broadcast storm is a common cause on switches, `show spanning-tree` will show repeated topology changes if that's happening.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 71,
+  "category": "Network hardware (IT staff)",
+  "question": "A FortiGate isn't passing traffic that looks like it should be allowed",
+  "answer": "Confirm a firewall policy actually matches the source, destination and service, then use `diagnose sniffer packet any 'host x.x.x.x' 4` to see if traffic is arriving, and `diagnose debug flow` to see how the FortiGate is treating it.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 72,
+  "category": "Network hardware (IT staff)",
+  "question": "A FortiGate site-to-site IPsec VPN won't come up",
+  "answer": "Phase 1 and Phase 2 settings (encryption, PSK or certificate, proposals) must match exactly on both ends. `diagnose vpn ike log-filter` with `diagnose debug application ike -1` shows exactly where negotiation is failing.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 73,
+  "category": "Network hardware (IT staff)",
+  "question": "A FortiGate is slow or unresponsive",
+  "answer": "Check `get system performance status` for CPU, memory and session count, and `diagnose sys top` to see which process is responsible. A nearly-full session table is a common cause on busy units.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 74,
+  "category": "Network hardware (IT staff)",
+  "question": "Can't reach the FortiGate admin GUI from a particular network",
+  "answer": "FortiGate can restrict admin access to trusted hosts and specific interfaces. Check the admin account's trusted host settings and confirm the interface you're connecting through has HTTPS/SSH admin access enabled.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 75,
+  "category": "Network hardware (IT staff)",
+  "question": "How to safely back up a Cisco device's configuration",
+  "answer": "Before any change, save the running config to the startup config with `copy running-config startup-config`, then copy it off the device via TFTP or SCP so there's an external copy too. Always confirm the backup completed before making changes.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 76,
+  "category": "Network hardware (IT staff)",
+  "question": "How to safely upgrade Cisco IOS firmware",
+  "answer": "Confirm the new image is supported on the exact hardware model and that there's enough flash and RAM. Copy the image to flash, verify its checksum, set the new boot variable, save the config, then reload in a maintenance window in case it needs rolling back.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 77,
+  "category": "Network hardware (IT staff)",
+  "question": "Lost the password to a Cisco device",
+  "answer": "Password recovery needs physical console access and a reboot into ROMMON mode to bypass the startup config temporarily. This is a standard, well-documented process, but the exact key combination differs by model, check the vendor documentation for your specific device first.",
+  "link": "https://www.cisco.com/c/en/us/support/index.html",
+  "linkLabel": "Cisco Support"
+ },
+ {
+  "id": 78,
+  "category": "Network hardware (IT staff)",
+  "question": "A wireless access point won't join the Cisco WLC",
+  "answer": "Check the AP can discover the controller (DHCP option 43, DNS, or same-subnet broadcast), and that the AP's firmware is compatible with the controller's software version, a mismatch is a common cause of a failed join.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 79,
+  "category": "Network hardware (IT staff)",
+  "question": "Traffic is blocked on a Cisco ASA despite a matching ACL",
+  "answer": "Check NAT rules aren't exempting or redirecting the traffic unexpectedly, and confirm the ACL is applied in the right direction on the right interface. `packet-tracer` simulates a specific flow and shows exactly which rule drops it.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 80,
+  "category": "Network hardware (IT staff)",
+  "question": "One FortiGate in an HA cluster won't sync",
+  "answer": "Check both units are running the identical firmware version first, a mismatch is the most common HA sync blocker. `diagnose sys ha status` shows the current sync state and any errors.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 81,
+  "category": "Network hardware (IT staff)",
+  "question": "A FortiSwitch isn't showing up under FortiGate management",
+  "answer": "FortiGate manages FortiSwitches over FortiLink, confirm the FortiLink interface is correctly configured and that the switch port used for FortiLink hasn't been repurposed for something else.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 82,
+  "category": "Network hardware (IT staff)",
+  "question": "A FortiAP won't join its FortiGate",
+  "answer": "Confirm the AP can discover the FortiGate (same subnet, or DHCP option 138/CAPWAP discovery across routed networks) and that the AP and FortiGate firmware are a supported combination.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 83,
+  "category": "Network hardware (IT staff)",
+  "question": "SD-WAN traffic is taking the wrong path on a FortiGate",
+  "answer": "Check the SD-WAN rule order, first match wins, and whether the SLA health checks for that link are actually passing, a failed health check silently removes a path from consideration. `diagnose sys sdwan` shows live link status.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 84,
+  "category": "Network hardware (IT staff)",
+  "question": "A FortiGate says its licence or support contract has expired",
+  "answer": "An expired contract stops signature and firmware updates but doesn't usually stop the firewall passing traffic. Check the exact status with `get system status`, then renew through your reseller or Fortinet, running without updates for long is a real security risk.",
+  "link": "",
+  "linkLabel": ""
+ },
+ {
+  "id": 85,
+  "category": "Network hardware (IT staff)",
+  "question": "Where to find full Cisco documentation and command syntax",
+  "answer": "Always confirm exact command syntax against Cisco's own docs, it changes between switch/router models and IOS versions.",
+  "link": "https://www.cisco.com/c/en/us/support/index.html",
+  "linkLabel": "Cisco Support"
+ },
+ {
+  "id": 86,
+  "category": "Network hardware (IT staff)",
+  "question": "Where to find full Fortinet documentation and command syntax",
+  "answer": "FortiOS CLI commands and defaults vary by firmware version, the official Fortinet Document Library is the source of truth.",
+  "link": "https://docs.fortinet.com/",
+  "linkLabel": "Fortinet Document Library"
+ },
+ {
+  "id": 87,
+  "category": "Network hardware (IT staff)",
+  "question": "An IPsec tunnel looks correctly configured but still won't come up",
+  "answer": "When the config looks right on paper, checking the live IKE negotiation logs tells you more than re-checking the configuration a third time. Fortinet's own support community has a detailed walkthrough of the exact `diagnose` commands and log filters their engineers use for exactly this scenario.",
+  "link": "https://community.fortinet.com/t5/FortiGate/Troubleshooting-Tip-IPsec-VPN-tunnels/ta-p/195955",
+  "linkLabel": "Fortinet Community: IPsec VPN troubleshooting"
+ }
+]
