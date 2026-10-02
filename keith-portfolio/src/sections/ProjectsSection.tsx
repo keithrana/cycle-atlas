@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Check } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
-import LiveProjectButton from '../components/LiveProjectButton';
 import { projects } from '../data/content';
 
 type Project = (typeof projects)[number];
@@ -15,30 +15,40 @@ function ProjectCard({ project, index, total }: { project: Project; index: numbe
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
 
   return (
-    <div ref={ref} className="sticky top-24 h-[85vh] md:top-32">
+    <div ref={ref} className="sticky top-24 min-h-[85vh]">
       <motion.div
         className={`border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:p-8 ${radius}`}
         style={{ scale, top: `${index * 28}px`, position: 'relative', transformOrigin: 'top center' }}
       >
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-4 sm:mb-6">
+        <div className="mb-4 flex flex-col gap-3 sm:mb-6 md:flex-row md:items-center md:justify-between md:gap-10">
           <div className="flex items-center gap-4 sm:gap-8">
             <span className="hero-heading font-black leading-none" style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}>
               {String(index + 1).padStart(2, '0')}
             </span>
-            <div className="text-[#D7E2EA]">
+            <div className="min-w-0 text-[#D7E2EA]">
               <p className="text-xs font-light uppercase tracking-widest opacity-70 sm:text-sm">{project.category}</p>
               <h3 className="font-medium uppercase" style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}>{project.name}</h3>
             </div>
           </div>
-          <LiveProjectButton />
+          <p className="max-w-xl px-1 font-light leading-relaxed text-[#D7E2EA]/70" style={{ fontSize: 'clamp(0.85rem, 1.5vw, 1.15rem)' }}>
+            {project.body}
+          </p>
         </div>
         <div className="flex gap-3 sm:gap-4">
           <div className="flex w-[40%] flex-col gap-3 sm:gap-4">
-            <img src={project.col1[0]} alt="" loading="lazy" className={`w-full object-cover ${radius}`} style={{ height: 'clamp(130px, 16vw, 230px)' }} />
-            <img src={project.col1[1]} alt="" loading="lazy" className={`w-full object-cover ${radius}`} style={{ height: 'clamp(160px, 22vw, 340px)' }} />
+            <img src={project.images[0]} alt="" loading="lazy" className={`w-full object-cover ${radius}`} style={{ height: 'clamp(130px, 16vw, 230px)', objectPosition: project.position[0] }} />
+            <img src={project.images[1]} alt="" loading="lazy" className={`w-full object-cover ${radius}`} style={{ height: 'clamp(160px, 22vw, 340px)', objectPosition: project.position[1] }} />
           </div>
-          <div className="w-[60%]">
-            <img src={project.col2} alt="" loading="lazy" className={`h-full w-full object-cover ${radius}`} />
+          <div className={`flex w-[60%] flex-col justify-center gap-3 border border-[#D7E2EA]/25 p-4 sm:gap-5 sm:p-8 md:p-12 ${radius}`} style={{ background: 'linear-gradient(135deg, #14161a, #1d2127)' }}>
+            <span className="text-xs font-medium uppercase tracking-widest text-[#D7E2EA]/60 sm:text-sm">Delivered</span>
+            <ul className="flex flex-col gap-2 sm:gap-4">
+              {project.delivered.map((d) => (
+                <li key={d} className="flex gap-2 font-light leading-snug text-[#D7E2EA] sm:gap-3" style={{ fontSize: 'clamp(0.8rem, 1.6vw, 1.35rem)' }}>
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 sm:mt-1 sm:h-5 sm:w-5" />
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </motion.div>
@@ -51,7 +61,7 @@ export default function ProjectsSection() {
     <section id="projects" className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] px-5 py-20 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 sm:py-24 md:-mt-14 md:rounded-t-[60px] md:px-10 md:py-32">
       <FadeIn>
         <h2 className="hero-heading mb-16 text-center font-black uppercase leading-none tracking-tight sm:mb-20 md:mb-28" style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}>
-          Project
+          Projects
         </h2>
       </FadeIn>
       {projects.map((p, i) => (

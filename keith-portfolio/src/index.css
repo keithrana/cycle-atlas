@@ -1,3 +1,8 @@
+@import '@fontsource/kanit/latin-300.css';
+@import '@fontsource/kanit/latin-400.css';
+@import '@fontsource/kanit/latin-500.css';
+@import '@fontsource/kanit/latin-700.css';
+@import '@fontsource/kanit/latin-900.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,6 +10,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body, #root { background: #0C0C0C; }
+html { scroll-behavior: smooth; }
 body { font-family: 'Kanit', sans-serif; }
 
 .hero-heading {
@@ -12,4 +18,8 @@ body { font-family: 'Kanit', sans-serif; }
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
