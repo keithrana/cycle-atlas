@@ -99,6 +99,7 @@ export default function FaqList({ items }: { items: Faq[] }) {
     const next = { ...votes, [id]: v }
     setVotes(next)
     save('faq-votes', next)
+    fetch('/api/votes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ faqId: id, vote: v }) }).catch(() => {})
   }
 
   if (items.length === 0) {

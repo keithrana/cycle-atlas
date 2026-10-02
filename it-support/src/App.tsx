@@ -1,15 +1,26 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowRight, Globe, Instagram, Twitter } from 'lucide-react'
 import VideoBackground from './VideoBackground'
 import FaqList from './Faq'
 import ContactForm from './ContactForm'
 import type { Faq } from './types'
+import Staff from './Staff'
 import faqData from './data/faqs.json'
 
-const faqs = faqData as Faq[]
-const categories = Array.from(new Set(faqs.map((f) => f.category)))
+const bundledFaqs = faqData as Faq[]
 
 export default function App() {
+  const [faqs, setFaqs] = useState<Faq[]>(bundledFaqs)
+  const [isStaff, setIsStaff] = useState(location.hash.startsWith('#/staff'))
+  const categories = useMemo(() => Array.from(new Set(faqs.map((f) => f.category))), [faqs])
+
+  useEffect(() => {
+    fetch('/api/faqs').then((r) => (r.ok ? r.json() : Promise.reject())).then(setFaqs).catch(() => {})
+    const onHash = () => setIsStaff(location.hash.startsWith('#/staff'))
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<string | null>(null)
   const answersRef = useRef<HTMLElement>(null)
@@ -21,7 +32,9 @@ export default function App() {
       const text = `${f.question} ${f.answer} ${f.category}`.toLowerCase()
       return words.every((w) => text.includes(w))
     })
-  }, [query, category])
+  }, [query, category, faqs])
+
+  if (isStaff) return <Staff />
 
   const scrollToAnswers = () => answersRef.current?.scrollIntoView({ behavior: 'smooth' })
 
@@ -50,8 +63,8 @@ export default function App() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <button className="text-white text-sm font-medium">Sign Up</button>
-              <button className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium">Login</button>
+              <a href="#contact" className="text-white text-sm font-medium">Contact IT</a>
+              <a href="#/staff" className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium">Staff login</a>
             </div>
           </div>
         </nav>

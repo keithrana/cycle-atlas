@@ -12,7 +12,7 @@ Restaurant analogy: the FAQ database is the **kitchen's recipe book**. The websi
 ## Phased roadmap
 - **Phase 1 – Food stand (TODAY):** hero + search + categories + 87 FAQs from the database, baked in as a JSON file. No server.
 - **Phase 2 – Small restaurant (DONE, browser-only storage):** "Was this helpful?" votes, "Contact IT" ticket form, shareable links per question.
-- **Phase 3 – Full restaurant:** small back-of-house server + real database, staff login, admin page to edit FAQs, ticket tracking.
+- **Phase 3 – Full restaurant (DONE):** small back-of-house server + real database, staff login, admin page to edit FAQs, ticket tracking.
 
 ## Test ladder
 1. Page loads, no console errors  2. Buttons/search work  3. Real data/links work  4. Security (no raw HTML injection, safe links)
