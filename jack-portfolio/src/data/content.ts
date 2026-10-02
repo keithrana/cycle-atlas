@@ -1,13 +1,17 @@
+import { embedded } from './embedded';
+
+const A = (url: string) => embedded[url] ?? url;
+
 const FIGMA = 'https://shrug-person-78902957.figma.site/_components/v2';
 const ABOUT = `${FIGMA}/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7`;
 
-export const portrait = `${FIGMA}/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png`;
+export const portrait = A(`${FIGMA}/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png`);
 
 export const aboutIcons = {
-  moon: `${ABOUT}/moon_icon.11395d36.png`,
-  object: `${ABOUT}/p59_1.4659672e.png`,
-  lego: `${ABOUT}/lego_icon-1.703bb594.png`,
-  group: `${ABOUT}/Group_134-1.2e04f3ce.png`,
+  moon: A(`${ABOUT}/moon_icon.11395d36.png`),
+  object: A(`${ABOUT}/p59_1.4659672e.png`),
+  lego: A(`${ABOUT}/lego_icon-1.703bb594.png`),
+  group: A(`${ABOUT}/Group_134-1.2e04f3ce.png`),
 };
 
 export const aboutText =
@@ -35,7 +39,7 @@ export const marqueeImages = [
   'hero-wealth-preview-B70idl_u',
   'hero-luminex-preview-CxOP7ce6',
   'hero-celestia-preview-0yO3jXO8',
-].map((n) => `https://motionsites.ai/assets/${n}.gif`);
+].map((n) => A(`https://motionsites.ai/assets/${n}.gif`));
 
 export const services = [
   { name: '3D Modeling', description: 'Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.' },
@@ -46,9 +50,9 @@ export const services = [
 ];
 
 const cf = (file: string) =>
-  `https://images.higgs.ai/?default=1&output=webp&url=${encodeURIComponent(
+  A(`https://images.higgs.ai/?default=1&output=webp&url=${encodeURIComponent(
     `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/${file}`
-  )}&w=1280&q=85`;
+  )}&w=1280&q=85`);
 
 export const projects = [
   {
