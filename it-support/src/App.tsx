@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from 'react'
 import { ArrowRight, Globe, Instagram, Twitter } from 'lucide-react'
 import VideoBackground from './VideoBackground'
 import FaqList from './Faq'
+import ContactForm from './ContactForm'
 import type { Faq } from './types'
 import faqData from './data/faqs.json'
 
@@ -40,7 +41,7 @@ export default function App() {
                 {[
                   ['Topics', '#answers'],
                   ['Search', '#top'],
-                  ['About', '#about'],
+                  ['Contact', '#contact'],
                 ].map(([label, href]) => (
                   <a key={label} href={href} className="text-white/80 hover:text-white transition-colors text-sm font-medium">
                     {label}
@@ -140,6 +141,8 @@ export default function App() {
         </div>
         <FaqList items={results} />
       </section>
+
+      <ContactForm topics={categories} />
 
       <footer id="about" className="max-w-3xl mx-auto px-6 pb-16 text-center text-white/50 text-sm">
         General guidance only. For account-specific problems, contact your organisation's IT service desk.
