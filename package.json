@@ -1,0 +1,11 @@
+{
+  "name": "cycle-atlas-root",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Root wrapper so hosts can build and start the IT Support site in it-support/",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "build": "npm --prefix it-support install --include=dev && npm --prefix it-support run build",
+    "start": "NODE_ENV=production node it-support/server/index.js"
+  }
+}
