@@ -80,5 +80,12 @@ export const Hello = ({ title }: { title: string }) => {
 - **Flicker**: an image or font not loaded; use `<Img>` and `@remotion/google-fonts`.
 - **Slow render**: lower resolution/fps while testing, or use `--concurrency`.
 
+## Templates
+Copy-paste starting points. Read the one that fits:
+- `templates/captions.md` - words highlighted in time with speech
+- `templates/charts.md` - animated bar chart
+- `templates/intro-outro.md` - title card + chaining scenes with `Series`
+- `templates/vertical.md` - 1080x1920 clips for Reels/TikTok/Shorts
+
 ## Docs
 https://www.remotion.dev/docs
