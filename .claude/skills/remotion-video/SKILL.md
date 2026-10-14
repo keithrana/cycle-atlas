@@ -76,6 +76,8 @@ export const Hello = ({ title }: { title: string }) => {
 - Rendering needs Chromium and ffmpeg (Remotion installs/handles these); first render can be slow.
 
 ## Common problems
+- **Can't download the browser (no internet / locked-down machine)**: point Remotion at an installed Chromium:
+  `npx remotion render <Id> out/video.mp4 --browser-executable=/path/to/chromium --chrome-mode=chrome-for-testing`
 - **Blank/white frames**: an asset path is wrong; use `staticFile()`.
 - **Flicker**: an image or font not loaded; use `<Img>` and `@remotion/google-fonts`.
 - **Slow render**: lower resolution/fps while testing, or use `--concurrency`.
