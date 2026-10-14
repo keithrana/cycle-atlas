@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" role="img" aria-label="Lookatu one color">
+<path fill-rule="evenodd" fill="#0B3F5C" d="M128 14 L226 48 V122 C226 182 184 226 128 246 C72 226 30 182 30 122 V48 Z M128 62 C98 62 76 84 76 112 C76 148 112 176 128 198 C144 176 180 148 180 112 C180 84 158 62 128 62 Z"/>
+<circle cx="128" cy="112" r="26" fill="#0B3F5C"/><circle cx="128" cy="112" r="10" fill="#fff"/>
+<text x="260" y="162" font-family="'Nunito','Quicksand','Varela Round','Arial Rounded MT Bold',system-ui,sans-serif" font-size="108" font-weight="800" fill="#0B3F5C">lookatu</text>
+</svg>
