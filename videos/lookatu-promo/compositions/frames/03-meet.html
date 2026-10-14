@@ -1,0 +1,71 @@
+<template>
+  <style>
+    @font-face { font-family: "Fredoka"; src: url("assets/fonts/fredoka-600.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+    @font-face { font-family: "Quicksand"; src: url("assets/fonts/quicksand-var.woff2") format("woff2"); font-weight: 500 700; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; color: #2D2D2D; font-family: "Quicksand", sans-serif; font-weight: 600; }
+    .f3-bg { position: absolute; inset: 0; }
+    .f3-orn { position: absolute; z-index: 1; }
+    .f3-orn svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .f3-z { position: absolute; z-index: 2; }
+    .f3-d { font-family: "Fredoka", sans-serif; font-weight: 600; letter-spacing: 0.02em; line-height: 1.05; }
+    .f3-card { background: #FFFFFF; border: 5px solid #2D2D2D; border-radius: 40px; box-shadow: 12px 12px 0 #2D2D2D; }
+    .f3-pill { display: inline-flex; align-items: center; gap: 18px; border: 5px solid #2D2D2D; border-radius: 80px; box-shadow: 8px 8px 0 #2D2D2D; padding: 20px 46px; white-space: nowrap; }
+    .f3-phone { position: absolute; z-index: 2; left: 260px; top: 230px; width: 560px; height: 1120px; background: #FFFFFF; border: 6px solid #2D2D2D; border-radius: 80px; box-shadow: 16px 16px 0 #2D2D2D; overflow: hidden; }
+    .f3-notch { position: absolute; left: 50%; top: 22px; margin-left: -70px; width: 140px; height: 28px; border-radius: 20px; background: #2D2D2D; }
+
+    .f3-eye { display: block; position: relative; width: 128.8px; height: 128.8px; border-radius: 50%; background: #FFFFFF; border: 6.8999999999999995px solid #2D2D2D; box-sizing: border-box; text-shadow: none; }
+    .f3-pup { position: absolute; left: 50%; top: 50%; width: 50.6px; height: 50.6px; margin: -25.3px 0 0 -25.3px; border-radius: 50%; background: #2D2D2D; }
+    .f3-badge { left: 50%; top: 250px; margin-left: -330px; width: 660px; justify-content: center; background: #FDE68A; }
+    .f3-badge span { font-size: 62px; }
+    .f3-wmwrap { left: 0; right: 0; top: 700px; }
+    .f3-shield { left: 50%; top: 380px; margin-left: -115px; width: 230px; height: 260px; }
+    .f3-peace { left: 50%; top: 1130px; margin-left: -400px; width: 800px; height: 200px; display: flex; align-items: center; justify-content: center; gap: 36px; }
+    .f3-peace span { font-size: 78px; }
+    .f3-peace svg { width: 100px; height: 100px; }
+  </style>
+  <div id="root" data-composition-id="03-meet" data-width="1080" data-height="1920" data-duration="8.644">
+    <div id="scene3-bg" class="clip f3-bg" data-start="0" data-duration="8.644" data-track-index="0" style="background:#7ECDC0"></div>
+    <div class="f3-orn" style="left:790px;top:60px;width:280px;height:280px"><svg viewBox="0 0 100 100" style="transform:rotate(0deg)" xmlns="http://www.w3.org/2000/svg"><line x1="50" y1="9" x2="50" y2="22" transform="rotate(0 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(30 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(60 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(90 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(120 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(150 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(180 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(210 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(240 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(270 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(300 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(330 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><circle cx="50" cy="50" r="24" fill="#FDE68A" stroke="#2D2D2D" stroke-width="3.2"/></svg></div>
+    <div class="f3-orn" style="left:-80px;top:200px;width:330px;height:330px"><svg viewBox="0 0 100 100" style="transform:rotate(-3deg)" xmlns="http://www.w3.org/2000/svg"><path d="M24 72 a17 17 0 0 1 3-33 a22 22 0 0 1 43-3 a17 17 0 0 1 6 36 z" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2" stroke-linejoin="round"/></svg></div>
+    <div class="f3-orn" style="left:-40px;top:1250px;width:260px;height:260px"><svg viewBox="0 0 100 100" style="transform:rotate(10deg)" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(0 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(45 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(90 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(135 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(180 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(225 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(270 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(315 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><circle cx="50" cy="50" r="14" fill="#FDE68A" stroke="#2D2D2D" stroke-width="3.2"/></svg></div>
+    <div class="f3-orn" style="left:820px;top:1330px;width:230px;height:230px"><svg viewBox="0 0 100 100" style="transform:rotate(-12deg)" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(0 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(45 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(90 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(135 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(180 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(225 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(270 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(315 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><circle cx="50" cy="50" r="14" fill="#FDE68A" stroke="#2D2D2D" stroke-width="3.2"/></svg></div>
+    <div class="f3-orn" style="left:130px;top:1010px;width:120px;height:120px"><svg viewBox="0 0 100 100" style="transform:rotate(8deg)" xmlns="http://www.w3.org/2000/svg"><polygon points="50,6 61,38 95,38 67,58 78,92 50,71 22,92 33,58 5,38 39,38" fill="#FDE68A" stroke="#2D2D2D" stroke-width="3.2" stroke-linejoin="round"/></svg></div>
+    <div class="f3-orn" style="left:830px;top:1020px;width:140px;height:140px"><svg viewBox="0 0 100 100" style="transform:rotate(-10deg)" xmlns="http://www.w3.org/2000/svg"><polygon points="50,6 61,38 95,38 67,58 78,92 50,71 22,92 33,58 5,38 39,38" fill="#FDE68A" stroke="#2D2D2D" stroke-width="3.2" stroke-linejoin="round"/></svg></div>
+
+    <div class="f3-z f3-pill f3-badge"><span class="f3-d">A BETTER WAY</span></div>
+    <svg class="f3-z f3-shield" viewBox="0 0 100 112"><path d="M50 4 L92 18 V54 C92 82 70 100 50 108 C30 100 8 82 8 54 V18 Z" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="4.5" stroke-linejoin="round"/><path d="M30 56 L45 71 L72 40" fill="none" stroke="#F8635F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="f3-z f3-wmwrap">
+      <div class="f3-wm f3-d" style="display:flex;align-items:flex-end;justify-content:center;font-size:230px;color:#2D2D2D;text-shadow:8px 8px 0 #FFFFFF;line-height:1">
+        <span>l</span>
+        <span class="f3-eye" style="margin:0 6.8999999999999995px 13.799999999999999px 11.5px"><i class="f3-pup"></i></span>
+        <span class="f3-eye" style="margin:0 11.5px 13.799999999999999px 6.8999999999999995px"><i class="f3-pup"></i></span>
+        <span>katu</span>
+      </div></div>
+    <div class="f3-z f3-card f3-peace"><svg viewBox="0 0 100 100" style="transform:rotate(0deg)" xmlns="http://www.w3.org/2000/svg"><path d="M50 86 C8 56 10 18 32 18 C42 18 48 25 50 32 C52 25 58 18 68 18 C90 18 92 56 50 86 Z" fill="#F8635F" stroke="#2D2D2D" stroke-width="3.2" stroke-linejoin="round"/></svg><span class="f3-d">PEACE OF MIND</span></div>
+  </div>
+  <script>
+    (function () {
+      const DUR = 8.144;
+      const tl = gsap.timeline({ paused: true });
+
+      const orns = document.querySelectorAll(".f3-orn");
+      tl.fromTo(orns, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.8)", stagger: 0.07 }, 0.05);
+      orns.forEach((el, i) => {
+        const t0 = 0.9 + i * 0.12, half = Math.max(1.2, (DUR - 1.6) / 2), amp = i % 2 ? -14 : 14;
+        tl.to(el, { y: amp, duration: half, ease: "sine.inOut" }, t0).to(el, { y: 0, duration: half, ease: "sine.inOut" }, t0 + half);
+      });
+
+      tl.fromTo(".f3-badge", { y: -80, opacity: 0, scale: 0.7 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, 0.38);
+      tl.fromTo(".f3-shield", { scale: 0, rotation: -20, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.65, ease: "back.out(1.9)" }, 1.48);
+      tl.fromTo(".f3-wm", { scale: 0.3, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: 0.75, ease: "back.out(1.6)" }, 2.38);
+      
+      const pups = document.querySelectorAll(".f3-pup"), r = 23;
+      tl.fromTo(pups, { x: 0, y: 0 }, { x: -r, y: -r * 0.4, duration: 0.35, ease: "power2.out" }, 2.9699999999999998)
+        .to(pups, { x: r, y: r * 0.3, duration: 0.5, ease: "power2.inOut" }, 3.57)
+        .to(pups, { x: 0, y: 0, duration: 0.35, ease: "power2.out" }, 4.32);
+      tl.fromTo(".f3-peace", { y: 100, opacity: 0, rotation: -3 }, { y: 0, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.6)" }, 5.43);
+      tl.to(".f3-peace svg", { scale: 1.2, duration: 0.3, ease: "sine.inOut" }, 6.13).to(".f3-peace svg", { scale: 1, duration: 0.3, ease: "sine.inOut" }, ">");
+      window.__timelines["03-meet"] = tl;
+    })();
+  </script>
+</template>

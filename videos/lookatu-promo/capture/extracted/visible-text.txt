@@ -1,0 +1,4 @@
+lookatu - child safety app for Android and iOS.
+Parents control how their kids use the phone (time limits, app control).
+Parents can track location when needed.
+Message: keep your kids safe on their phones, with peace of mind for parents.

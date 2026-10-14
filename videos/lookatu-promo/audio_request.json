@@ -1,0 +1,46 @@
+{
+  "provider": "kokoro",
+  "speed": "0.85",
+  "lines": [
+    {
+      "id": "01",
+      "text": "Where are they right now? And what are they really doing on that phone?"
+    },
+    {
+      "id": "02",
+      "text": "Endless scrolling. Arguments at dinner. And that quiet worry you never say out loud."
+    },
+    {
+      "id": "03",
+      "text": "There has to be a better way. Meet lookatu. The child safety app that gives you peace of mind."
+    },
+    {
+      "id": "04",
+      "text": "Set screen time limits that actually stick. When the time is up, the phone knows."
+    },
+    {
+      "id": "05",
+      "text": "Choose which apps are okay. Allow the good ones. Block the rest."
+    },
+    {
+      "id": "06",
+      "text": "And when it really matters, see where they are. Location, only when you need it."
+    },
+    {
+      "id": "07",
+      "text": "Because kids deserve some freedom, and parents deserve some calm."
+    },
+    {
+      "id": "08",
+      "text": "Works on Android and on iPhone."
+    },
+    {
+      "id": "09",
+      "text": "lookatu. Look out for them. Download it today."
+    }
+  ],
+  "bgm": {
+    "mode": "none"
+  },
+  "voice": "af_heart"
+}

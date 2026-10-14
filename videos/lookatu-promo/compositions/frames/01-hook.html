@@ -1,0 +1,63 @@
+<template>
+  <style>
+    @font-face { font-family: "Fredoka"; src: url("assets/fonts/fredoka-600.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+    @font-face { font-family: "Quicksand"; src: url("assets/fonts/quicksand-var.woff2") format("woff2"); font-weight: 500 700; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; color: #2D2D2D; font-family: "Quicksand", sans-serif; font-weight: 600; }
+    .f1-bg { position: absolute; inset: 0; }
+    .f1-orn { position: absolute; z-index: 1; }
+    .f1-orn svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .f1-z { position: absolute; z-index: 2; }
+    .f1-d { font-family: "Fredoka", sans-serif; font-weight: 600; letter-spacing: 0.02em; line-height: 1.05; }
+    .f1-card { background: #FFFFFF; border: 5px solid #2D2D2D; border-radius: 40px; box-shadow: 12px 12px 0 #2D2D2D; }
+    .f1-pill { display: inline-flex; align-items: center; gap: 18px; border: 5px solid #2D2D2D; border-radius: 80px; box-shadow: 8px 8px 0 #2D2D2D; padding: 20px 46px; white-space: nowrap; }
+    .f1-phone { position: absolute; z-index: 2; left: 260px; top: 230px; width: 560px; height: 1120px; background: #FFFFFF; border: 6px solid #2D2D2D; border-radius: 80px; box-shadow: 16px 16px 0 #2D2D2D; overflow: hidden; }
+    .f1-notch { position: absolute; left: 50%; top: 22px; margin-left: -70px; width: 140px; height: 28px; border-radius: 20px; background: #2D2D2D; }
+
+    .f1-bub { position: absolute; z-index: 2; display: flex; align-items: center; justify-content: center; border-radius: 70px; }
+    .f1-bub span { font-size: 168px; color: #2D2D2D; }
+    .f1-b1 { left: 80px; top: 250px; width: 760px; height: 360px; }
+    .f1-b2 { left: 240px; top: 700px; width: 760px; height: 360px; background: #FDE68A; }
+    .f1-tail1 { position: absolute; z-index: 3; left: 190px; top: 584px; width: 70px; height: 70px; background: #FFFFFF; border-right: 5px solid #2D2D2D; border-bottom: 5px solid #2D2D2D; transform: rotate(45deg); }
+    .f1-tail2 { position: absolute; z-index: 3; left: 820px; top: 1034px; width: 70px; height: 70px; background: #FDE68A; border-right: 5px solid #2D2D2D; border-bottom: 5px solid #2D2D2D; transform: rotate(45deg); }
+    .f1-ph { left: 390px; top: 1160px; width: 300px; height: 420px; background: #2D2D2D; border: 6px solid #2D2D2D; border-radius: 56px; box-shadow: 12px 12px 0 rgba(45,45,45,0.25); display: flex; align-items: center; justify-content: center; }
+    .f1-ph b { font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 170px; color: #FDE68A; }
+  </style>
+  <div id="root" data-composition-id="01-hook" data-width="1080" data-height="1920" data-duration="6.14">
+    <div id="scene1-bg" class="clip f1-bg" data-start="0" data-duration="6.14" data-track-index="0" style="background:#A8D8F0"></div>
+    <div class="f1-orn" style="left:-70px;top:90px;width:300px;height:300px"><svg viewBox="0 0 100 100" style="transform:rotate(-4deg)" xmlns="http://www.w3.org/2000/svg"><path d="M24 72 a17 17 0 0 1 3-33 a22 22 0 0 1 43-3 a17 17 0 0 1 6 36 z" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2" stroke-linejoin="round"/></svg></div>
+    <div class="f1-orn" style="left:800px;top:40px;width:260px;height:260px"><svg viewBox="0 0 100 100" style="transform:rotate(10deg)" xmlns="http://www.w3.org/2000/svg"><line x1="50" y1="9" x2="50" y2="22" transform="rotate(0 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(30 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(60 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(90 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(120 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(150 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(180 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(210 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(240 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(270 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(300 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><line x1="50" y1="9" x2="50" y2="22" transform="rotate(330 50 50)" stroke="#2D2D2D" stroke-width="3.2" stroke-linecap="round"/><circle cx="50" cy="50" r="24" fill="#FDE68A" stroke="#2D2D2D" stroke-width="3.2"/></svg></div>
+    <div class="f1-orn" style="left:900px;top:1150px;width:150px;height:150px"><svg viewBox="0 0 100 100" style="transform:rotate(14deg)" xmlns="http://www.w3.org/2000/svg"><polygon points="50,6 61,38 95,38 67,58 78,92 50,71 22,92 33,58 5,38 39,38" fill="#FDE68A" stroke="#2D2D2D" stroke-width="3.2" stroke-linejoin="round"/></svg></div>
+    <div class="f1-orn" style="left:-50px;top:1330px;width:230px;height:230px"><svg viewBox="0 0 100 100" style="transform:rotate(8deg)" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(0 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(45 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(90 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(135 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(180 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(225 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(270 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><ellipse cx="50" cy="21" rx="11" ry="19" transform="rotate(315 50 50)" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2"/><circle cx="50" cy="50" r="14" fill="#FDE68A" stroke="#2D2D2D" stroke-width="3.2"/></svg></div>
+    <div class="f1-orn" style="left:760px;top:1380px;width:260px;height:260px"><svg viewBox="0 0 100 100" style="transform:rotate(5deg)" xmlns="http://www.w3.org/2000/svg"><path d="M24 72 a17 17 0 0 1 3-33 a22 22 0 0 1 43-3 a17 17 0 0 1 6 36 z" fill="#FFFFFF" stroke="#2D2D2D" stroke-width="3.2" stroke-linejoin="round"/></svg></div>
+
+    <div class="f1-bub f1-card f1-b1"><span class="f1-d">WHERE?</span></div>
+    <div class="f1-tail1"></div>
+    <div class="f1-bub f1-card f1-b2"><span class="f1-d">WHAT?</span></div>
+    <div class="f1-tail2"></div>
+    <div class="f1-z f1-ph"><b>?</b></div>
+  </div>
+  <script>
+    (function () {
+      const DUR = 5.64;
+      const tl = gsap.timeline({ paused: true });
+
+      const orns = document.querySelectorAll(".f1-orn");
+      tl.fromTo(orns, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.8)", stagger: 0.07 }, 0.05);
+      orns.forEach((el, i) => {
+        const t0 = 0.9 + i * 0.12, half = Math.max(1.2, (DUR - 1.6) / 2), amp = i % 2 ? -14 : 14;
+        tl.to(el, { y: amp, duration: half, ease: "sine.inOut" }, t0).to(el, { y: 0, duration: half, ease: "sine.inOut" }, t0 + half);
+      });
+
+      tl.fromTo(".f1-b1", { scale: 0.2, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: -2, duration: 0.55, ease: "back.out(1.9)" }, 0.3);
+      tl.fromTo(".f1-tail1", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.6499999999999999);
+      tl.fromTo(".f1-b2", { scale: 0.2, opacity: 0, rotation: 8 }, { scale: 1, opacity: 1, rotation: 2, duration: 0.55, ease: "back.out(1.9)" }, 2.12);
+      tl.fromTo(".f1-tail2", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 2.47);
+      tl.fromTo(".f1-ph", { scale: 0, rotation: 12 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.7)" }, 3);
+      tl.to(".f1-ph", { rotation: -5, duration: 0.18, ease: "sine.inOut" }, 3.6)
+        .to(".f1-ph", { rotation: 5, duration: 0.3, ease: "sine.inOut" }, ">")
+        .to(".f1-ph", { rotation: -3, duration: 0.3, ease: "sine.inOut" }, ">")
+        .to(".f1-ph", { rotation: 0, duration: 0.25, ease: "sine.inOut" }, ">");
+      window.__timelines["01-hook"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,235 @@
+<template id="captions-template" data-composition-id="captions" data-width="1080" data-height="1920">
+<script src="assets/vendor/gsap.min.js"></script>
+
+
+<style data-brand-tokens>
+      @font-face { font-family: 'Quicksand'; src: url('assets/fonts/quicksand-var.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+      :root {
+      --cream: #F5F0E6;
+      --turquoise: #7ECDC0;
+      --soft-pink: #F7C8D4;
+      --butter: #FDE68A;
+      --mint: #A8E6CF;
+      --lavender: #D4A5E8;
+      --peach: #FFCBA4;
+      --sky: #A8D8F0;
+      --coral: #F8635F;
+      --text-dark: #2D2D2D;
+      --text-muted: #6B6B6B;
+      --white: #FFFFFF;
+      --cap-ink: #2D2D2D;
+      --cap-canvas: #F5F0E6;
+      --cap-accent: #F8635F;
+      --cap-accent-2: #FDE68A;
+      --font-display: "Fredoka One", system-ui, serif;
+      --font-body: "Quicksand", system-ui, sans-serif;
+      --cap-band-top: 1600px;
+      --cap-band-height: 320px;
+      }
+    </style>
+
+<style>
+  @font-face { font-family: "Fredoka"; src: url("assets/fonts/fredoka-600.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+  @font-face { font-family: "Fredoka One"; src: url("assets/fonts/fredoka-600.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+  @font-face { font-family: "Quicksand"; src: url("assets/fonts/quicksand-var.woff2") format("woff2"); font-weight: 500 700; font-style: normal; }
+  #captions-root {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .caption-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  /* the keep-out band, from captionBand(H) — frame content stays above it */
+  .caption-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--cap-band-top, 900px);
+    height: var(--cap-band-height, 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .caption-group {
+    /* every group is absolutely stacked over the SAME band — exactly one shown at a
+       time via opacity. Must be absolute: in-flow groups would lay out side-by-side. */
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+
+  /* THE picture-book card — cream surface, 3px charcoal outline, generous 24px radius,
+     a hard 6px charcoal offset shadow (no blur): the sticker-on-paper signature */
+  .caption-pill {
+    max-width: 80%;
+    padding: 18px 40px 22px;
+    background: var(--cap-canvas, #f5f0e6);
+    border: 3px solid var(--cap-ink, #2d2d2d);
+    border-radius: 24px;
+    box-shadow: 6px 6px 0 var(--cap-ink, #2d2d2d);
+  }
+  .caption-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.18em 0.32em;
+    font-family: "Fredoka One", sans-serif;
+    font-weight: 600;
+    font-size: clamp(38px, 4.2vw, 56px);
+    line-height: 1.22;
+    letter-spacing: 0.02em;
+  }
+
+  /* upcoming — muted charcoal, no candy block */
+  .caption-word {
+    display: inline-block;
+    padding: 0.02em 0.16em;
+    border-radius: 12px;
+    color: color-mix(in srgb, var(--cap-ink, #2d2d2d) 52%, var(--cap-canvas, #f5f0e6));
+  }
+  /* current word — THE sunny-pastel candy block: a rounded coral chip with a 3px
+     charcoal outline + a hard 3px charcoal offset shadow (no blur), charcoal on top */
+  .caption-word.is-active {
+    color: var(--cap-ink, #2d2d2d);
+    background: var(--cap-accent, #f8635f);
+    border-radius: 12px;
+    box-shadow:
+      0 0 0 3px var(--cap-ink, #2d2d2d),
+      3px 5px 0 0 var(--cap-ink, #2d2d2d);
+  }
+  /* already spoken — solid charcoal, candy block cleared */
+  .caption-word.is-spoken {
+    color: var(--cap-ink, #2d2d2d);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* optional per-word accents (dormant until a word-classer tags them) */
+  /* brand / key term — a butter candy chip, the cheerful second pastel */
+  .caption-word.cap-brand {
+    color: var(--cap-ink, #2d2d2d);
+    background: var(--cap-accent-2, #fde68a);
+    border-radius: 12px;
+    box-shadow: 0 0 0 3px var(--cap-ink, #2d2d2d);
+  }
+  /* numerals / data — Quicksand, slightly recessed */
+  .caption-word.cap-num {
+    font-family: "Quicksand", system-ui, sans-serif;
+    font-weight: 700;
+    color: color-mix(in srgb, var(--cap-ink, #2d2d2d) 78%, var(--cap-canvas, #f5f0e6));
+  }
+  /* emphasis — a butter underline rule (the second sunny pastel) */
+  .caption-word.cap-cta {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: var(--cap-accent-2, #fde68a);
+    text-underline-offset: 0.12em;
+  }
+
+  @media (max-aspect-ratio: 9/16) {
+    .caption-pill {
+      max-width: 92%;
+    }
+    .caption-line {
+      font-size: clamp(32px, 5.2vw, 46px);
+    }
+  }
+</style>
+
+<div
+  id="captions-root"
+  data-composition-id="captions"
+  data-timeline-locked
+  data-start="0"
+  data-duration="54.733"
+  data-fps="30"
+  data-width="1080"
+  data-height="1920"
+>
+  <div class="caption-layer" aria-hidden="true">
+    <div id="caption-stage" class="caption-stage"></div>
+  </div>
+</div>
+
+<script>
+  // captions.mjs injects the engine's scene-aware groups + real duration here.
+  var GROUPS = [{"id":"caption-group-0","frame":1,"start":0.8,"end":1.28,"text":"Where are","words":[{"id":"caption-word-0-0","text":"Where","start":0.8,"end":1.058},{"id":"caption-word-0-1","text":"are","start":1.08,"end":1.264}]},{"id":"caption-group-1","frame":1,"start":1.28,"end":1.8,"text":"they right","words":[{"id":"caption-word-1-0","text":"they","start":1.28,"end":1.501},{"id":"caption-word-1-1","text":"right","start":1.52,"end":1.778}]},{"id":"caption-group-2","frame":1,"start":1.8,"end":2.44,"text":"now And","words":[{"id":"caption-word-2-0","text":"now","start":1.8,"end":2.205},{"id":"caption-word-2-1","text":"And","start":2.24,"end":2.424}]},{"id":"caption-group-3","frame":1,"start":2.44,"end":2.88,"text":"what are","words":[{"id":"caption-word-3-0","text":"what","start":2.44,"end":2.661},{"id":"caption-word-3-1","text":"are","start":2.68,"end":2.864}]},{"id":"caption-group-4","frame":1,"start":2.88,"end":3.44,"text":"they really","words":[{"id":"caption-word-4-0","text":"they","start":2.88,"end":3.101},{"id":"caption-word-4-1","text":"really","start":3.12,"end":3.414}]},{"id":"caption-group-5","frame":1,"start":3.44,"end":3.88,"text":"doing on","words":[{"id":"caption-word-5-0","text":"doing","start":3.44,"end":3.698},{"id":"caption-word-5-1","text":"on","start":3.72,"end":3.867}]},{"id":"caption-group-6","frame":1,"start":3.88,"end":4.718,"text":"that phone","words":[{"id":"caption-word-6-0","text":"that","start":3.88,"end":4.101},{"id":"caption-word-6-1","text":"phone","start":4.12,"end":4.598}]},{"id":"caption-group-7","frame":2,"start":6.14,"end":8.158,"text":"Endless scrolling Arguments at","words":[{"id":"caption-word-7-0","text":"Endless","start":6.14,"end":6.548},{"id":"caption-word-7-1","text":"scrolling","start":6.583,"end":7.353},{"id":"caption-word-7-2","text":"Arguments","start":7.42,"end":7.918},{"id":"caption-word-7-3","text":"at","start":7.961,"end":8.142}]},{"id":"caption-group-8","frame":2,"start":8.158,"end":9.388,"text":"dinner And that","words":[{"id":"caption-word-8-0","text":"dinner","start":8.158,"end":8.792},{"id":"caption-word-8-1","text":"And","start":8.847,"end":9.073},{"id":"caption-word-8-2","text":"that","start":9.093,"end":9.365}]},{"id":"caption-group-9","frame":2,"start":9.388,"end":10.078,"text":"quiet worry","words":[{"id":"caption-word-9-0","text":"quiet","start":9.388,"end":9.705},{"id":"caption-word-9-1","text":"worry","start":9.733,"end":10.05}]},{"id":"caption-group-10","frame":2,"start":10.078,"end":10.668,"text":"you never","words":[{"id":"caption-word-10-0","text":"you","start":10.078,"end":10.304},{"id":"caption-word-10-1","text":"never","start":10.324,"end":10.641}]},{"id":"caption-group-11","frame":2,"start":10.668,"end":11.824,"text":"say out loud","words":[{"id":"caption-word-11-0","text":"say","start":10.668,"end":10.895},{"id":"caption-word-11-1","text":"out","start":10.914,"end":11.141},{"id":"caption-word-11-2","text":"loud","start":11.16,"end":11.704}]},{"id":"caption-group-12","frame":3,"start":13.251,"end":13.823,"text":"There has","words":[{"id":"caption-word-12-0","text":"There","start":13.251,"end":13.558},{"id":"caption-word-12-1","text":"has","start":13.584,"end":13.803}]},{"id":"caption-group-13","frame":3,"start":13.823,"end":14.204,"text":"to be","words":[{"id":"caption-word-13-0","text":"to","start":13.823,"end":13.998},{"id":"caption-word-13-1","text":"be","start":14.013,"end":14.188}]},{"id":"caption-group-14","frame":3,"start":14.204,"end":15.251,"text":"a better way","words":[{"id":"caption-word-14-0","text":"a","start":14.204,"end":14.335},{"id":"caption-word-14-1","text":"better","start":14.346,"end":14.697},{"id":"caption-word-14-2","text":"way","start":14.727,"end":15.209}]},{"id":"caption-group-15","frame":3,"start":15.251,"end":16.823,"text":"Meet lookatu The child","words":[{"id":"caption-word-15-0","text":"Meet","start":15.251,"end":15.514},{"id":"caption-word-15-1","text":"lookatu","start":15.537,"end":16.194},{"id":"caption-word-15-2","text":"The","start":16.252,"end":16.471},{"id":"caption-word-15-3","text":"child","start":16.49,"end":16.796}]},{"id":"caption-group-16","frame":3,"start":16.823,"end":17.442,"text":"safety app","words":[{"id":"caption-word-16-0","text":"safety","start":16.823,"end":17.174},{"id":"caption-word-16-1","text":"app","start":17.204,"end":17.423}]},{"id":"caption-group-17","frame":3,"start":17.442,"end":18.061,"text":"that gives","words":[{"id":"caption-word-17-0","text":"that","start":17.442,"end":17.705},{"id":"caption-word-17-1","text":"gives","start":17.728,"end":18.035}]},{"id":"caption-group-18","frame":3,"start":18.061,"end":18.633,"text":"you peace","words":[{"id":"caption-word-18-0","text":"you","start":18.061,"end":18.281},{"id":"caption-word-18-1","text":"peace","start":18.3,"end":18.606}]},{"id":"caption-group-19","frame":3,"start":18.633,"end":19.469,"text":"of mind","words":[{"id":"caption-word-19-0","text":"of","start":18.633,"end":18.808},{"id":"caption-word-19-1","text":"mind","start":18.823,"end":19.349}]},{"id":"caption-group-20","frame":4,"start":21.395,"end":22.003,"text":"Set screen","words":[{"id":"caption-word-20-0","text":"Set","start":21.395,"end":21.61},{"id":"caption-word-20-1","text":"screen","start":21.629,"end":21.973}]},{"id":"caption-group-21","frame":4,"start":22.003,"end":22.658,"text":"time limits","words":[{"id":"caption-word-21-0","text":"time","start":22.003,"end":22.261},{"id":"caption-word-21-1","text":"limits","start":22.284,"end":22.628}]},{"id":"caption-group-22","frame":4,"start":22.658,"end":24.015,"text":"that actually stick","words":[{"id":"caption-word-22-0","text":"that","start":22.658,"end":22.916},{"id":"caption-word-22-1","text":"actually","start":22.939,"end":23.369},{"id":"caption-word-22-2","text":"stick","start":23.407,"end":23.966}]},{"id":"caption-group-23","frame":4,"start":24.015,"end":24.529,"text":"When the","words":[{"id":"caption-word-23-0","text":"When","start":24.015,"end":24.273},{"id":"caption-word-23-1","text":"the","start":24.295,"end":24.511}]},{"id":"caption-group-24","frame":4,"start":24.529,"end":24.997,"text":"time is","words":[{"id":"caption-word-24-0","text":"time","start":24.529,"end":24.787},{"id":"caption-word-24-1","text":"is","start":24.81,"end":24.982}]},{"id":"caption-group-25","frame":4,"start":24.997,"end":25.558,"text":"up the","words":[{"id":"caption-word-25-0","text":"up","start":24.997,"end":25.298},{"id":"caption-word-25-1","text":"the","start":25.325,"end":25.54}]},{"id":"caption-group-26","frame":4,"start":25.558,"end":26.565,"text":"phone knows","words":[{"id":"caption-word-26-0","text":"phone","start":25.558,"end":25.86},{"id":"caption-word-26-1","text":"knows","start":25.886,"end":26.445}]},{"id":"caption-group-27","frame":5,"start":27.994,"end":28.679,"text":"Choose which","words":[{"id":"caption-word-27-0","text":"Choose","start":27.994,"end":28.33},{"id":"caption-word-27-1","text":"which","start":28.359,"end":28.654}]},{"id":"caption-group-28","frame":5,"start":28.679,"end":29.73,"text":"apps are okay","words":[{"id":"caption-word-28-0","text":"apps","start":28.679,"end":28.931},{"id":"caption-word-28-1","text":"are","start":28.953,"end":29.164},{"id":"caption-word-28-2","text":"okay","start":29.182,"end":29.686}]},{"id":"caption-group-29","frame":5,"start":29.73,"end":30.278,"text":"Allow the","words":[{"id":"caption-word-29-0","text":"Allow","start":29.73,"end":30.024},{"id":"caption-word-29-1","text":"the","start":30.05,"end":30.26}]},{"id":"caption-group-30","frame":5,"start":30.278,"end":31.42,"text":"good ones Block","words":[{"id":"caption-word-30-0","text":"good","start":30.278,"end":30.53},{"id":"caption-word-30-1","text":"ones","start":30.552,"end":31.057},{"id":"caption-word-30-2","text":"Block","start":31.101,"end":31.395}]},{"id":"caption-group-31","frame":5,"start":31.42,"end":32.273,"text":"the rest","words":[{"id":"caption-word-31-0","text":"the","start":31.42,"end":31.631},{"id":"caption-word-31-1","text":"rest","start":31.649,"end":32.153}]},{"id":"caption-group-32","frame":6,"start":33.697,"end":34.198,"text":"And when","words":[{"id":"caption-word-32-0","text":"And","start":33.697,"end":33.907},{"id":"caption-word-32-1","text":"when","start":33.925,"end":34.176}]},{"id":"caption-group-33","frame":6,"start":34.198,"end":35.292,"text":"it really matters","words":[{"id":"caption-word-33-0","text":"it","start":34.198,"end":34.366},{"id":"caption-word-33-1","text":"really","start":34.381,"end":34.716},{"id":"caption-word-33-2","text":"matters","start":34.745,"end":35.248}]},{"id":"caption-group-34","frame":6,"start":35.292,"end":35.839,"text":"see where","words":[{"id":"caption-word-34-0","text":"see","start":35.292,"end":35.502},{"id":"caption-word-34-1","text":"where","start":35.52,"end":35.813}]},{"id":"caption-group-35","frame":6,"start":35.839,"end":37.206,"text":"they are Location","words":[{"id":"caption-word-35-0","text":"they","start":35.839,"end":36.09},{"id":"caption-word-35-1","text":"are","start":36.112,"end":36.574},{"id":"caption-word-35-2","text":"Location","start":36.614,"end":37.159}]},{"id":"caption-group-36","frame":6,"start":37.206,"end":37.753,"text":"only when","words":[{"id":"caption-word-36-0","text":"only","start":37.206,"end":37.458},{"id":"caption-word-36-1","text":"when","start":37.48,"end":37.731}]},{"id":"caption-group-37","frame":6,"start":37.753,"end":38.794,"text":"you need it","words":[{"id":"caption-word-37-0","text":"you","start":37.753,"end":37.963},{"id":"caption-word-37-1","text":"need","start":37.981,"end":38.232},{"id":"caption-word-37-2","text":"it","start":38.254,"end":38.674}]},{"id":"caption-group-38","frame":7,"start":40.21,"end":41.357,"text":"Because kids deserve","words":[{"id":"caption-word-38-0","text":"Because","start":40.21,"end":40.606},{"id":"caption-word-38-1","text":"kids","start":40.64,"end":40.904},{"id":"caption-word-38-2","text":"deserve","start":40.927,"end":41.323}]},{"id":"caption-group-39","frame":7,"start":41.357,"end":42.457,"text":"some freedom and","words":[{"id":"caption-word-39-0","text":"some","start":41.357,"end":41.621},{"id":"caption-word-39-1","text":"freedom","start":41.644,"end":42.172},{"id":"caption-word-39-2","text":"and","start":42.218,"end":42.438}]},{"id":"caption-group-40","frame":7,"start":42.457,"end":43.604,"text":"parents deserve some","words":[{"id":"caption-word-40-0","text":"parents","start":42.457,"end":42.853},{"id":"caption-word-40-1","text":"deserve","start":42.887,"end":43.283},{"id":"caption-word-40-2","text":"some","start":43.317,"end":43.581}]},{"id":"caption-group-41","frame":7,"start":43.604,"end":44.252,"text":"calm","words":[{"id":"caption-word-41-0","text":"calm","start":43.604,"end":44.132}]},{"id":"caption-group-42","frame":8,"start":45.678,"end":46.74,"text":"Works on Android","words":[{"id":"caption-word-42-0","text":"Works","start":45.678,"end":46.02},{"id":"caption-word-42-1","text":"on","start":46.05,"end":46.245},{"id":"caption-word-42-2","text":"Android","start":46.262,"end":46.702}]},{"id":"caption-group-43","frame":8,"start":46.74,"end":48.022,"text":"and on iPhone","words":[{"id":"caption-word-43-0","text":"and","start":46.74,"end":46.984},{"id":"caption-word-43-1","text":"on","start":47.005,"end":47.201},{"id":"caption-word-43-2","text":"iPhone","start":47.218,"end":47.902}]},{"id":"caption-group-44","frame":9,"start":49.461,"end":50.602,"text":"lookatu Look out","words":[{"id":"caption-word-44-0","text":"lookatu","start":49.461,"end":50.067},{"id":"caption-word-44-1","text":"Look","start":50.119,"end":50.362},{"id":"caption-word-44-2","text":"out","start":50.383,"end":50.584}]},{"id":"caption-group-45","frame":9,"start":50.602,"end":51.787,"text":"for them Download","words":[{"id":"caption-word-45-0","text":"for","start":50.602,"end":50.804},{"id":"caption-word-45-1","text":"them","start":50.821,"end":51.306},{"id":"caption-word-45-2","text":"Download","start":51.348,"end":51.752}]},{"id":"caption-group-46","frame":9,"start":51.787,"end":52.607,"text":"it today","words":[{"id":"caption-word-46-0","text":"it","start":51.787,"end":51.948},{"id":"caption-word-46-1","text":"today","start":51.962,"end":52.487}]}];
+  var DURATION = 54.733;
+
+  (function () {
+    var stage = document.getElementById("caption-stage");
+
+    // build DOM: one .caption-group per group, .caption-word per word
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.createElement("div");
+      groupEl.className = "caption-group";
+      groupEl.id = "caption-group-" + g;
+      var pill = document.createElement("div");
+      pill.className = "caption-pill";
+      var line = document.createElement("div");
+      line.className = "caption-line";
+      (group.words || []).forEach(function (w, i) {
+        var span = document.createElement("span");
+        span.className = "caption-word";
+        span.id = "caption-word-" + g + "-" + i;
+        span.textContent = String(w.text);
+        line.appendChild(span);
+      });
+      pill.appendChild(line);
+      groupEl.appendChild(pill);
+      stage.appendChild(groupEl);
+    });
+
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.getElementById("caption-group-" + g);
+      var words = group.words || [];
+      var next = GROUPS[g + 1];
+      var isLast = g === GROUPS.length - 1;
+      var start = Math.max(0, Number(group.start));
+      var end = isLast ? DURATION : Math.min(Number(next.start), Number(group.end) + 0.3);
+      if (end <= start) end = start + 0.01;
+
+      // group on/off — exactly one group visible at a time
+      tl.set(groupEl, { opacity: 1 }, start);
+      tl.set(groupEl, { opacity: 0 }, end);
+
+      // 3-state karaoke via className SETS — seek-safe (gsap.set applies on the
+      // engine's frame-by-frame seek; .call callbacks would NOT fire).
+      words.forEach(function (w, i) {
+        var el = document.getElementById("caption-word-" + g + "-" + i);
+        var at = Math.max(start, Number(w.start));
+        tl.set(el, { className: "caption-word" }, start); // upcoming (also resets on reverse-seek)
+        tl.set(el, { className: "caption-word is-active" }, at); // current
+        tl.fromTo(el, { scale: 0.82 }, { scale: 1, duration: 0.2, ease: "back.out(2.6)" }, at);
+        if (i + 1 < words.length) {
+          var nextAt = Math.max(start, Number(words[i + 1].start));
+          tl.set(el, { className: "caption-word is-spoken" }, nextAt); // demote when next activates
+        }
+      });
+      if (words.length) {
+        var lastEl = document.getElementById("caption-word-" + g + "-" + (words.length - 1));
+        var lastSpoken = Math.min(end, Number(words[words.length - 1].end) + 0.1);
+        tl.set(lastEl, { className: "caption-word is-spoken" }, lastSpoken);
+      }
+    });
+
+    // full-span anchor so the sub-comp timeline spans the whole video
+    tl.to({}, { duration: DURATION }, 0);
+    window.__timelines["captions"] = tl;
+  })();
+</script>
+
+<style>
+  .caption-line { line-height: 1.1 !important; }
+</style>
+</template>
