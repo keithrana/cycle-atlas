@@ -75,6 +75,14 @@ export const Hello = ({ title }: { title: string }) => {
 - Keep props in `defaultProps` so the user can edit text in the Studio.
 - Rendering needs Chromium and ffmpeg (Remotion installs/handles these); first render can be slow.
 
+## Fonts
+Google Fonts: `npm i @remotion/google-fonts`, then
+```tsx
+import { loadFont } from "@remotion/google-fonts/Inter";
+const { fontFamily } = loadFont();   // use as style={{ fontFamily }}
+```
+It downloads the font while rendering, so the machine needs internet access to fonts.googleapis.com. If the render fails with "Failed to load font", the network is blocking it: use a local font file in `public/` with `@remotion/fonts` (`loadFont({ family, url: staticFile("x.woff2") })`) or a system font. (Not verified in the sandbox where this skill was tested, which had no access to Google.)
+
 ## Common problems
 - **Can't download the browser (no internet / locked-down machine)**: point Remotion at an installed Chromium:
   `npx remotion render <Id> out/video.mp4 --browser-executable=/path/to/chromium --chrome-mode=chrome-for-testing`
