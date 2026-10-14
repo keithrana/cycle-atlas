@@ -87,6 +87,7 @@ Copy-paste starting points. Read the one that fits:
 - `templates/captions.md` - words highlighted in time with speech
 - `templates/charts.md` - animated bar chart
 - `templates/intro-outro.md` - title card + chaining scenes with `Series`
+- `templates/audio-voiceover.md` - background music, voiceover, auto video length
 - `templates/vertical.md` - 1080x1920 clips for Reels/TikTok/Shorts
 
 ## Docs
