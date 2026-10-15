@@ -266,7 +266,7 @@ button{font-family:inherit;}
   text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;font-weight:600;}
 input[type="range"].week-slider{
   width:100%;-webkit-appearance:none;appearance:none;height:8px;border-radius:999px;
-  background:linear-gradient(to right, var(--pregnancy-soft) 0%, var(--pregnancy-soft) 100%);
+  background:linear-gradient(to right, var(--pregnancy) 0, var(--pregnancy) calc(11px + (100% - 22px) * var(--f,0)), var(--pregnancy-soft) calc(11px + (100% - 22px) * var(--f,0)), var(--pregnancy-soft) 100%);
   outline:none;cursor:pointer;
 }
 input[type="range"].week-slider::-webkit-slider-thumb{
@@ -1074,3 +1074,4 @@ footer.note{
 <script src="vendor/three.min.js"></script>
 <script src="ring3d.js"></script>
 <script src="animations.js"></script>
+<script src="timeline.js"></script>
