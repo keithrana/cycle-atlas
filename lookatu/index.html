@@ -60,10 +60,15 @@ input[type=email]:focus-visible,.btn:focus-visible,summary:focus-visible,button:
 #msg{text-align:center;margin-top:14px;min-height:1.5em}
 #msg.ok{color:var(--ok)} #msg.err{color:var(--danger)}
 .note{text-align:center;color:var(--muted);font-size:.85rem;margin-top:8px}
+.sr{position:absolute;left:-9999px}
+.trap{position:absolute;left:-9999px;height:0;overflow:hidden}
+select{padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit}
+.consent{flex:1 1 100%;font-size:.9rem;color:var(--muted)}
+.consent input{margin-right:8px}
+.consent a{color:var(--brand)}
+footer a{margin:0 8px}
 footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;text-align:center}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.pin::after{animation:none}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){.pin::after{animation:none}html{scroll-behavior:auto}}
 @media (max-width:640px){.nav a.link{display:none}}
 </style>
 </head>
@@ -103,11 +108,11 @@ footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       <h2>Everything a parent needs</h2>
       <p class="sub">Five simple tools, in one app.</p>
       <div class="grid">
-        <div class="card reveal"><div class="ic">📍</div><h3>Live location</h3><p>Open the app and see where your child is right now.</p></div>
-        <div class="card reveal"><div class="ic">📊</div><h3>Activity monitor</h3><p>See which apps they use and for how long, every day.</p></div>
-        <div class="card reveal"><div class="ic">🔒</div><h3>App control</h3><p>Allow, block or limit apps. Approve new installs before they happen.</p></div>
-        <div class="card reveal"><div class="ic">💬</div><h3>Calls &amp; messages</h3><p>Check call history and messages so you can spot trouble early.</p></div>
-        <div class="card reveal sos"><div class="ic">🚨</div><h3>Panic button</h3><p>One tap and you get an alert with their location, right away.</p></div>
+        <div class="card"><div class="ic">📍</div><h3>Live location</h3><p>Open the app and see where your child is right now.</p></div>
+        <div class="card"><div class="ic">📊</div><h3>Activity monitor</h3><p>See which apps they use and for how long, every day.</p></div>
+        <div class="card"><div class="ic">🔒</div><h3>App control</h3><p>Allow, block or limit apps. Approve new installs before they happen.</p></div>
+        <div class="card"><div class="ic">💬</div><h3>Calls &amp; messages</h3><p>Check call history and messages so you can spot trouble early.</p></div>
+        <div class="card sos"><div class="ic">🚨</div><h3>Panic button</h3><p>One tap and you get an alert with their location, right away.</p></div>
       </div>
     </div>
   </section>
@@ -117,9 +122,9 @@ footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       <h2>How it works</h2>
       <p class="sub">Set up takes a few minutes.</p>
       <div class="grid steps">
-        <div class="card reveal"><h3>Install on both phones</h3><p>You get the parent app. Your child gets the child app.</p></div>
-        <div class="card reveal"><h3>Link them together</h3><p>Scan a code on your child's phone to connect the two.</p></div>
-        <div class="card reveal"><h3>Choose your rules</h3><p>Pick which apps are allowed and what you want to see.</p></div>
+        <div class="card"><h3>Install on both phones</h3><p>You get the parent app. Your child gets the child app.</p></div>
+        <div class="card"><h3>Link them together</h3><p>Scan a code on your child's phone to connect the two.</p></div>
+        <div class="card"><h3>Choose your rules</h3><p>Pick which apps are allowed and what you want to see.</p></div>
       </div>
     </div>
   </section>
@@ -154,36 +159,65 @@ footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       <h2>Join the waitlist</h2>
       <p class="sub">Be the first to know when LookAtU opens.</p>
       <form id="waitlist" novalidate>
-        <label for="email" style="position:absolute;left:-9999px">Email address</label>
+        <label for="email" class="sr">Email address</label>
         <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
-        <button class="btn" type="submit">Notify me</button>
+        <label for="phone" class="sr">Your child's phone</label>
+        <select id="phone" name="phone">
+          <option value="Android">Android phone</option>
+          <option value="iPhone">iPhone</option>
+          <option value="Both">Both</option>
+        </select>
+        <div class="trap" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <label class="consent" for="agree"><input id="agree" name="agree" type="checkbox"> I agree to the <a href="privacy/">Privacy Policy</a> and want emails about LookAtU.</label>
+        <button class="btn" id="send" type="submit">Notify me</button>
       </form>
       <div id="msg" role="status" aria-live="polite"></div>
-      <p class="note">Demo form: emails are not saved yet. Saving comes in Phase 2.</p>
+      <p class="note" id="note">We only use your email to tell you when LookAtU opens. No spam.</p>
     </div>
   </section>
 </main>
 
-<footer><div class="wrap">© <span id="yr">2026</span> LookAtU. Early preview.</div></footer>
+<footer><div class="wrap">© <span id="yr">2026</span> LookAtU. Early preview. <a href="privacy/">Privacy</a> <a href="terms/">Terms</a></div></footer>
 
 <script>
+// PASTE YOUR FORM URL BETWEEN THE QUOTES (example: https://formspree.io/f/abcdwxyz). While empty, the form runs in demo mode.
+var FORM_ENDPOINT = '';
 (function(){
-  var form=document.getElementById('waitlist'),email=document.getElementById('email'),msg=document.getElementById('msg');
+  var form=document.getElementById('waitlist'),email=document.getElementById('email'),msg=document.getElementById('msg'),
+      btn=document.getElementById('send'),note=document.getElementById('note');
   document.getElementById('yr').textContent=new Date().getFullYear();
+  if(!FORM_ENDPOINT){note.textContent='Demo mode: emails are not saved yet.';}
+  function say(cls,t){msg.className=cls;msg.textContent=t;}
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var v=email.value.trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){
-      msg.className='err';msg.textContent='Please enter a real email address, like you@example.com.';email.focus();return;
-    }
-    msg.className='ok';msg.textContent='Thank you! You are on the list (demo).';form.reset();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){say('err','Please enter a real email address, like you@example.com.');email.focus();return;}
+    if(!document.getElementById('agree').checked){say('err','Please tick the box to agree to the Privacy Policy.');return;}
+    if(document.getElementById('website').value){say('ok','Thank you! You are on the list.');return;}
+    if(!FORM_ENDPOINT){say('ok','Thank you! You are on the list (demo, not saved).');form.reset();return;}
+    btn.disabled=true;say('','Sending...');
+    fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({email:v,phone:document.getElementById('phone').value})})
+    .then(function(r){if(!r.ok)throw new Error('bad status');say('ok','Thank you! You are on the list.');form.reset();})
+    .catch(function(){say('err','Something went wrong. Please check your internet and try again.');})
+    .then(function(){btn.disabled=false;});
   });
-  var els=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});
-    els.forEach(function(el){io.observe(el)});
-  }else{els.forEach(function(el){el.classList.add('in')})}
 })();
+</script>
+<script type="module">
+// Framer Motion ("motion") adds the animations. If it fails to load, the page still shows everything.
+try{
+  var m=await import('https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    m.animate('.hero h1,.hero p,.hero .cta',{opacity:[0,1],y:[24,0]},{duration:.7,delay:m.stagger(.12)});
+    m.animate('.phone',{opacity:[0,1],y:[40,0]},{duration:.8,delay:.4});
+    document.querySelectorAll('.card').forEach(function(c){
+      m.inView(c,function(){m.animate(c,{opacity:[0,1],y:[24,0]},{duration:.5});});
+      c.addEventListener('mouseenter',function(){m.animate(c,{y:-4},{duration:.2});});
+      c.addEventListener('mouseleave',function(){m.animate(c,{y:0},{duration:.2});});
+    });
+  }
+}catch(e){}
 </script>
 </body>
 </html>
