@@ -4,6 +4,7 @@
    If WebGL is missing or anything fails, the flat ring stays visible. */
 (function(){
   "use strict";
+  function start(){
   try {
     if (!window.THREE) return;
     var art = document.getElementById("phase-arc-menstrual");
@@ -131,4 +132,20 @@
     var h = document.querySelector(".hero-art.has-3d"); if (h) h.classList.remove("has-3d");
     if (window.console) console.warn("3D ring disabled:", err && err.message);
   }
+  }
+
+  // three.js is big: fetch it only after the page is up, so the page shows first.
+  function loadThree(){
+    var tag = document.createElement("script");
+    tag.src = "vendor/three.min.js";
+    tag.onload = start;
+    document.head.appendChild(tag);
+  }
+  function schedule(){
+    if (window.THREE) { start(); }
+    else if (window.requestIdleCallback) { requestIdleCallback(loadThree, {timeout: 2000}); }
+    else { setTimeout(loadThree, 300); }
+  }
+  if (document.readyState === "complete") schedule();
+  else window.addEventListener("load", schedule);
 })();
