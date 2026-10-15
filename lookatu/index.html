@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LookAtU – Know your child is safe</title>
+<meta name="description" content="LookAtU helps parents see where their child is, guide their phone use, and gives kids a panic button for emergencies.">
+<style>
+:root{
+  --bg:#0b1220; --bg2:#111a2e; --card:#16213a; --text:#eaf0ff; --muted:#a3b1d1;
+  --brand:#4f8cff; --brand2:#7c5cff; --danger:#ff4d5e; --ok:#31d0a0; --line:#243253;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:10;background:rgba(11,18,32,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;font-size:1.3rem;text-decoration:none}
+.logo span{color:var(--brand)}
+.nav a.link{margin-left:22px;text-decoration:none;color:var(--muted);font-size:.95rem}
+.nav a.link:hover{color:var(--text)}
+.btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:700;padding:12px 22px;border-radius:12px;color:#fff;text-decoration:none;background:linear-gradient(135deg,var(--brand),var(--brand2));transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+.hero{padding:80px 0 60px;text-align:center;background:radial-gradient(900px 400px at 50% -10%,rgba(79,140,255,.25),transparent)}
+.hero h1{font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.1;margin:0 0 18px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:620px;margin:0 auto 28px;color:var(--muted);font-size:1.15rem}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.phone{margin:48px auto 0;width:240px;border:2px solid var(--line);border-radius:34px;padding:18px;background:var(--bg2);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.map{height:130px;border-radius:16px;background:linear-gradient(135deg,#1c2b4d,#22365f);position:relative;overflow:hidden}
+.pin{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px;border-radius:50%;background:var(--ok)}
+.pin::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{from{transform:scale(.6);opacity:1}to{transform:scale(1.8);opacity:0}}
+.phone p{margin:12px 0 4px;font-size:.9rem;color:var(--muted)}
+.panic{margin-top:6px;width:100%;padding:12px;border:0;border-radius:14px;background:var(--danger);color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+section{padding:70px 0}
+section.alt{background:var(--bg2)}
+h2{font-size:clamp(1.6rem,4vw,2.4rem);margin:0 0 10px;text-align:center}
+.sub{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 40px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}
+.card .ic{font-size:2rem}
+.card h3{margin:10px 0 6px}
+.card p{margin:0;color:var(--muted)}
+.card.sos{border-color:var(--danger)}
+.steps{counter-reset:s}
+.steps .card{position:relative;padding-top:50px}
+.steps .card::before{counter-increment:s;content:counter(s);position:absolute;top:14px;left:20px;width:28px;height:28px;border-radius:50%;background:var(--brand);display:grid;place-items:center;font-weight:800}
+.trust li{margin:10px 0;color:var(--muted)}
+.trust b{color:var(--text)}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:10px auto;max-width:720px}
+summary{cursor:pointer;font-weight:700}
+details p{color:var(--muted);margin:10px 0 0}
+form{max-width:480px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap}
+input[type=email]{flex:1 1 220px;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit}
+input[type=email]:focus-visible,.btn:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+#msg{text-align:center;margin-top:14px;min-height:1.5em}
+#msg.ok{color:var(--ok)} #msg.err{color:var(--danger)}
+.note{text-align:center;color:var(--muted);font-size:.85rem;margin-top:8px}
+footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;text-align:center}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.pin::after{animation:none}html{scroll-behavior:auto}}
+@media (max-width:640px){.nav a.link{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">Look<span>At</span>U</a>
+    <nav>
+      <a class="link" href="#features">Features</a>
+      <a class="link" href="#how">How it works</a>
+      <a class="link" href="#trust">Trust</a>
+      <a class="link" href="#faq">FAQ</a>
+      <a class="btn" style="margin-left:22px;padding:9px 16px" href="#join">Join waitlist</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <h1>Know your child is <em>safe</em>,<br>anytime you want.</h1>
+      <p>See where they are, guide how they use their phone, and give them a big red button to call for help when it matters most.</p>
+      <div class="cta">
+        <a class="btn" href="#join">Join the waitlist</a>
+        <a class="btn ghost" href="#features">See what it does</a>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="map"><div class="pin"></div></div>
+        <p>Alex is at school · just now</p>
+        <button class="panic" tabindex="-1">SOS</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <h2>Everything a parent needs</h2>
+      <p class="sub">Five simple tools, in one app.</p>
+      <div class="grid">
+        <div class="card reveal"><div class="ic">📍</div><h3>Live location</h3><p>Open the app and see where your child is right now.</p></div>
+        <div class="card reveal"><div class="ic">📊</div><h3>Activity monitor</h3><p>See which apps they use and for how long, every day.</p></div>
+        <div class="card reveal"><div class="ic">🔒</div><h3>App control</h3><p>Allow, block or limit apps. Approve new installs before they happen.</p></div>
+        <div class="card reveal"><div class="ic">💬</div><h3>Calls &amp; messages</h3><p>Check call history and messages so you can spot trouble early.</p></div>
+        <div class="card reveal sos"><div class="ic">🚨</div><h3>Panic button</h3><p>One tap and you get an alert with their location, right away.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="alt">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <p class="sub">Set up takes a few minutes.</p>
+      <div class="grid steps">
+        <div class="card reveal"><h3>Install on both phones</h3><p>You get the parent app. Your child gets the child app.</p></div>
+        <div class="card reveal"><h3>Link them together</h3><p>Scan a code on your child's phone to connect the two.</p></div>
+        <div class="card reveal"><h3>Choose your rules</h3><p>Pick which apps are allowed and what you want to see.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="wrap" style="max-width:720px">
+      <h2>Built on trust, not secrets</h2>
+      <p class="sub">Safety works best when families talk about it.</p>
+      <ul class="trust">
+        <li><b>Your child knows.</b> The app is always visible on their phone. LookAtU is never hidden.</li>
+        <li><b>Private by design.</b> Data is encrypted and only the parent account can see it.</li>
+        <li><b>You stay in charge.</b> Choose what to watch and turn features on or off at any time.</li>
+        <li><b>Follows the law.</b> Rules about monitoring differ by country and a child's age. We check them before we launch anywhere.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" class="alt">
+    <div class="wrap">
+      <h2>Questions</h2>
+      <p class="sub">&nbsp;</p>
+      <details><summary>Is LookAtU available now?</summary><p>Not yet. This page is for our waitlist. Join and we will email you when it opens.</p></details>
+      <details><summary>Can my child hide the app?</summary><p>No. The app is always visible, and your child knows it is there.</p></details>
+      <details><summary>What happens when my child presses the panic button?</summary><p>You get an instant alert with your child's location, so you can call them or get help.</p></details>
+      <details><summary>Which phones will it work on?</summary><p>We plan to start with Android, then iPhone. Tell us which one you need when you join.</p></details>
+      <details><summary>How much will it cost?</summary><p>We have not set the price yet. Waitlist members will hear first.</p></details>
+    </div>
+  </section>
+
+  <section id="join">
+    <div class="wrap">
+      <h2>Join the waitlist</h2>
+      <p class="sub">Be the first to know when LookAtU opens.</p>
+      <form id="waitlist" novalidate>
+        <label for="email" style="position:absolute;left:-9999px">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="btn" type="submit">Notify me</button>
+      </form>
+      <div id="msg" role="status" aria-live="polite"></div>
+      <p class="note">Demo form: emails are not saved yet. Saving comes in Phase 2.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© <span id="yr">2026</span> LookAtU. Early preview.</div></footer>
+
+<script>
+(function(){
+  var form=document.getElementById('waitlist'),email=document.getElementById('email'),msg=document.getElementById('msg');
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=email.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){
+      msg.className='err';msg.textContent='Please enter a real email address, like you@example.com.';email.focus();return;
+    }
+    msg.className='ok';msg.textContent='Thank you! You are on the list (demo).';form.reset();
+  });
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});
+    els.forEach(function(el){io.observe(el)});
+  }else{els.forEach(function(el){el.classList.add('in')})}
+})();
+</script>
+</body>
+</html>
