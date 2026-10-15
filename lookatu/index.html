@@ -187,7 +187,7 @@ var FORM_ENDPOINT = 'https://formspree.io/f/mljgogkr';
       btn=document.getElementById('send'),note=document.getElementById('note');
   document.getElementById('yr').textContent=new Date().getFullYear();
   if(!FORM_ENDPOINT){note.textContent='Demo mode: emails are not saved yet.';}
-  function say(cls,t){msg.className=cls;msg.textContent=t;}
+  function say(cls,t){msg.className=cls;msg.textContent=t;msg.scrollIntoView({block:'nearest'});}
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var v=email.value.trim();
@@ -196,11 +196,17 @@ var FORM_ENDPOINT = 'https://formspree.io/f/mljgogkr';
     if(document.getElementById('website').value){say('ok','Thank you! You are on the list.');return;}
     if(!FORM_ENDPOINT){say('ok','Thank you! You are on the list (demo, not saved).');form.reset();return;}
     btn.disabled=true;say('','Sending...');
-    fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({email:v,phone:document.getElementById('phone').value})})
-    .then(function(r){if(!r.ok)throw new Error('bad status');say('ok','Thank you! You are on the list.');form.reset();})
-    .catch(function(){say('err','Something went wrong. Please check your internet and try again.');})
-    .then(function(){btn.disabled=false;});
+    var data=new FormData();data.append('email',v);data.append('phone',document.getElementById('phone').value);
+    fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:data})
+    .then(function(r){
+      if(!r.ok){return r.text().then(function(t){throw new Error('Error '+r.status+' '+t.slice(0,120));});}
+      say('ok','Thank you! You are on the list.');form.reset();
+    })
+    .catch(function(err){
+      say('err','Could not send. ('+(err&&err.message?err.message:'network problem')+') Please try again in a minute.');
+      if(window.console)console.error('Waitlist error:',err);
+    })
+    .then(function(){btn.disabled=false;msg.scrollIntoView({block:'nearest'});});
   });
 })();
 </script>
