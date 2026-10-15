@@ -144,7 +144,11 @@ button{font-family:inherit;}
 }
 .hero h1{font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:600;line-height:1.08;}
 .hero p.lede{color:var(--ink-soft);font-size:1.02rem;line-height:1.6;max-width:52ch;margin-top:14px;}
-.hero-art{display:flex;justify-content:center;}
+.hero-art{display:flex;justify-content:center;position:relative;}
+.hero-art.has-3d{align-items:center;}
+.hero-art.has-3d .ring3d{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-art.has-3d svg{position:relative;max-width:300px;}
+.hero-art.has-3d svg path,.hero-art.has-3d svg circle{display:none;}
 .hero-art svg{width:100%;max-width:220px;height:auto;}
 
 .stat-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;}
@@ -840,6 +844,10 @@ footer.note{
     document.getElementById("today-marker").setAttribute("cx", tp[0]);
     document.getElementById("today-marker").setAttribute("cy", tp[1]);
     document.getElementById("cycle-day-big").textContent = dic+1;
+    // hand the same numbers to the optional 3D ring (ring3d.js)
+    window.cycleRingData = {perEnd:perEnd, fertStart:fertStart, fertEnd:follEnd+(360/state.cycleLen),
+      lutStart:lutStart, todayAngle:todayAngle};
+    window.dispatchEvent(new CustomEvent("cycle:ring", {detail: window.cycleRingData}));
   }
 
   function statTile(num,label){
@@ -1063,4 +1071,6 @@ footer.note{
 </script>
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/three.min.js"></script>
+<script src="ring3d.js"></script>
 <script src="animations.js"></script>
