@@ -1,0 +1,33 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; color: #eaf2ff; }
+    #title-block { position: absolute; left: 192px; top: 108px; }
+    #title-text { font-family: "Oswald", sans-serif; font-weight: 700; font-size: 96px; line-height: 1; letter-spacing: 0.01em; }
+    #title-text .w { display: inline-block; margin-right: 24px; }
+    #title-text .hot { color: var(--accent, #ff7a45); }
+    #title-muscles { margin-top: 18px; font-weight: 600; font-size: 30px; letter-spacing: 0.22em; }
+    #title-rule { width: 96px; height: 4px; margin-top: 22px; background: var(--accent, #ff7a45); transform-origin: left center; }
+  </style>
+  <div
+    id="root"
+    data-composition-id="title"
+    data-width="1920"
+    data-height="1080"
+    data-composition-variables='[{"id":"exercise","type":"string","label":"Exercise (first word)","default":"BENCH"},{"id":"exercise2","type":"string","label":"Exercise (second word)","default":"DIPS"},{"id":"muscles","type":"string","label":"Muscles worked","default":"TRICEPS · SHOULDERS · CHEST"},{"id":"accent","type":"color","label":"Accent colour","default":"#ff7a45"}]'
+  >
+    <div id="title-block">
+      <h1 id="title-text"><span class="w" data-var-text="exercise">BENCH</span><span class="w hot" data-var-text="exercise2">DIPS</span></h1>
+      <div id="title-muscles" data-var-text="muscles">TRICEPS · SHOULDERS · CHEST</div>
+      <div id="title-rule"></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#title-text .w", { opacity: 0, filter: "blur(8px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out", stagger: 0.09 }, 0.3);
+    tl.fromTo("#title-muscles", { opacity: 0, filter: "blur(6px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0.65);
+    tl.fromTo("#title-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 0.7);
+    window.__timelines["title"] = tl;
+  </script>
+</template>

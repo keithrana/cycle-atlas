@@ -1,0 +1,42 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; color: #eaf2ff; }
+    .tip { position: absolute; left: 192px; bottom: 108px; width: 1100px; }
+    .tip .num { display: inline-block; font-weight: 700; font-size: 28px; letter-spacing: 0.16em; color: var(--accent, #ff7a45); margin-right: 20px; }
+    .tip h2 { font-family: "Oswald", sans-serif; font-weight: 700; font-size: 76px; line-height: 1.02; letter-spacing: 0.01em; }
+    .tip p { margin-top: 10px; font-weight: 500; font-size: 32px; line-height: 1.25; }
+  </style>
+  <div id="root" data-composition-id="tips" data-width="1920" data-height="1080">
+    <div id="tip1" class="clip tip" data-start="0.3" data-duration="2.0" data-track-index="0">
+      <h2>SET UP</h2><p>Hands on the bench edge</p>
+    </div>
+    <div id="tip2" class="clip tip" data-start="2.4" data-duration="1.9" data-track-index="0">
+      <h2>LOWER SLOWLY</h2><p>Elbows back to 90°</p>
+    </div>
+    <div id="tip3" class="clip tip" data-start="4.4" data-duration="1.7" data-track-index="0">
+      <h2>PUSH UP</h2><p>Press through your palms</p>
+    </div>
+    <div id="tip4" class="clip tip" data-start="6.2" data-duration="2.5" data-track-index="0">
+      <h2>BACK CLOSE TO THE BENCH</h2><p>Hips stay near the edge</p>
+    </div>
+    <div id="tip5" class="clip tip" data-start="8.9" data-duration="3.0" data-track-index="0">
+      <h2>SHOULDERS DOWN</h2><p>Keep them away from your ears</p>
+    </div>
+    <div id="tip6" class="clip tip" data-start="12.1" data-duration="2.1" data-track-index="0">
+      <h2>NICE WORK</h2><p>3 reps done. Rest, then go again</p>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Each tip blurs in, holds, and leaves faster than it arrived. Animate the children, never the .clip.
+    [["tip1", 0.3, 2.0], ["tip2", 2.4, 1.9], ["tip3", 4.4, 1.7], ["tip4", 6.2, 2.5], ["tip5", 8.9, 3.0], ["tip6", 12.1, 2.1]].forEach(([id, s, d]) => {
+      const kids = "#" + id + " > *";
+      tl.fromTo(kids, { opacity: 0, filter: "blur(8px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power4.out", stagger: 0.06 }, s);
+      if (id !== "tip6") {
+        tl.to(kids, { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power3.in" }, s + d - 0.2);
+      }
+    });
+    window.__timelines["tips"] = tl;
+  </script>
+</template>

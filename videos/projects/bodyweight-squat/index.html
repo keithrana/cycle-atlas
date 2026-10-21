@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #050b1a; }
+      #root { position: relative; width: 1920px; height: 1080px; background: #050b1a; }
+      .scene { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="16.0" data-width="1920" data-height="1080">
+      <div id="stage" class="scene" style="z-index: 1" data-composition-id="stage" data-composition-src="compositions/stage.html" data-start="0" data-duration="16.0" data-track-index="0" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="wash" class="scene" style="z-index: 2" data-composition-id="wash" data-composition-src="compositions/wash.html" data-start="0" data-duration="16.0" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="title" class="scene" style="z-index: 5" data-composition-id="title" data-composition-src="compositions/title.html" data-start="0" data-duration="16.0" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="counter" class="scene" style="z-index: 5" data-composition-id="counter" data-composition-src="compositions/counter.html" data-start="0" data-duration="16.0" data-track-index="3" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="tips" class="scene" style="z-index: 5" data-composition-id="tips" data-composition-src="compositions/tips.html" data-start="0" data-duration="16.0" data-track-index="4" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <audio id="music" src="assets/music.mp3" data-start="0" data-duration="16.0" data-track-index="5" data-volume="1" data-fade-in="0.15" data-fade-out="0.5"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
