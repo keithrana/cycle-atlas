@@ -1,0 +1,126 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; background: #050b1a; }
+    #stage-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+  </style>
+  <div id="root" data-composition-id="stage" data-width="1920" data-height="1080">
+    <svg id="stage-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="st-smoke"><stop offset="0" stop-color="#4a7bd6" stop-opacity="0.34"/><stop offset="1" stop-color="#4a7bd6" stop-opacity="0"/></radialGradient>
+        <linearGradient id="st-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d2147"/><stop offset="1" stop-color="#050b1a"/></linearGradient>
+        <radialGradient id="st-pool"><stop offset="0" stop-color="#3b82f6" stop-opacity="0.35"/><stop offset="1" stop-color="#3b82f6" stop-opacity="0"/></radialGradient>
+        <filter id="st-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9"/></filter>
+      </defs>
+      <rect width="1920" height="1080" fill="#050b1a"/>
+      <g id="st-smokes" data-layout-ignore></g>
+      <polygon points="0,780 1920,780 1920,1080 0,1080" fill="url(#st-floor)"/>
+      <g id="st-grid" data-layout-ignore stroke="#3b82f6" stroke-opacity="0.16" fill="none"></g>
+      <line x1="0" y1="780" x2="1920" y2="780" stroke="#60a5fa" stroke-opacity="0.5" stroke-width="2"/>
+      <g id="st-world" transform="translate(960 780) scale(1.2) translate(-960 -780)">
+      <ellipse cx="1000" cy="800" rx="720" ry="46" fill="url(#st-pool)"/>
+      <g id="st-bench">
+        <line x1="600" y1="625" x2="600" y2="780" stroke="#16306b" stroke-width="26" stroke-linecap="round"/>
+        <line x1="920" y1="625" x2="920" y2="780" stroke="#16306b" stroke-width="26" stroke-linecap="round"/>
+        <rect x="530" y="591" width="460" height="36" rx="12" fill="#1c3f8a"/>
+        <rect x="534" y="593" width="452" height="8" rx="4" fill="#7fb2ff" fill-opacity="0.55"/>
+      </g>
+      <g id="st-body"></g>
+      </g>
+    </svg>
+  </div>
+  <script>
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.getElementById("stage-svg");
+    const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).appendChild(e); return e; };
+
+    // static atmosphere: floor grid + drifting smoke blobs (positions are a function of time below)
+    const grid = document.getElementById("st-grid");
+    for (let i = -12; i <= 12; i++) mk("line", { x1: 960 + i * 150, y1: 780, x2: 960 + i * 520, y2: 1080 }, grid);
+    for (let k = 1; k <= 7; k++) { const y = 780 + 300 * Math.pow(k / 7, 1.7); mk("line", { x1: 0, y1: y, x2: 1920, y2: y }, grid); }
+    const smokes = [[300, 300, 520, 0], [900, 220, 600, 1.7], [1500, 330, 560, 3.1], [1750, 560, 480, 4.6]].map(([x, y, r, ph]) =>
+      ({ el: mk("circle", { cx: x, cy: y, r, fill: "url(#st-smoke)" }, document.getElementById("st-smokes")), x, y, ph }));
+
+    // body parts: each limb = dark outline + mid fill + thin highlight, so it reads as a glassy tube
+    const body = document.getElementById("st-body");
+    function limb(w, mid) {
+      const o = mk("line", { stroke: "#0b1d44", "stroke-width": w, "stroke-linecap": "round" }, body);
+      const m = mk("line", { stroke: mid || "#2a55b8", "stroke-width": w * 0.78, "stroke-linecap": "round" }, body);
+      const h = mk("line", { stroke: "#8fbcff", "stroke-opacity": 0.55, "stroke-width": w * 0.16, "stroke-linecap": "round" }, body);
+      return (a, b) => {
+        for (const e of [o, m]) { e.setAttribute("x1", a.x); e.setAttribute("y1", a.y); e.setAttribute("x2", b.x); e.setAttribute("y2", b.y); }
+        const dx = -w * 0.16, dy = -w * 0.2;
+        h.setAttribute("x1", a.x + dx); h.setAttribute("y1", a.y + dy); h.setAttribute("x2", b.x + dx); h.setAttribute("y2", b.y + dy);
+      };
+    }
+    const glowLine = (w) => mk("line", { stroke: "#ff7a45", "stroke-width": w, "stroke-linecap": "round" }, body);
+
+    const setShin = limb(54), setThigh = limb(76), setShorts = limb(102, "#10172f"), setTorso = limb(112, "#27499f"),
+          setUpper = limb(52), setFore = limb(42);
+    const shoe = mk("rect", { width: 92, height: 24, rx: 11, fill: "#0b1226", stroke: "#8fbcff", "stroke-opacity": 0.6, "stroke-width": 2 }, body);
+    const head = mk("circle", { r: 44, fill: "#2f5bbf", stroke: "#8fbcff", "stroke-opacity": 0.7, "stroke-width": 2 }, body);
+    const neck = limb(30, "#2a55b8");
+    const hand = mk("ellipse", { rx: 34, ry: 12, fill: "#7fa9f0", stroke: "#0b1d44", "stroke-width": 2 }, body);
+    // orange muscle glow: triceps on the upper arm, plus shoulder and chest
+    const tri = glowLine(26), triGlow = glowLine(40); triGlow.setAttribute("filter", "url(#st-glow)");
+    const delt = mk("circle", { r: 30, fill: "#ff7a45" }, body); delt.setAttribute("filter", "url(#st-glow)");
+    const chest = mk("circle", { r: 34, fill: "#ff7a45" }, body); chest.setAttribute("filter", "url(#st-glow)");
+    const deltCore = mk("circle", { r: 16, fill: "#ffb089" }, body);
+
+    // geometry (px). Real proportions: arm about 60 cm at 4.2 px/cm, bench 45 cm high.
+    const GY = 780, HAND = { x: 940, y: 581 };
+    const Lu = 126, Lf = 118, T = 210, Lleg = 378, lean = 6 * Math.PI / 180, DROP = 67;
+    const reach = 0.985 * (Lu + Lf);
+    const shTop = { x: HAND.x + 48, y: HAND.y - Math.sqrt(reach * reach - 48 * 48) };
+    const hip0 = { x: shTop.x + T * Math.sin(lean), y: shTop.y + T * Math.cos(lean) };
+    const ankle = { y: GY - 26 };
+    ankle.x = hip0.x + Math.sqrt(Lleg * Lleg - (ankle.y - hip0.y) ** 2);   // heels stay planted
+
+    // reps: set-up hold to 2.4 s, then 3 reps of 3.2 s (1.7 s down, 1.5 s up), then a hold
+    const REP0 = 2.4, REP = 3.2, DOWN = 1.7, UP = 1.5;
+    const ease = (x) => 0.5 - 0.5 * Math.cos(Math.PI * Math.min(1, Math.max(0, x)));
+    function phase(t) {
+      for (let k = 0; k < 3; k++) {
+        const u = t - (REP0 + REP * k);
+        if (u >= 0 && u < DOWN) return { p: ease(u / DOWN), push: 0 };
+        if (u >= DOWN && u < REP) { const x = (u - DOWN) / UP; return { p: 1 - ease(x), push: Math.sin(Math.PI * x) }; }
+      }
+      return { p: 0, push: 0 };
+    }
+
+    function draw(t) {
+      const { p, push } = phase(t);
+      const hipY = hip0.y + DROP * p;
+      const hip = { x: ankle.x - Math.sqrt(Lleg * Lleg - (ankle.y - hipY) ** 2), y: hipY };
+      const sh = { x: hip.x - T * Math.sin(lean), y: hip.y - T * Math.cos(lean) };
+      // two-bone arm IK: hand is planted on the bench, elbow bends back (toward the bench)
+      const dx = HAND.x - sh.x, dy = HAND.y - sh.y, d = Math.hypot(dx, dy), dd = Math.min(d, (Lu + Lf) * 0.999);
+      const a = (Lu * Lu - Lf * Lf + dd * dd) / (2 * dd), h = Math.sqrt(Math.max(0, Lu * Lu - a * a));
+      const ux = dx / d, uy = dy / d;
+      const e1 = { x: sh.x + ux * a - uy * h, y: sh.y + uy * a + ux * h }, e2 = { x: sh.x + ux * a + uy * h, y: sh.y + uy * a - ux * h };
+      const el = e1.x < e2.x ? e1 : e2;
+      const knee = { x: hip.x + (ankle.x - hip.x) * 0.52, y: hip.y + (ankle.y - hip.y) * 0.52 - 7 };
+      setShin(knee, ankle); setThigh(hip, knee);
+      setShorts(hip, { x: hip.x + (knee.x - hip.x) * 0.45, y: hip.y + (knee.y - hip.y) * 0.45 });
+      shoe.setAttribute("x", ankle.x - 26); shoe.setAttribute("y", ankle.y + 4);
+      setTorso(hip, sh);
+      const hd = { x: sh.x + 18, y: sh.y - 74 };
+      head.setAttribute("cx", hd.x); head.setAttribute("cy", hd.y); neck(sh, { x: hd.x - 4, y: hd.y + 18 });
+      setUpper(sh, el); setFore(el, HAND);
+      hand.setAttribute("cx", HAND.x - 4); hand.setAttribute("cy", HAND.y + 4);
+      // glow follows the work: it swells while pressing up and stays warm at the bottom
+      const g = 0.22 + 0.78 * push + 0.25 * p * (1 - push);
+      const tA = { x: sh.x + (el.x - sh.x) * 0.3, y: sh.y + (el.y - sh.y) * 0.3 }, tB = { x: sh.x + (el.x - sh.x) * 0.88, y: sh.y + (el.y - sh.y) * 0.88 };
+      for (const e of [tri, triGlow]) { e.setAttribute("x1", tA.x); e.setAttribute("y1", tA.y); e.setAttribute("x2", tB.x); e.setAttribute("y2", tB.y); }
+      tri.setAttribute("stroke-opacity", Math.min(1, 0.25 + g * 0.8)); triGlow.setAttribute("stroke-opacity", Math.min(1, g));
+      delt.setAttribute("cx", sh.x + 4); delt.setAttribute("cy", sh.y + 8); delt.setAttribute("fill-opacity", 0.15 + 0.7 * g);
+      deltCore.setAttribute("cx", sh.x + 4); deltCore.setAttribute("cy", sh.y + 8); deltCore.setAttribute("fill-opacity", 0.1 + 0.6 * g);
+      chest.setAttribute("cx", sh.x + 30); chest.setAttribute("cy", sh.y + 62); chest.setAttribute("fill-opacity", 0.1 + 0.55 * g);
+      for (const s of smokes) { s.el.setAttribute("cx", s.x + 60 * Math.sin(t * 0.35 + s.ph)); s.el.setAttribute("cy", s.y + 24 * Math.sin(t * 0.27 + s.ph * 1.3)); }
+    }
+    draw(0);
+    const tl = gsap.timeline({ paused: true });
+    const clock = { t: 0 };
+    tl.to(clock, { t: 14.2, duration: 14.2, ease: "none", onUpdate: () => draw(clock.t) }, 0);
+    window.__timelines["stage"] = tl;
+  </script>
+</template>
