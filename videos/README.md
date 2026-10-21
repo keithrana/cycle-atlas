@@ -7,9 +7,10 @@ Made with [HyperFrames](https://github.com/heygen-com/hyperframes) (HTML rendere
 | `diamond-pushup-music.mp4` | Diamond push-up, title and coaching tips, with music (10.1 s) |
 | `diamond-pushup.mp4` | Same video without music |
 | `bench-dips.mp4` | Bench dips, animated athlete, rep counter, tips and music (14.2 s) |
+| `bodyweight-squat.mp4` | Bodyweight squat, animated athlete, 4-rep counter, tips and music (16.0 s) |
 
 ## Editable sources
-- `projects/diamond-pushup/` and `projects/bench-dips/`: each is a HyperFrames project. Edit it, then from inside the folder run `npx hyperframes check` and `npx hyperframes render --quality looks --output out.mp4` (needs Node 22+ and FFmpeg).
+- `projects/diamond-pushup/`, `projects/bench-dips/` and `projects/bodyweight-squat/`: each is a HyperFrames project. Edit it, then from inside the folder run `npx hyperframes check` and `npx hyperframes render --quality looks --output out.mp4` (needs Node 22+ and FFmpeg).
 - `music/make_music.py`: the program that composes the original, copyright-free music
   (`python make_music.py out.wav SECONDS BPM rise|anthem`, needs `numpy` and `scipy`).
   `music/norm.sh` sets its loudness and writes the MP3.
