@@ -1,0 +1,31 @@
+[
+ {
+  "shape": "Marquee Hero",
+  "theme": "squeeze",
+  "axes": "mid/geometric-sans/warm",
+  "hero": "Banner",
+  "nav": "edge-aligned",
+  "footer": "letter close",
+  "imagery": "photographs, library 1, natural",
+  "photos": [
+   "worm-bay"
+  ],
+  "entry": "BeingOne front page",
+  "sections": [
+   "Hero",
+   "Path",
+   "Finder",
+   "Checks",
+   "Privacy",
+   "Talk",
+   "Family+Safety",
+   "Questions+Join",
+   "Footer"
+  ],
+  "signature": "match finder with a tappable map of Australia and a moving score",
+  "waived": [],
+  "prompt": "BeingOne marriage site for Australians",
+  "date": "2026-10-23",
+  "mode": "build"
+ }
+]

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BeingOne: marriage profiles for Australians, every one checked</title>
+<meta name="description" content="BeingOne is a marriage website for Australians and their families where every profile is checked to be a real person.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@800&family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M5.5 16c.5-1.5 2-2.5 3.5-2.5s3 1 3.5 2.5M15 10h4M15 14h3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="container">
+    <a class="wordmark" href="#top" aria-label="BeingOne, back to the top">BeingOne</a>
+    <nav class="nav__links" aria-label="Main">
+      <a class="hide-sm" href="#find">Find</a>
+      <a class="hide-sm" href="#verified">Checks</a>
+      <a class="hide-sm" href="#privacy">Photos</a>
+      <a href="#join" data-open-tab="login">Log in</a>
+      <a class="btn btn--sm" href="#join" data-open-tab="join">Join</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="container grid">
+      <h1 id="hero-title">
+        <span data-reveal style="--i:0">Real people.</span>
+        <span data-reveal style="--i:1">Real profiles.</span>
+        <span data-reveal style="--i:2">Real marriage.</span>
+      </h1>
+      <div class="hero__side" data-reveal style="--i:3">
+        <p class="lead">Every profile is checked, so you meet real people across Australia.</p>
+        <a class="btn btn--primary" href="#join" data-open-tab="join">Make my profile</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--path" id="path" aria-label="How it goes">
+    <div class="container">
+      <ol class="path">
+        <li><a href="#join">Join</a></li>
+        <li><a href="#verified">Get checked</a></li>
+        <li><a href="#find">Find</a></li>
+        <li><a href="#talk">Say yes</a></li>
+        <li><a href="#talk">Chat</a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec finder" id="find" aria-labelledby="find-title">
+    <div class="container">
+      <div class="grid finder__top">
+        <h2 id="find-title" data-reveal>Find your match across Australia</h2>
+        <p class="lead" data-reveal style="--i:1">Pick a city, then ages and what you love.</p>
+      </div>
+      <div class="grid finder__body">
+        <div class="map" role="group" aria-label="Map of Australia. Tap a city to search there.">
+          <svg class="map__svg" viewBox="-40 -20 605 516" role="img" aria-label="Outline of Australia">
+            <path d="M381.3 9.8L393.8 56.0L416.3 70.0L422.5 96.6L435.0 130.2L458.7 144.2L465.0 155.4L485.0 187.6L505.0 208.6L513.7 224.0L512.5 245.0L520.0 260.4L512.5 284.2L506.3 308.0L490.0 334.6L485.0 348.6L476.2 366.8L473.8 385.0L450.0 392.0L430.0 407.4L412.5 397.6L393.8 403.2L362.5 393.4L350.0 385.0L343.8 358.4L326.2 359.1L331.3 347.2L321.2 336.0L300.0 347.2L277.5 322.0L237.5 301.0L212.5 303.8L175.0 312.2L143.8 333.2L123.8 334.6L87.5 348.6L73.8 350.0L38.7 341.6L46.3 326.2L47.5 308.0L32.5 263.2L17.5 224.0L18.8 196.0L26.2 165.2L58.8 149.8L82.5 144.2L118.8 126.0L127.5 112.0L147.5 91.0L168.8 77.0L186.3 54.6L212.5 70.0L221.2 68.6L225.0 46.2L235.0 35.0L256.3 21.0L275.0 28.0L310.0 30.8L306.3 49.0L297.5 72.8L322.5 91.0L343.8 105.0L360.0 103.6L370.0 77.0L368.8 49.0L376.2 30.8ZM408.7 429.8L453.8 432.6L453.8 450.8L441.3 469.0L425.0 470.4L415.0 450.8Z"/>
+          </svg>
+          <button class="pin" type="button" data-city="Perth" aria-pressed="false" aria-label="Perth" title="Perth" style="--x:14.6%;--y:63.4%"></button>
+          <button class="pin" type="button" data-city="Adelaide" aria-pressed="false" aria-label="Adelaide" title="Adelaide" style="--x:61.6%;--y:71.5%"></button>
+          <button class="pin" type="button" data-city="Darwin" aria-pressed="false" aria-label="Darwin" title="Darwin" style="--x:45.5%;--y:10.5%"></button>
+          <button class="pin" type="button" data-city="Brisbane" aria-pressed="false" aria-label="Brisbane" title="Brisbane" style="--x:91.4%;--y:51.3%"></button>
+          <button class="pin" type="button" data-city="Sydney" aria-pressed="false" aria-label="Sydney" title="Sydney" style="--x:87.6%;--y:68.6%"></button>
+          <button class="pin" type="button" data-city="Canberra" aria-pressed="false" aria-label="Canberra" title="Canberra" style="--x:83.3%;--y:72.5%"></button>
+          <button class="pin" type="button" data-city="Melbourne" aria-pressed="false" aria-label="Melbourne" title="Melbourne" style="--x:74.7%;--y:79.3%"></button>
+          <button class="pin" type="button" data-city="Hobart" aria-pressed="false" aria-label="Hobart" title="Hobart" style="--x:79.6%;--y:93.1%"></button>
+          <p class="map__city" id="map-city">All of Australia</p>
+        </div>
+
+        <form class="controls" id="finder-form" onsubmit="return false" aria-label="Match finder">
+          <div class="field">
+            <label for="f-city">City</label>
+            <select id="f-city">
+              <option>Anywhere</option><option>Adelaide</option><option>Brisbane</option><option>Canberra</option><option>Darwin</option><option>Hobart</option><option>Melbourne</option><option>Perth</option><option>Sydney</option>
+            </select>
+          </div>
+          <div class="controls__ages">
+            <div class="field">
+              <div class="field__row"><label for="f-from">Age from</label><output id="o-from" for="f-from">25</output></div>
+              <input id="f-from" type="range" min="21" max="60" value="25">
+            </div>
+            <div class="field">
+              <div class="field__row"><label for="f-to">Age to</label><output id="o-to" for="f-to">40</output></div>
+              <input id="f-to" type="range" min="21" max="60" value="40">
+            </div>
+          </div>
+          <fieldset class="choices" id="f-likes">
+            <legend>You love</legend>
+            <input type="checkbox" id="l-beach" value="beach"><label for="l-beach">Beach</label>
+            <input type="checkbox" id="l-footy" value="footy"><label for="l-footy">Footy</label>
+            <input type="checkbox" id="l-coffee" value="coffee"><label for="l-coffee">Coffee</label>
+            <input type="checkbox" id="l-hiking" value="hiking"><label for="l-hiking">Hiking</label>
+            <input type="checkbox" id="l-cooking" value="cooking"><label for="l-cooking">Cooking</label>
+            <input type="checkbox" id="l-travel" value="travel"><label for="l-travel">Travel</label>
+            <input type="checkbox" id="l-music" value="music"><label for="l-music">Music</label>
+            <input type="checkbox" id="l-pets" value="pets"><label for="l-pets">Pets</label>
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="results" id="results" aria-live="polite"></div>
+      <p class="finder__note" id="finder-status"></p>
+      <p class="finder__note">Sample people, made up for this demo.</p>
+    </div>
+  </section>
+
+  <section class="sec sec--ruled checks" id="verified" aria-labelledby="verified-title">
+    <div class="container grid">
+      <div class="head">
+        <h2 id="verified-title" data-reveal>Every profile is checked</h2>
+        <p class="lead" data-reveal style="--i:1">Run the four checks on a sample profile.</p>
+      </div>
+      <div class="checks__panel">
+        <div class="checks__who">
+          <span class="avatar" style="--tone:var(--tone-a)" aria-hidden="true">M</span>
+          <div><h3>Mia, 28</h3><p class="label">Sydney</p></div>
+          <span class="status" id="v-status" data-state="idle" role="status"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-shield"/></svg><span id="v-status-text">Not verified yet</span></span>
+        </div>
+        <ul class="rows" id="v-rows">
+          <li data-check>
+            <svg class="icon idle" aria-hidden="true"><use href="#i-phone"/></svg><svg class="icon tick" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><h3>Phone check</h3><p>A code arrives by text.</p></div>
+            <button class="btn btn--sm" type="button" data-run>Run check</button><span class="passed" hidden>Passed</span>
+          </li>
+          <li data-check>
+            <svg class="icon idle" aria-hidden="true"><use href="#i-camera"/></svg><svg class="icon tick" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><h3>Photo check</h3><p>Your photo is checked as real.</p></div>
+            <button class="btn btn--sm" type="button" data-run>Run check</button><span class="passed" hidden>Passed</span>
+          </li>
+          <li data-check>
+            <svg class="icon idle" aria-hidden="true"><use href="#i-id"/></svg><svg class="icon tick" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><h3>ID check</h3><p>Your ID is checked against your photo.</p></div>
+            <button class="btn btn--sm" type="button" data-run>Run check</button><span class="passed" hidden>Passed</span>
+          </li>
+          <li data-check>
+            <svg class="icon idle" aria-hidden="true"><use href="#i-users"/></svg><svg class="icon tick" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><h3>Team look</h3><p>A person on our team takes a quick look.</p></div>
+            <button class="btn btn--sm" type="button" data-run>Run check</button><span class="passed" hidden>Passed</span>
+          </li>
+        </ul>
+        <div class="checks__foot">
+          <button class="btn btn--sm" type="button" id="v-all">Run all four</button>
+          <button class="btn btn--sm" type="button" id="v-reset">Start again</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="privacy" aria-labelledby="privacy-title">
+    <div class="container grid">
+      <figure class="privacy__photo" id="photo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg/1280px-Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg/960px-Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg 960w, https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg/1280px-Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg 1280w, https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg/1920px-Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg 1920w" sizes="(min-width: 60rem) 58vw, 100vw" width="6718" height="4479" alt="A beach below orange sandstone cliffs, standing in for a profile photo" loading="lazy">
+        <img class="blur" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg/960px-Peterborough_%28AU%29%2C_Port_Campbell_National_Park%2C_Worm_Bay_--_2019_--_0863.jpg" width="6718" height="4479" alt="" aria-hidden="true" loading="lazy">
+        <span class="privacy__lock" aria-hidden="true"><svg class="icon"><use href="#i-lock"/></svg></span>
+        <span class="privacy__badge" role="status"><svg class="icon icon--sm icon-open" aria-hidden="true"><use href="#i-eye"/></svg><svg class="icon icon--sm icon-shut" aria-hidden="true"><use href="#i-lock"/></svg><span id="photo-state">Hidden from this visitor</span></span>
+      </figure>
+      <form class="privacy__panel" onsubmit="return false" aria-label="Photo privacy">
+        <h2 id="privacy-title" data-reveal>You choose who sees your photos</h2>
+        <fieldset class="choices choices--stack" id="p-setting">
+          <legend>Photos are visible to</legend>
+          <input type="radio" name="setting" id="s-everyone" value="everyone"><label for="s-everyone">Everyone</label>
+          <input type="radio" name="setting" id="s-verified" value="verified" checked><label for="s-verified">Verified members</label>
+          <input type="radio" name="setting" id="s-accepted" value="accepted"><label for="s-accepted">People I accept</label>
+          <input type="radio" name="setting" id="s-me" value="me"><label for="s-me">Only me</label>
+        </fieldset>
+        <fieldset class="choices" id="p-viewer">
+          <legend>Right now, a visitor is</legend>
+          <input type="radio" name="viewer" id="v-stranger" value="stranger" checked><label for="v-stranger">A stranger</label>
+          <input type="radio" name="viewer" id="v-member" value="verified"><label for="v-member">A verified member</label>
+          <input type="radio" name="viewer" id="v-accepted" value="accepted"><label for="v-accepted">Someone I accepted</label>
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec sec--tall talk" id="talk" aria-labelledby="talk-title">
+    <div class="container">
+      <div class="talk__top"><h2 id="talk-title" data-reveal>Chat opens when both say yes</h2></div>
+      <div class="grid talk__body">
+        <div class="invite">
+          <div class="invite__who">
+            <span class="avatar" style="--tone:var(--tone-c)" aria-hidden="true">P</span>
+            <div><h3>Priya sent you an interest</h3><p class="label">26, Sydney</p></div>
+          </div>
+          <div class="invite__actions" id="invite-actions">
+            <button class="btn" type="button" id="t-accept">Accept</button>
+            <button class="btn" type="button" id="t-decline">No thanks</button>
+            <button class="btn btn--sm" type="button" id="t-reset" hidden>Start again</button>
+          </div>
+          <p class="invite__result" id="t-result" role="status"></p>
+        </div>
+        <div class="chat is-locked" id="chat">
+          <ul class="chat__log" id="chat-log" role="log" aria-label="Chat with Priya"></ul>
+          <form class="chat__form" id="chat-form" autocomplete="off">
+            <label class="visually-hidden" for="chat-input">Message</label>
+            <input id="chat-input" name="message" type="text" maxlength="300" enterkeyhint="send">
+            <button class="btn btn--sm" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>Send</button>
+          </form>
+          <div class="chat__lock"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span>Chat opens when you both say yes.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--ruled" id="family" aria-label="Family view and safety tools">
+    <div class="container grid together">
+      <div class="tile tile--wide">
+        <h2>Family view</h2>
+        <p class="lead">A parent or sibling can look at profiles with you.</p>
+        <fieldset class="choices" id="fam">
+          <legend>Who helps you look</legend>
+          <input type="checkbox" id="h-mum" value="Mum"><label for="h-mum">Mum</label>
+          <input type="checkbox" id="h-dad" value="Dad"><label for="h-dad">Dad</label>
+          <input type="checkbox" id="h-sister" value="Sister"><label for="h-sister">Sister</label>
+          <input type="checkbox" id="h-brother" value="Brother"><label for="h-brother">Brother</label>
+        </fieldset>
+        <p class="live" id="fam-status" role="status">Just you for now.</p>
+      </div>
+      <div class="tile tile--narrow">
+        <h2>Safety tools</h2>
+        <div class="safety__who">
+          <span class="avatar" style="--tone:var(--tone-d)" aria-hidden="true">J</span>
+          <div><h3>Jack, 35</h3><p class="label">Melbourne</p></div>
+        </div>
+        <div class="safety__actions">
+          <button class="btn btn--sm" type="button" id="s-block"><svg class="icon" aria-hidden="true"><use href="#i-ban"/></svg><span>Block</span></button>
+          <button class="btn btn--sm" type="button" id="s-report"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg><span>Report</span></button>
+          <button class="btn btn--sm" type="button" id="s-hide" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span>Hide my profile</span></button>
+        </div>
+        <p class="live" id="safe-status" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band--deep join" id="join" aria-labelledby="join-title">
+    <div class="container grid">
+      <div class="head">
+        <h2 id="join-title" data-reveal>Make your profile</h2>
+        <dl class="qa">
+          <div><dt>What does it cost?</dt><dd>A free plan and a paid plan. Paid price: <span class="fill" data-fill="paid-price">to be announced</span></dd></div>
+          <div><dt>Will I get alerts?</dt><dd>Email and phone alerts for matches, interests and messages.</dd></div>
+          <div><dt>Who runs the site?</dt><dd>Our team reviews profiles and reports.</dd></div>
+        </dl>
+      </div>
+      <div class="card" id="join-card">
+        <div class="tabs" role="tablist" aria-label="Join or log in">
+          <button type="button" role="tab" id="tab-join" aria-selected="true" aria-controls="panel-join">Join</button>
+          <button type="button" role="tab" id="tab-login" aria-selected="false" aria-controls="panel-login" tabindex="-1">Log in</button>
+        </div>
+        <div class="panel" role="tabpanel" id="panel-join" aria-labelledby="tab-join">
+          <form data-endpoint="" novalidate class="panel">
+            <div class="field"><label for="j-name">First name</label><input id="j-name" name="name" type="text" autocomplete="given-name" required></div>
+            <div class="field"><label for="j-email">Email address</label><input id="j-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+            <div class="field"><label for="j-for">Joining for</label>
+              <select id="j-for" name="for"><option>Myself</option><option>My son</option><option>My daughter</option><option>My brother or sister</option></select>
+            </div>
+            <button class="btn btn--primary" type="submit">Make my profile</button>
+            <p class="form-help" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="panel" role="tabpanel" id="panel-login" aria-labelledby="tab-login">
+          <form data-endpoint="" novalidate class="panel">
+            <div class="field"><label for="l-email">Email address</label><input id="l-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+            <button class="btn btn--primary" type="submit">Log in</button>
+            <p class="form-help" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <p class="foot__sign">Warmly, the BeingOne team.</p>
+    <div class="foot__row">
+      <p>For Australians and their families. <time datetime="2026-10">October 2026</time></p>
+      <ul class="foot__links">
+        <li><a href="#find">Find</a></li>
+        <li><a href="#verified">Checks</a></li>
+        <li><a href="#privacy">Photos</a></li>
+        <li><a href="#talk">Chat</a></li>
+        <li><a href="#join">Join</a></li>
+      </ul>
+    </div>
+    <p data-credits>Photographs: <a href="https://commons.wikimedia.org/wiki/File:Peterborough_(AU),_Port_Campbell_National_Park,_Worm_Bay_--_2019_--_0863.jpg">Dietmar Rabich</a> (CC BY-SA 4.0, Wikimedia Commons)</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
