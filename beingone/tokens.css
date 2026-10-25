@@ -1,5 +1,4 @@
 :root {
-  color-scheme: light;
   --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
   --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
   --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem); --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
@@ -9,13 +8,17 @@
   --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
   --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
   --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
-  --color-paper: oklch(41% 0.100 154); --color-paper-2: oklch(47% 0.105 154); --color-paper-3: oklch(34% 0.090 156);
-  --color-ink: oklch(99% 0.005 90); --color-ink-2: oklch(94% 0.020 120); --color-muted: oklch(90% 0.030 150); --color-rule: oklch(55% 0.100 154);
-  --color-accent: oklch(83% 0.115 56); --color-accent-2: oklch(74% 0.150 46); --color-accent-ink: oklch(30% 0.070 40); --color-focus: oklch(88% 0.14 85);
-  --color-card: oklch(97% 0.012 85); --color-card-ink: oklch(24% 0.05 160);
-  --font-display: "Gabarito", ui-sans-serif, system-ui, sans-serif; --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-outlier: var(--font-display);
-  --radius-card: 24px; --radius-control: 16px; --radius-pill: 999px; --rule-hair: 1px; --rule-bar: 2px;
-  --shadow-card: 0 14px 32px -16px oklch(22% 0.05 160 / 0.5);
-  --tracking-display: -0.025em; --display-weight: 800;
+  --color-paper: oklch(98.4% 0.012 85); --color-paper-2: oklch(95.6% 0.02 80); --color-paper-3: oklch(91.5% 0.03 75);
+  --color-ink: oklch(25% 0.07 255); --color-ink-2: oklch(36% 0.065 255); --color-muted: oklch(46% 0.045 255);
+  --color-rule: oklch(87% 0.025 80);
+  --color-accent: oklch(56% 0.15 38); --color-accent-2: oklch(49% 0.15 38); --color-accent-ink: oklch(99% 0.008 85); --color-focus: oklch(58% 0.19 38);
+  --color-card: oklch(99.6% 0.006 85); --color-card-ink: oklch(25% 0.07 255);
+  --color-navy: oklch(25% 0.07 255); --color-navy-2: oklch(31% 0.07 255); --color-on-navy: oklch(97% 0.015 85); --color-on-navy-muted: oklch(82% 0.03 255);
+  --color-land: oklch(88% 0.04 250);
+  --font-display: "DM Serif Display", ui-serif, Georgia, serif; --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif; --font-outlier: var(--font-display);
+  --radius-card: 24px; --radius-control: 14px; --radius-pill: 999px; --rule-hair: 1px; --rule-bar: 2px;
+  --shadow-card: 0 18px 40px -22px oklch(25% 0.07 255 / 0.35), 0 2px 6px oklch(25% 0.07 255 / 0.06);
+  --shadow-lift: 0 26px 48px -24px oklch(25% 0.07 255 / 0.45), 0 3px 8px oklch(25% 0.07 255 / 0.08);
+  --tracking-display: -0.025em;
+  --tone-a: oklch(86% 0.08 20); --tone-b: oklch(92% 0.09 95); --tone-c: oklch(88% 0.07 150); --tone-d: oklch(86% 0.06 235);
 }
