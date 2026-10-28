@@ -4,11 +4,22 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+
+// Read the private .env file next to this script (works with Windows line endings).
+try {
+  fs.readFileSync(path.join(__dirname, '.env'), 'utf8').split(/\r?\n/).forEach(line => {
+    const m = line.match(/^\s*([A-Z_][A-Z0-9_]*)\s*=\s*(.*?)\s*$/);
+    if (m && !line.trim().startsWith('#') && process.env[m[1]] === undefined) process.env[m[1]] = m[2].replace(/^(['"])(.*)\1$/, '$2');
+  });
+} catch (e) { /* no .env file: fine, demo mode */ }
 
 const PORT = Number(process.env.PORT || 3000);
 const KEY = process.env.LAOZHANG_API_KEY || '';
 const BASE = (process.env.LAOZHANG_BASE_URL || 'https://api.laozhang.ai').replace(/\/+$/, '');
 const MODEL = process.env.IMAGE_MODEL || 'gpt-image-1'; // confirm in your laozhang.ai dashboard
+const HOST = process.env.HOST || '127.0.0.1'; // 127.0.0.1 = this computer only
+const PASSWORD = process.env.ACCESS_PASSWORD || '';
 const MAX_PROMPT = 300;
 const STYLES = ['Dreamy', 'Geometric', 'Neon', 'Waves', 'Paper cut'];
 const SIZES = { Square: '1024x1024', Wide: '1536x1024', Tall: '1024x1536' };
@@ -64,7 +75,17 @@ async function makeImage(req, res) {
   }
 }
 
+function allowed(req) {
+  if (!PASSWORD) return true;
+  const m = /^Basic (.+)$/.exec(req.headers.authorization || '');
+  if (!m) return false;
+  const given = Buffer.from(Buffer.from(m[1], 'base64').toString('utf8').split(':').slice(1).join(':'));
+  const want = Buffer.from(PASSWORD);
+  return given.length === want.length && crypto.timingSafeEqual(given, want);
+}
+
 http.createServer((req, res) => {
+  if (!allowed(req)) { res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="Glimmer"' }); return res.end('Password needed'); }
   const url = req.url.split('?')[0];
   if (url === '/favicon.ico') { res.writeHead(204); return res.end(); }
   if (req.method === 'GET' && url === '/api/status') return send(res, 200, { real: !!KEY });
@@ -78,4 +99,7 @@ http.createServer((req, res) => {
     return fs.createReadStream(path.join(__dirname, 'index.html')).pipe(res);
   }
   send(res, 404, { error: 'Not found' });
-}).listen(PORT, () => console.log('Glimmer on http://localhost:' + PORT + (KEY ? ' (real AI on)' : ' (demo mode: no key set)')));
+}).listen(PORT, HOST, () => {
+  console.log('Glimmer is running: http://localhost:' + PORT + (KEY ? '  (real AI on)' : '  (demo mode: no key set)'));
+  if (HOST !== '127.0.0.1') console.log(PASSWORD ? 'Open to your home network, password required.' : 'WARNING: open to your network with NO password. Set ACCESS_PASSWORD.');
+});
