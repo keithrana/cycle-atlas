@@ -26,3 +26,10 @@ No API keys in the browser. User text is never inserted as HTML. Prompt length c
 ## Added request: video generation
 - Phase 0: Video type = 4-second looping animated clip from the pattern maker; play in page; download .webm.
 - Phase 2: real AI video model through the server (text-to-video, image-to-video), with usage limits (video is costly).
+
+## Provider decision (Phase 1): laozhang.ai gateway
+- OpenAI-compatible endpoint: POST {base}/v1/images/generations, Bearer key (from their docs/blog; confirm on their dashboard).
+- Key lives only on the server (env var LAOZHANG_API_KEY). Browser never sees it.
+- Model name, free credit amount and prices are UNVERIFIED (vendor marketing). Confirm before spending.
+- Tested against a pretend upstream only. Real call untested until a key is added.
+- Video: still demo. Real video needs their video endpoint, not yet confirmed.

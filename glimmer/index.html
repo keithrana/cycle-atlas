@@ -96,7 +96,7 @@
   var COUNTS=[1,2,4];
   var KEYWORDS={sunset:20,fire:10,red:0,orange:30,sun:45,yellow:55,forest:130,green:125,tree:120,mint:160,
                 ocean:195,sea:195,water:200,sky:210,blue:220,ice:190,night:250,purple:275,pink:325,rose:340,flower:320};
-  var state={mode:'Image',style:'Dreamy',ratio:'Square',count:2};
+  var state={real:false,mode:'Image',style:'Dreamy',ratio:'Square',count:2};
   var DURATION=4000, running=[];
   var $=function(id){return document.getElementById(id)};
 
@@ -175,16 +175,24 @@
 
   function tile(spec,inGallery){
     var t=document.createElement('div');t.className='tile';
-    var c=document.createElement('canvas');var d=dims(spec.ratio,480);draw(c,d[0],d[1],spec);t.appendChild(c);
-    var isVideo=spec.kind==='video';
-    if(isVideo){animate(c,d,spec)}
+    var isVideo=spec.kind==='video',c,d;
+    if(spec.src){
+      c=document.createElement('img');c.alt=spec.prompt;c.style.cssText='display:block;width:100%;height:auto';
+      if(/^(https:\/\/|data:image\/)/.test(spec.src))c.src=spec.src;
+    }else{
+      c=document.createElement('canvas');d=dims(spec.ratio,480);draw(c,d[0],d[1],spec);
+      if(isVideo){animate(c,d,spec)}
+    }
+    t.appendChild(c);
     var bar=document.createElement('div');bar.className='bar';
     var p=document.createElement('span');p.className='p';p.textContent=spec.prompt;p.title=spec.prompt;bar.appendChild(p);
     function btn(txt,title,fn){var b=document.createElement('button');b.textContent=txt;b.title=title;b.type='button';b.addEventListener('click',fn);bar.appendChild(b)}
-    if(!inGallery){btn('Save','Save to gallery',function(){var l=load();l.unshift(spec);save(l);renderGallery()})}
+    if(spec.src){btn('Open','Open full size',function(){window.open(spec.src,'_blank','noopener')})}
+    else if(!inGallery){btn('Save','Save to gallery',function(){var l=load();l.unshift(spec);save(l);renderGallery()})}
     else{btn('Reuse','Use this idea again',function(){$('prompt').value=spec.prompt;$('n').textContent=spec.prompt.length;pick('style',spec.style);pick('ratio',spec.ratio)});
          btn('Delete','Remove',function(){save(load().filter(function(s){return s.id!==spec.id}));renderGallery()})}
-    if(isVideo){btn('Download','Download video',function(){recordVideo(spec,this)});}
+    if(spec.src){}
+    else if(isVideo){btn('Download','Download video',function(){recordVideo(spec,this)});}
     else btn('Download','Download PNG',function(){
       var big=document.createElement('canvas'),dd=dims(spec.ratio,1024);draw(big,dd[0],dd[1],spec);
       big.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='glimmer-'+spec.seed+'.png';a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},1000)});
@@ -228,6 +236,16 @@
     var prompt=$('prompt').value.trim(),err=$('err');err.textContent='';
     if(!prompt){err.textContent='Please type an idea first.';return}
     var go=$('go');go.disabled=true;go.textContent='Making...';
+    if(state.real&&state.mode==='Image'){
+      fetch('/api/image',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({prompt:prompt,style:state.style,ratio:state.ratio,count:state.count})})
+      .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||'Something went wrong.');return j})})
+      .then(function(j){stopAll();var res=$('results');res.textContent='';
+        j.images.forEach(function(im,i){res.appendChild(tile({id:Date.now()+'-'+i,kind:'image',prompt:prompt,style:state.style,ratio:state.ratio,seed:i,src:im.src},false))})})
+      .catch(function(e){err.textContent=e.message})
+      .then(function(){go.disabled=false;go.textContent='Generate'});
+      return;
+    }
     setTimeout(function(){
       stopAll();var res=$('results');res.textContent='';
       for(var i=0;i<state.count;i++){
@@ -264,6 +282,9 @@
   });
   $('clear').addEventListener('click',function(){save([]);renderGallery()});
   renderGallery();
+  if(/^https?:$/.test(location.protocol))fetch('/api/status').then(function(r){return r.json()}).then(function(j){
+    if(j&&j.real){state.real=true;$('demo').textContent='REAL AI is on for pictures. Video is still a demo animation.'}
+  }).catch(function(){});
 })();
 </script>
 </body>
