@@ -1,0 +1,487 @@
+{
+  "version": 1,
+  "historyId": "9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e",
+  "currentRevision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/1b/1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "CLAUDE.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/1b/1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "assets/fonts/outfit-var.woff2": {
+      "hash": "6c18d579fd87c3776be068b762cbc83fde3acb543d49eabd3ade842eb987e887",
+      "content": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/6c/6c18d579fd87c3776be068b762cbc83fde3acb543d49eabd3ade842eb987e887"
+    },
+    "assets/vendor/gsap.min.js": {
+      "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "content": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+    },
+    "compositions/splash.html": {
+      "hash": "4069f5e6c258c31d50ed2286238df9a025c578dae18cb6522717c7779bfa34de",
+      "content": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/40/4069f5e6c258c31d50ed2286238df9a025c578dae18cb6522717c7779bfa34de"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "4fde96b3cc0777eed8d51848d12182e40aca44325fdb2f0f6454003f261aecec",
+      "content": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/4f/4fde96b3cc0777eed8d51848d12182e40aca44325fdb2f0f6454003f261aecec"
+    },
+    "meta.json": {
+      "hash": "7ed4065b08f5fa486c91d6478b3ff9f15566b21af578a219c741b2ceace83c8c",
+      "content": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/7e/7ed4065b08f5fa486c91d6478b3ff9f15566b21af578a219c741b2ceace83c8c"
+    },
+    "package.json": {
+      "hash": "f0958120dd61552c51e317ae606336ff692e260a814dcf6f9a93b300944d9a87",
+      "content": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/f0/f0958120dd61552c51e317ae606336ff692e260a814dcf6f9a93b300944d9a87"
+    }
+  },
+  "revisions": {
+    "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793270992248,
+      "endedAt": 1793270992249,
+      "files": {
+        "compositions/splash.html": {
+          "before": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/58/58742c96c917513e740ba05693787065b3bff7f3c874fdb436a22186aa758567",
+          "after": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/2c/2cbf395ebeabfd4d6db8b62b0c218d8e02811706dcfd1b9969a0ef57b5075160"
+        }
+      }
+    },
+    "331657d3-92dc-4ed9-b7f7-6fb16fe78e19": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793271017855,
+      "endedAt": 1793271017856,
+      "files": {
+        "compositions/splash.html": {
+          "before": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/2c/2cbf395ebeabfd4d6db8b62b0c218d8e02811706dcfd1b9969a0ef57b5075160",
+          "after": "/root/.cache/hyperframes/history/9e0c493d-c3c0-4252-bf1d-34e6d68dbc6e/blobs/40/4069f5e6c258c31d50ed2286238df9a025c578dae18cb6522717c7779bfa34de"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19",
+      "id": "23c91bc9-203c-46ad-88ae-35645ac48608"
+    },
+    "revisions": {
+      "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9": [
+        {
+          "id": "33e3342e-30d5-4358-9f5f-a003d9061f95",
+          "scope": "project",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 10000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793270994292,
+          "contentHash": "687360e106c8194f8edb0dcfe220ce36d14a63f015ad48af73f9f6f6e0e71513",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        }
+      ],
+      "331657d3-92dc-4ed9-b7f7-6fb16fe78e19": [
+        {
+          "id": "23c91bc9-203c-46ad-88ae-35645ac48608",
+          "scope": "project",
+          "report": "/home/user/cycle-atlas/FitWithMe/splash-video/.hyperframes/artifacts/checks/23c91bc9-203c-46ad-88ae-35645ac48608.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 10000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793271019631,
+          "contentHash": "687360e106c8194f8edb0dcfe220ce36d14a63f015ad48af73f9f6f6e0e71513",
+          "revision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19",
+          "inputFingerprint": "265f93c69ad3e836e3990a3f6950246bd9af6f86d136b178c30c8af491901b7c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "17129e51-c72b-45ac-b410-20b8222ffa55",
+        "scope": "project",
+        "report": "/home/user/cycle-atlas/FitWithMe/splash-video/.hyperframes/artifacts/checks/17129e51-c72b-45ac-b410-20b8222ffa55.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 10000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793270985324,
+        "contentHash": "08b9f11ef84c0c6e157d7965086f11e9605305d069627e18bcff352ae96e2f01",
+        "revision": null,
+        "inputFingerprint": "561e511d76b9291170104c55cba08322612b0ba516bcba84ee683ce88c9f66b0",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19",
+      "id": "3ef1356d-3f00-4cb5-ad47-e8039fda8ed4-4"
+    },
+    "revisions": {
+      "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9": [
+        {
+          "scope": "full",
+          "id": "937173d8-1f3f-4560-a531-0946ac51fbe5-0",
+          "time": 0,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271002133,
+          "contentHash": "6f68c191b23d04f2c93680bba78c05ee9bcc3516e6647715090e7e42b9913074",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        },
+        {
+          "scope": "full",
+          "id": "937173d8-1f3f-4560-a531-0946ac51fbe5-1",
+          "time": 0.6,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271002133,
+          "contentHash": "a93b096807422d8019dc7508174a4fc3340fbe75faa2374c8351f6ae355b6ad7",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        },
+        {
+          "scope": "full",
+          "id": "937173d8-1f3f-4560-a531-0946ac51fbe5-2",
+          "time": 1.1,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271002133,
+          "contentHash": "cc2b349b63222d3e313015de5da4c9e8ab1306c8b30c038441708f5edf25ae02",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        },
+        {
+          "scope": "full",
+          "id": "937173d8-1f3f-4560-a531-0946ac51fbe5-3",
+          "time": 1.7,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271002133,
+          "contentHash": "34246b28def01343d203cefd1b903ad029088c142fa897ed420d530f7cc6505b",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        },
+        {
+          "scope": "full",
+          "id": "937173d8-1f3f-4560-a531-0946ac51fbe5-4",
+          "time": 2.4,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271002133,
+          "contentHash": "e45c2174bea56587fcf28adbc03171d1c6c142417bbb363824cf6e78206b0871",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        },
+        {
+          "scope": "full",
+          "id": "937173d8-1f3f-4560-a531-0946ac51fbe5-5",
+          "time": 3.2,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271002133,
+          "contentHash": "dbed31d42bfef07618baa5d12b3efa353f907ffafb11ba05dd05d28b0ffac7b1",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        },
+        {
+          "scope": "full",
+          "id": "937173d8-1f3f-4560-a531-0946ac51fbe5-6",
+          "time": 4,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271002133,
+          "contentHash": "b39f372db2eee26ab25bf9cb3b515678102fc2ac2e3ab02e0ca15600f0296334",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        },
+        {
+          "scope": "full",
+          "id": "937173d8-1f3f-4560-a531-0946ac51fbe5-7",
+          "time": 4.95,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271002133,
+          "contentHash": "dbed31d42bfef07618baa5d12b3efa353f907ffafb11ba05dd05d28b0ffac7b1",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        },
+        {
+          "scope": "full",
+          "id": "937173d8-1f3f-4560-a531-0946ac51fbe5-8",
+          "time": 4.85,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271002133,
+          "contentHash": "dbed31d42bfef07618baa5d12b3efa353f907ffafb11ba05dd05d28b0ffac7b1",
+          "revision": "8d7bd068-adf4-4461-bbfb-1c78ff7ecee9",
+          "inputFingerprint": "4e9aedf4fce823d2df87bb46d5cd2e8701f3189bfa2f5039b27f51b309658558",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "71b08806-1c46-4dbe-827f-4957bceeb853"
+        }
+      ],
+      "331657d3-92dc-4ed9-b7f7-6fb16fe78e19": [
+        {
+          "scope": "full",
+          "id": "3ef1356d-3f00-4cb5-ad47-e8039fda8ed4-0",
+          "image": "/home/user/cycle-atlas/FitWithMe/splash-video/.hyperframes/artifacts/snapshots/38ba0180-3c1f-43a2-9c2f-cb06576fe33f/frame-00-at-0s.png",
+          "time": 0,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271024944,
+          "contentHash": "53fb278beff7df648ff64001061b5af09c0e98d35561227fbc9e0be87c3b074b",
+          "revision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19",
+          "inputFingerprint": "265f93c69ad3e836e3990a3f6950246bd9af6f86d136b178c30c8af491901b7c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "3ef1356d-3f00-4cb5-ad47-e8039fda8ed4-1",
+          "image": "/home/user/cycle-atlas/FitWithMe/splash-video/.hyperframes/artifacts/snapshots/38ba0180-3c1f-43a2-9c2f-cb06576fe33f/frame-01-at-0.05s.png",
+          "time": 0.05,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271024945,
+          "contentHash": "53fb278beff7df648ff64001061b5af09c0e98d35561227fbc9e0be87c3b074b",
+          "revision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19",
+          "inputFingerprint": "265f93c69ad3e836e3990a3f6950246bd9af6f86d136b178c30c8af491901b7c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "3ef1356d-3f00-4cb5-ad47-e8039fda8ed4-2",
+          "image": "/home/user/cycle-atlas/FitWithMe/splash-video/.hyperframes/artifacts/snapshots/38ba0180-3c1f-43a2-9c2f-cb06576fe33f/frame-02-at-1.7s.png",
+          "time": 1.7,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271024945,
+          "contentHash": "104298399be7e7b07a631c539a5767b923638a810bf5a370111924f4bf91b42a",
+          "revision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19",
+          "inputFingerprint": "265f93c69ad3e836e3990a3f6950246bd9af6f86d136b178c30c8af491901b7c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "3ef1356d-3f00-4cb5-ad47-e8039fda8ed4-3",
+          "image": "/home/user/cycle-atlas/FitWithMe/splash-video/.hyperframes/artifacts/snapshots/38ba0180-3c1f-43a2-9c2f-cb06576fe33f/frame-03-at-4.99s.png",
+          "time": 4.99,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271024945,
+          "contentHash": "dbed31d42bfef07618baa5d12b3efa353f907ffafb11ba05dd05d28b0ffac7b1",
+          "revision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19",
+          "inputFingerprint": "265f93c69ad3e836e3990a3f6950246bd9af6f86d136b178c30c8af491901b7c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "3ef1356d-3f00-4cb5-ad47-e8039fda8ed4-4",
+          "image": "/home/user/cycle-atlas/FitWithMe/splash-video/.hyperframes/artifacts/snapshots/38ba0180-3c1f-43a2-9c2f-cb06576fe33f/frame-04-at-4.85s.png",
+          "time": 4.85,
+          "metadata": {
+            "width": 1080,
+            "height": 2400,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793271024945,
+          "contentHash": "dbed31d42bfef07618baa5d12b3efa353f907ffafb11ba05dd05d28b0ffac7b1",
+          "revision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19",
+          "inputFingerprint": "265f93c69ad3e836e3990a3f6950246bd9af6f86d136b178c30c8af491901b7c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "71b08806-1c46-4dbe-827f-4957bceeb853",
+      "completedAt": 1793271050984,
+      "output": "/home/user/cycle-atlas/FitWithMe/splash-video/renders/fitwithme-splash-1080x2400.mp4",
+      "status": "completed",
+      "revision": "331657d3-92dc-4ed9-b7f7-6fb16fe78e19"
+    },
+    "retainedRevisions": [
+      "331657d3-92dc-4ed9-b7f7-6fb16fe78e19"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

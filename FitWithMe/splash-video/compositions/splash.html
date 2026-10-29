@@ -1,0 +1,66 @@
+<template>
+  <style>
+    @font-face { font-family: "Outfit"; src: url("assets/fonts/outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0f1424; font-family: "Outfit", sans-serif; }
+    /* Everything important lives in the middle safe box: 600px wide, y 820-1450 of 2400 */
+    .sp-glow { position: absolute; left: 50%; top: 1135px; width: 1500px; height: 1500px; margin: -750px 0 0 -750px; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(255,90,60,0.26), rgba(182,242,58,0.09) 55%, rgba(15,20,36,0) 100%); }
+    .sp-halo { position: absolute; left: 50%; top: 1135px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.07); }
+    .sp-mark { position: absolute; left: 50%; top: 835px; width: 460px; height: 300px; margin-left: -230px; }
+    .sp-mark svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .sp-word { position: absolute; left: 0; right: 0; top: 1225px; display: flex; justify-content: center; font-weight: 800; font-size: 112px; line-height: 1; letter-spacing: -0.02em; }
+    .sp-word span { display: block; }
+    .sp-tag { position: absolute; left: 0; right: 0; top: 1385px; text-align: center; font-weight: 500; font-size: 44px; letter-spacing: 0.16em; text-transform: uppercase; color: #b9c0d4; }
+  </style>
+
+  <div id="root" data-composition-id="splash" data-width="1080" data-height="2400">
+    <div class="sp-glow" id="sp-glow" data-layout-ignore></div>
+    <div class="sp-halo" id="sp-halo1" data-layout-ignore style="width:1040px;height:1040px;margin:-520px 0 0 -520px"></div>
+    <div class="sp-halo" id="sp-halo2" data-layout-ignore style="width:1520px;height:1520px;margin:-760px 0 0 -760px"></div>
+
+    <div class="sp-mark" id="sp-mark">
+      <svg viewBox="0 0 460 300" aria-hidden="true">
+        <g id="sp-ringL"><circle cx="150" cy="150" r="110" fill="none" stroke="#ff5a3c" stroke-width="34" stroke-linecap="round" stroke-dasharray="691.2" stroke-dashoffset="691.2" transform="rotate(-90 150 150)" id="sp-arcL"/></g>
+        <g id="sp-ringR"><circle cx="310" cy="150" r="110" fill="none" stroke="#b6f23a" stroke-width="34" stroke-linecap="round" stroke-dasharray="691.2" stroke-dashoffset="691.2" transform="rotate(-90 310 150)" id="sp-arcR"/></g>
+        <circle id="sp-pulse" cx="230" cy="150" r="24" fill="none" stroke="#ffffff" stroke-width="5" opacity="0"/>
+      </svg>
+    </div>
+
+    <div class="sp-word" id="sp-word">
+      <span class="sp-l" style="color:#ffffff">F</span><span class="sp-l" style="color:#ffffff">i</span><span class="sp-l" style="color:#ffffff">t</span><span class="sp-l" style="color:#b6f23a">W</span><span class="sp-l" style="color:#b6f23a">i</span><span class="sp-l" style="color:#b6f23a">t</span><span class="sp-l" style="color:#b6f23a">h</span><span class="sp-l" style="color:#ff5a3c">M</span><span class="sp-l" style="color:#ff5a3c">e</span>
+    </div>
+    <div class="sp-tag" id="sp-tag">Train together</div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // t=0 is one flat color (#0f1424) so it blends with the app's launch screen
+      tl.fromTo("#sp-glow", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" }, 0.1);
+      tl.fromTo("#sp-halo1", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 1.6, ease: "power2.out" }, 0.2);
+      tl.fromTo("#sp-halo2", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 1.8, ease: "power2.out" }, 0.3);
+
+      // two rings draw themselves apart, then slide together ("with me")
+      tl.set("#sp-ringL", { opacity: 0, x: -70 }, 0);
+      tl.set("#sp-ringR", { opacity: 0, x: 70 }, 0);
+      tl.to("#sp-ringL", { opacity: 1, duration: 0.05 }, 0.25);
+      tl.to("#sp-ringR", { opacity: 1, duration: 0.05 }, 0.45);
+      tl.to("#sp-arcL", { strokeDashoffset: 0, duration: 0.85, ease: "power2.inOut" }, 0.25);
+      tl.to("#sp-arcR", { strokeDashoffset: 0, duration: 0.85, ease: "power2.inOut" }, 0.45);
+      tl.to("#sp-ringL", { x: 0, duration: 0.6, ease: "back.out(1.7)" }, 1.3);
+      tl.to("#sp-ringR", { x: 0, duration: 0.6, ease: "back.out(1.7)" }, 1.3);
+      tl.fromTo("#sp-pulse", { opacity: 0.9, scale: 1, transformOrigin: "230px 150px" }, { opacity: 0, scale: 9, duration: 0.8, ease: "power2.out", immediateRender: false }, 1.75);
+
+      // wordmark: letters rise in one by one
+      tl.fromTo(".sp-l", { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.8)", stagger: 0.07 }, 2.0);
+      // tagline
+      tl.fromTo("#sp-tag", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 2.7);
+
+      // one small heartbeat on the mark, then everything holds still to the last frame
+      tl.to("#sp-mark", { scale: 1.07, duration: 0.35, ease: "sine.inOut" }, 3.6);
+      tl.to("#sp-mark", { scale: 1, duration: 0.4, ease: "sine.inOut" }, 3.95);
+
+      window.__timelines["splash"] = tl;
+    })();
+  </script>
+</template>
