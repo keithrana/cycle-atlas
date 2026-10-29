@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a73e8">
+<title>TripNest</title>
+<style>
+:root{
+  --primary:#1a5fd0; --on-primary:#fff; --primary-c:#d9e6ff; --on-primary-c:#00224f;
+  --surface:#fbfbff; --surface-c:#eef1fa; --card:#fff; --text:#1b1b1f; --muted:#5e6270;
+  --outline:#d5d9e6; --ok:#1b7f4b; --warn:#b3261e;
+  --ease:cubic-bezier(.2,.8,.2,1); --spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{font-family:Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;background:#dfe5f5;color:var(--text);
+  display:flex;align-items:center;justify-content:center}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid #7aa7ff;outline-offset:2px}
+
+#phone{position:relative;width:390px;height:min(820px,100vh);background:var(--surface);overflow:hidden;
+  border-radius:36px;box-shadow:0 20px 60px rgba(20,40,100,.25);display:flex;flex-direction:column}
+@media (max-width:500px){#phone{width:100vw;height:100dvh;border-radius:0;box-shadow:none}}
+
+.screen{position:absolute;inset:0 0 72px 0;overflow-y:auto;padding:0 16px 96px;
+  transition:transform .42s var(--ease),opacity .3s;background:var(--surface)}
+.screen.right{transform:translateX(100%);opacity:0;pointer-events:none;visibility:hidden}
+.screen.left{transform:translateX(-30%);opacity:0;pointer-events:none;visibility:hidden}
+.screen.timeline{inset:0 0 0 0;padding-bottom:110px}
+
+.appbar{padding:28px 4px 8px;display:flex;align-items:center;justify-content:space-between}
+.appbar h1{font-size:28px;margin:0;font-weight:700;letter-spacing:-.5px}
+.appbar p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--primary-c);color:var(--on-primary-c);
+  display:grid;place-items:center;font-weight:700}
+
+.seg{display:flex;background:var(--surface-c);border-radius:999px;padding:4px;margin:12px 0 16px;position:relative}
+.seg button{flex:1;padding:10px;border-radius:999px;font-weight:500;color:var(--muted);position:relative;z-index:1;transition:color .25s}
+.seg button[aria-selected=true]{color:var(--on-primary-c)}
+.seg .pill{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:var(--primary-c);
+  border-radius:999px;transition:transform .35s var(--spring)}
+.seg[data-i="1"] .pill{transform:translateX(100%)}
+
+.card{position:relative;display:block;width:100%;text-align:left;border-radius:24px;overflow:hidden;margin-bottom:14px;
+  background:var(--card);box-shadow:0 1px 3px rgba(20,40,100,.12);transition:transform .2s var(--ease),box-shadow .2s;
+  animation:rise .55s var(--ease) both;animation-delay:calc(var(--i,0)*70ms)}
+.card:active{transform:scale(.97)}
+.card .cover{height:104px;display:flex;align-items:flex-end;justify-content:space-between;padding:12px 16px;color:#fff;font-size:44px}
+.card .cover small{font-size:13px;background:rgba(0,0,0,.28);padding:4px 10px;border-radius:999px}
+.card .body{padding:12px 16px 16px}
+.card h3{margin:0 0 4px;font-size:20px}
+.card .meta{color:var(--muted);font-size:14px}
+.empty{text-align:center;color:var(--muted);padding:48px 16px;animation:rise .5s var(--ease) both}
+.empty .big{font-size:56px;animation:float 3s ease-in-out infinite}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-8px)}}
+
+/* ripple */
+.ripple{position:relative;overflow:hidden}
+.ripple .r{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);
+  animation:rip .6s ease-out forwards;pointer-events:none}
+.card.ripple .r,.tab.ripple .r{background:rgba(26,95,208,.18)}
+@keyframes rip{to{transform:scale(1);opacity:0}}
+
+/* timeline screen */
+.hero{margin:0 -16px 16px;padding:24px 20px 28px;color:#fff;position:relative;overflow:hidden;border-radius:0 0 32px 32px}
+.hero .back{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.22);color:#fff;font-size:22px;margin-bottom:12px}
+.hero h2{margin:0;font-size:30px;letter-spacing:-.5px}
+.hero p{margin:4px 0 0;opacity:.9}
+.plane{position:absolute;top:18px;left:-40px;font-size:30px;animation:fly 5s linear infinite}
+@keyframes fly{0%{transform:translate(0,10px) rotate(8deg)}50%{transform:translate(220px,-6px) rotate(0)}100%{transform:translate(470px,10px) rotate(8deg)}}
+.day{margin:18px 0 8px;font-weight:700;color:var(--primary);font-size:14px;text-transform:uppercase;letter-spacing:.8px}
+.tl{position:relative;padding-left:28px}
+.tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:3px;border-radius:3px;background:var(--primary-c);
+  transform-origin:top;animation:draw .9s var(--ease) both}
+@keyframes draw{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.item{position:relative;background:var(--card);border-radius:18px;padding:12px 14px;margin-bottom:10px;
+  box-shadow:0 1px 3px rgba(20,40,100,.1);animation:rise .5s var(--ease) both;animation-delay:calc(var(--i,0)*80ms)}
+.item::before{content:"";position:absolute;left:-23px;top:20px;width:13px;height:13px;border-radius:50%;
+  background:var(--primary);border:3px solid var(--surface)}
+.item .t{display:flex;justify-content:space-between;gap:8px}
+.item b{font-size:16px}.item span.time{color:var(--primary);font-weight:600;font-size:14px;white-space:nowrap}
+.item .d{color:var(--muted);font-size:14px;margin-top:2px}
+
+/* alerts */
+.alert{display:flex;gap:12px;background:var(--card);border-radius:18px;padding:14px;margin-bottom:10px;
+  box-shadow:0 1px 3px rgba(20,40,100,.1);animation:rise .5s var(--ease) both;animation-delay:calc(var(--i,0)*80ms)}
+.alert .ic{font-size:26px}.alert b{display:block}.alert small{color:var(--muted)}
+.alert.bad .ic{color:var(--warn)}
+
+/* FAB + nav */
+.fab{position:absolute;right:20px;bottom:92px;z-index:5;height:56px;padding:0 20px 0 16px;border-radius:18px;
+  background:var(--primary);color:var(--on-primary);font-weight:600;display:flex;align-items:center;gap:8px;
+  box-shadow:0 6px 16px rgba(26,95,208,.4);transition:transform .25s var(--spring),opacity .25s;font-size:16px}
+.fab:active{transform:scale(.92)}
+.fab.hide{transform:scale(0);opacity:0;pointer-events:none}
+.fab .plus{font-size:26px;line-height:1}
+nav{position:absolute;left:0;right:0;bottom:0;height:72px;background:var(--surface-c);display:flex;z-index:6;
+  padding-bottom:env(safe-area-inset-bottom)}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;color:var(--muted);position:relative}
+.tab .ico{width:60px;height:30px;border-radius:999px;display:grid;place-items:center;font-size:18px;transition:background .3s,transform .3s var(--spring)}
+.tab[aria-current=page]{color:var(--text);font-weight:600}
+.tab[aria-current=page] .ico{background:var(--primary-c);transform:scale(1.08)}
+
+/* bottom sheet */
+.scrim{position:absolute;inset:0;background:rgba(10,20,50,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:20}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-radius:28px 28px 0 0;padding:12px 20px 28px;
+  z-index:21;transform:translateY(105%);transition:transform .5s var(--spring);max-height:92%;overflow:auto}
+.sheet.on{transform:none}
+.grab{width:36px;height:4px;border-radius:4px;background:var(--outline);margin:0 auto 12px}
+.sheet h2{margin:0 0 12px}
+label{display:block;font-size:13px;color:var(--muted);margin:12px 0 4px}
+input,select{width:100%;padding:14px;border-radius:14px;border:1.5px solid var(--outline);background:#fff;font-size:16px;min-height:48px;
+  transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus{outline:0;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-c)}
+.err{color:var(--warn);font-size:13px;min-height:18px;margin-top:6px}
+.row{display:flex;gap:10px}.row>div{flex:1}
+.save{width:100%;margin-top:14px;height:52px;border-radius:16px;background:var(--primary);color:#fff;font-weight:600;font-size:16px;transition:transform .2s var(--spring)}
+.save:active{transform:scale(.96)}
+
+.toast{position:absolute;left:50%;bottom:96px;transform:translate(-50%,40px);background:#2c2f3a;color:#fff;padding:12px 18px;
+  border-radius:14px;opacity:0;transition:.35s var(--spring);z-index:30;pointer-events:none;font-size:14px}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .plane{display:none}
+}
+</style>
+</head>
+<body>
+<div id="phone">
+  <section class="screen" id="s-trips" aria-label="Trips"></section>
+  <section class="screen right" id="s-alerts" aria-label="Alerts"></section>
+  <section class="screen timeline right" id="s-detail" aria-label="Trip timeline"></section>
+
+  <button class="fab ripple" id="fab" aria-label="Add"><span class="plus">+</span><span id="fabLabel">New trip</span></button>
+
+  <nav aria-label="Main">
+    <button class="tab ripple" data-go="trips" aria-current="page"><span class="ico">🧳</span>Trips</button>
+    <button class="tab ripple" data-go="add"><span class="ico">＋</span>Add</button>
+    <button class="tab ripple" data-go="alerts"><span class="ico">🔔</span>Alerts</button>
+  </nav>
+
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"></div>
+  <div class="toast" id="toast" role="status"></div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var KEY="tripnest.v1", TODAY="2026-10-29";
+var GRAD=["linear-gradient(135deg,#1a5fd0,#5aa2ff)","linear-gradient(135deg,#0d8a72,#5ed4a9)","linear-gradient(135deg,#c2410c,#fb923c)","linear-gradient(135deg,#7c3aed,#c4a1ff)","linear-gradient(135deg,#be185d,#f9a8d4)"];
+var EMOJI={flight:"✈️",hotel:"🏨",car:"🚗",activity:"🎟️"};
+var DEST_EMOJI=["🌍","🏝️","🗼","🏔️","🌆"];
+
+var seed=[
+ {id:"t1",dest:"Lisbon, Portugal",start:"2026-11-12",end:"2026-11-18",g:0,e:"🌆",items:[
+  {id:"i1",type:"flight",title:"SYD → LIS",date:"2026-11-12",time:"08:40",detail:"Flight TP 21 · Seat 24A · Conf. XK92LM"},
+  {id:"i2",type:"hotel",title:"Alfama Boutique Hotel",date:"2026-11-13",time:"14:00",detail:"Check-in · 5 nights"},
+  {id:"i3",type:"activity",title:"Tram 28 & castle tour",date:"2026-11-14",time:"10:00",detail:"Tickets in wallet"},
+  {id:"i4",type:"car",title:"Rental car pickup",date:"2026-11-16",time:"09:30",detail:"Airport desk · Conf. R-4471"}]},
+ {id:"t2",dest:"Tokyo, Japan",start:"2026-12-03",end:"2026-12-14",g:3,e:"🗼",items:[
+  {id:"i5",type:"flight",title:"MEL → HND",date:"2026-12-03",time:"21:15",detail:"Flight JL 774 · Conf. QQ81TT"},
+  {id:"i6",type:"hotel",title:"Shinjuku Park Hotel",date:"2026-12-04",time:"15:00",detail:"Check-in · 10 nights"}]},
+ {id:"t3",dest:"Sydney, Australia",start:"2026-08-02",end:"2026-08-06",g:2,e:"🏝️",items:[
+  {id:"i7",type:"hotel",title:"Harbour View Inn",date:"2026-08-02",time:"14:00",detail:"4 nights"}]}
+];
+var ALERTS=[
+ {ic:"⏱️",t:"Flight TP 21 is on time",s:"Lisbon trip · departs 08:40 on 12 Nov",bad:false},
+ {ic:"🚪",t:"Gate change (sample)",s:"JL 774 · now Gate 52 · Tokyo trip",bad:true},
+ {ic:"✅",t:"Check-in opens soon",s:"Alfama Boutique Hotel · 13 Nov",bad:false}];
+
+var trips=load(), tab="upcoming", current=null, view="trips", sheetMode=null;
+
+function load(){try{var r=localStorage.getItem(KEY);if(r){var d=JSON.parse(r);if(Array.isArray(d))return d}}catch(e){}return JSON.parse(JSON.stringify(seed))}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(trips))}catch(e){}}
+
+function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n}
+function $(id){return document.getElementById(id)}
+function fmt(iso){var p=iso.split("-");return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString("en-AU",{day:"numeric",month:"short"})}
+function fmtLong(iso){var p=iso.split("-");return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString("en-AU",{weekday:"long",day:"numeric",month:"long"})}
+function nights(a,b){return Math.round((new Date(b)-new Date(a))/864e5)}
+function uid(){return "x"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+
+function ripple(e){var b=e.currentTarget,r=b.getBoundingClientRect(),s=Math.max(r.width,r.height)*2,sp=el("span","r");
+  sp.style.width=sp.style.height=s+"px";sp.style.left=(e.clientX-r.left-s/2)+"px";sp.style.top=(e.clientY-r.top-s/2)+"px";
+  b.appendChild(sp);setTimeout(function(){sp.remove()},650)}
+function wireRipple(root){(root||document).querySelectorAll(".ripple").forEach(function(b){if(!b._rp){b._rp=1;b.addEventListener("pointerdown",ripple)}})}
+
+/* ---------- Trips screen ---------- */
+function renderTrips(){
+  var s=$("s-trips");s.textContent="";
+  var bar=el("div","appbar"),l=el("div");l.appendChild(el("h1",null,"My trips"));l.appendChild(el("p",null,"Everything in one calm place"));
+  bar.appendChild(l);bar.appendChild(el("div","avatar","K"));s.appendChild(bar);
+
+  var seg=el("div","seg");seg.setAttribute("role","tablist");seg.dataset.i=tab==="upcoming"?"0":"1";
+  seg.appendChild(el("div","pill"));
+  [["upcoming","Upcoming"],["past","Past"]].forEach(function(p){
+    var b=el("button",null,p[1]);b.setAttribute("role","tab");b.setAttribute("aria-selected",String(tab===p[0]));
+    b.addEventListener("click",function(){tab=p[0];renderTrips()});seg.appendChild(b)});
+  s.appendChild(seg);
+
+  var list=trips.filter(function(t){return tab==="past"?t.end<TODAY:t.end>=TODAY}).sort(function(a,b){return a.start<b.start?-1:1});
+  if(tab==="past")list.reverse();
+  if(!list.length){var em=el("div","empty");em.appendChild(el("div","big","🧳"));em.appendChild(el("p",null,tab==="past"?"No past trips yet.":"No upcoming trips. Tap “New trip” to start!"));s.appendChild(em);return}
+  list.forEach(function(t,i){
+    var c=el("button","card ripple");c.style.setProperty("--i",i);c.setAttribute("aria-label","Open trip to "+t.dest);
+    var cv=el("div","cover");cv.style.background=GRAD[t.g%GRAD.length];cv.appendChild(el("span",null,t.e));
+    var d=t.start>TODAY?Math.ceil((new Date(t.start)-new Date(TODAY))/864e5):0;
+    cv.appendChild(el("small",null,t.end<TODAY?"Completed":d>0?"In "+d+" days":"Happening now"));
+    var bd=el("div","body");bd.appendChild(el("h3",null,t.dest));
+    bd.appendChild(el("div","meta",fmt(t.start)+" – "+fmt(t.end)+" · "+t.items.length+" item"+(t.items.length===1?"":"s")));
+    c.appendChild(cv);c.appendChild(bd);c.addEventListener("click",function(){openTrip(t.id)});s.appendChild(c)});
+  wireRipple(s);
+}
+
+/* ---------- Detail / timeline ---------- */
+function renderDetail(){
+  var t=trips.find(function(x){return x.id===current});if(!t)return;
+  var s=$("s-detail");s.textContent="";
+  var h=el("div","hero");h.style.background=GRAD[t.g%GRAD.length];
+  h.appendChild(el("div","plane","✈️"));
+  var back=el("button","back ripple","←");back.setAttribute("aria-label","Back to trips");back.addEventListener("click",closeTrip);
+  h.appendChild(back);h.appendChild(el("h2",null,t.e+" "+t.dest));
+  h.appendChild(el("p",null,fmt(t.start)+" – "+fmt(t.end)+" · "+nights(t.start,t.end)+" nights"));
+  s.appendChild(h);
+  if(!t.items.length){var em=el("div","empty");em.appendChild(el("div","big","🗺️"));em.appendChild(el("p",null,"Nothing planned yet. Tap “Add item”."));s.appendChild(em);wireRipple(s);return}
+  var days={};t.items.forEach(function(i){(days[i.date]=days[i.date]||[]).push(i)});
+  var n=0;Object.keys(days).sort().forEach(function(dt){
+    s.appendChild(el("div","day",fmtLong(dt)));
+    var tl=el("div","tl");
+    days[dt].sort(function(a,b){return a.time<b.time?-1:1}).forEach(function(it){
+      var c=el("div","item");c.style.setProperty("--i",n++);
+      var row=el("div","t");row.appendChild(el("b",null,EMOJI[it.type]+" "+it.title));row.appendChild(el("span","time",it.time));
+      c.appendChild(row);if(it.detail)c.appendChild(el("div","d",it.detail));tl.appendChild(c)});
+    s.appendChild(tl)});
+  wireRipple(s);
+}
+
+/* ---------- Alerts ---------- */
+function renderAlerts(){
+  var s=$("s-alerts");s.textContent="";
+  var bar=el("div","appbar"),l=el("div");l.appendChild(el("h1",null,"Alerts"));l.appendChild(el("p",null,"Sample alerts · live data comes in Phase 4"));
+  bar.appendChild(l);s.appendChild(bar);
+  ALERTS.forEach(function(a,i){var c=el("div","alert"+(a.bad?" bad":""));c.style.setProperty("--i",i);
+    c.appendChild(el("div","ic",a.ic));var b=el("div");b.appendChild(el("b",null,a.t));b.appendChild(el("small",null,a.s));c.appendChild(b);s.appendChild(c)});
+}
+
+/* ---------- Navigation ---------- */
+function setView(v){
+  view=v;
+  var m={trips:"s-trips",alerts:"s-alerts",detail:"s-detail"};
+  Object.keys(m).forEach(function(k){
+    var n=$(m[k]);n.classList.remove("left","right");
+    if(k!==v)n.classList.add(k==="trips"?"left":"right")});
+  document.querySelectorAll(".tab").forEach(function(b){var on=b.dataset.go===(v==="detail"?"trips":v);if(on)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+  $("fabLabel").textContent=v==="detail"?"Add item":"New trip";
+  $("fab").classList.toggle("hide",v==="alerts");
+}
+function openTrip(id){current=id;renderDetail();$("s-detail").scrollTop=0;setView("detail")}
+function closeTrip(){setView("trips")}
+
+/* ---------- Sheet ---------- */
+function openSheet(mode){
+  sheetMode=mode;var sh=$("sheet");sh.textContent="";
+  sh.appendChild(el("div","grab"));
+  var title=el("h2",null,mode==="trip"?"New trip":"Add item");title.id="sheetTitle";sh.appendChild(title);
+  var f=el("form");f.noValidate=true;
+  function field(lbl,node){var w=el("div");var l=el("label",null,lbl);l.htmlFor=node.id;w.appendChild(l);w.appendChild(node);return w}
+  function inp(id,type,ph){var i=el("input");i.id=id;i.type=type;if(ph)i.placeholder=ph;i.maxLength=80;return i}
+  var err=el("div","err");err.setAttribute("aria-live","polite");
+  if(mode==="trip"){
+    f.appendChild(field("Where are you going?",inp("f-dest","text","e.g. Paris, France")));
+    var r=el("div","row");r.appendChild(field("Start",inp("f-start","date")));r.appendChild(field("End",inp("f-end","date")));f.appendChild(r);
+  }else{
+    var sel=el("select");sel.id="f-type";[["flight","✈️ Flight"],["hotel","🏨 Hotel"],["car","🚗 Car"],["activity","🎟️ Activity"]].forEach(function(o){var op=el("option",null,o[1]);op.value=o[0];sel.appendChild(op)});
+    f.appendChild(field("Type",sel));f.appendChild(field("Title",inp("f-title","text","e.g. Dinner at Time Out Market")));
+    var r2=el("div","row");r2.appendChild(field("Date",inp("f-date","date")));r2.appendChild(field("Time",inp("f-time","time")));f.appendChild(r2);
+    f.appendChild(field("Notes (optional)",inp("f-detail","text","Confirmation number, seat…")));
+  }
+  f.appendChild(err);
+  var b=el("button","save ripple","Save");b.type="submit";f.appendChild(b);
+  f.addEventListener("submit",function(e){e.preventDefault();submit(err)});
+  sh.appendChild(f);wireRipple(sh);
+  $("scrim").classList.add("on");sh.classList.add("on");
+  setTimeout(function(){var first=sh.querySelector("input,select");if(first)first.focus({preventScroll:true})},350);
+}
+function closeSheet(){$("scrim").classList.remove("on");$("sheet").classList.remove("on");sheetMode=null}
+function v(id){return $(id).value.trim()}
+function submit(err){
+  if(sheetMode==="trip"){
+    var d=v("f-dest"),a=v("f-start"),b=v("f-end");
+    if(!d){err.textContent="Please enter a destination.";return}
+    if(!a||!b){err.textContent="Please pick start and end dates.";return}
+    if(b<a){err.textContent="End date can’t be before the start date.";return}
+    var t={id:uid(),dest:d,start:a,end:b,g:Math.floor(Math.random()*GRAD.length),e:DEST_EMOJI[Math.floor(Math.random()*DEST_EMOJI.length)],items:[]};
+    trips.push(t);save();tab=b<TODAY?"past":"upcoming";closeSheet();renderTrips();setView("trips");toast("Trip added ✨");
+  }else{
+    var tt=v("f-title"),dt=v("f-date"),tm=v("f-time")||"09:00";
+    if(!tt){err.textContent="Please enter a title.";return}
+    if(!dt){err.textContent="Please pick a date.";return}
+    var trip=trips.find(function(x){return x.id===current});if(!trip)return;
+    trip.items.push({id:uid(),type:v("f-type"),title:tt,date:dt,time:tm,detail:v("f-detail")});
+    save();closeSheet();renderDetail();toast("Added to your timeline ✨");
+  }
+}
+var tt;function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){t.classList.remove("on")},2200)}
+
+/* ---------- Wire up ---------- */
+$("scrim").addEventListener("click",closeSheet);
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet()});
+$("fab").addEventListener("click",function(){openSheet(view==="detail"?"item":"trip")});
+document.querySelectorAll(".tab").forEach(function(b){b.addEventListener("click",function(){
+  var g=b.dataset.go;if(g==="add")openSheet(view==="detail"?"item":"trip");else setView(g)})});
+renderTrips();renderAlerts();setView("trips");wireRipple(document);
+})();
+</script>
+</body>
+</html>
