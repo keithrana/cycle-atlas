@@ -1,7 +1,8 @@
 name: Build TripNest Android APK
 
-# Runs by hand (Actions tab -> "Build TripNest Android APK" -> Run workflow)
+# Gitea Actions. Runs by hand (repo -> Actions -> "Build TripNest Android APK" -> Run workflow)
 # and whenever the TripNest files change on the main branch.
+# Needs an act_runner with the label "ubuntu-latest" (Docker mode) and internet access.
 on:
   workflow_dispatch:
   push:
@@ -31,7 +32,7 @@ jobs:
       - name: Build debug APK
         working-directory: tripnest/android
         run: ./gradlew assembleDebug --no-daemon
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         with:
           name: TripNest-debug-apk
           path: tripnest/android/app/build/outputs/apk/debug/app-debug.apk

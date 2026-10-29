@@ -63,6 +63,6 @@ Success for Phase 1: open the prototype, add a trip, scroll a timeline, feel the
 - Phone edge handling (status bar / gesture bar) via safe-area padding.
 - Data is saved on the device (localStorage inside the app's WebView).
 - The build machine used for development has no Android SDK (Google's download host is blocked), so the APK is built by
-  `.github/workflows/tripnest-apk.yml` (Actions tab -> Run workflow -> download `TripNest-debug-apk`).
+  `.gitea/workflows/tripnest-apk.yml` (Gitea: repo -> Actions -> Run workflow -> download `TripNest-debug-apk`).
 - Debug APK is signed with a debug key: fine for testing on your own phone, NOT for Google Play. Release signing comes later.
 - Security: only the INTERNET permission, no cleartext traffic, 0 known vulnerabilities in dependencies (`npm audit`).
