@@ -1,0 +1,19 @@
+{
+  "name": "tripnest",
+  "version": "0.2.0",
+  "private": true,
+  "description": "TripNest – travel planner (web + Android)",
+  "scripts": {
+    "build:web": "node scripts/build-web.js",
+    "sync": "npm run build:web && cap sync android",
+    "apk": "npm run sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/core": "^8.6.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.6.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "appId": "com.tripnest.app",
+  "appName": "TripNest",
+  "webDir": "www",
+  "backgroundColor": "#fbfbff",
+  "android": { "allowMixedContent": false }
+}

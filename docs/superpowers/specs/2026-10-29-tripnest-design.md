@@ -54,3 +54,15 @@ Success for Phase 1: open the prototype, add a trip, scroll a timeline, feel the
 2. Click every button; add a trip through the form; it appears and survives reload.
 3. Reduce-motion mode disables animation.
 4. Security: script text typed into a form shows as text, does not run.
+
+## Phase 2 – status: built (APK build runs in GitHub Actions)
+- `tripnest/` is now an installable app two ways:
+  1. **PWA** – manifest + service worker + icons. Chrome on Android offers "Install app"; works offline.
+  2. **Native Android shell** – Capacitor 8 project in `tripnest/android/` (package `com.tripnest.app`, minSdk 24, targetSdk 36).
+- Android back button: every sheet / trip screen is one history step, so Back closes it instead of leaving the app.
+- Phone edge handling (status bar / gesture bar) via safe-area padding.
+- Data is saved on the device (localStorage inside the app's WebView).
+- The build machine used for development has no Android SDK (Google's download host is blocked), so the APK is built by
+  `.github/workflows/tripnest-apk.yml` (Actions tab -> Run workflow -> download `TripNest-debug-apk`).
+- Debug APK is signed with a debug key: fine for testing on your own phone, NOT for Google Play. Release signing comes later.
+- Security: only the INTERNET permission, no cleartext traffic, 0 known vulnerabilities in dependencies (`npm audit`).

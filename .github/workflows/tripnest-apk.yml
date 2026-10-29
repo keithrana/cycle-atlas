@@ -1,0 +1,38 @@
+name: Build TripNest Android APK
+
+# Runs by hand (Actions tab -> "Build TripNest Android APK" -> Run workflow)
+# and whenever the TripNest files change on the main branch.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tripnest/**", ".github/workflows/tripnest-apk.yml"]
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tripnest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tripnest/package-lock.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: android-actions/setup-android@v3
+      - run: npm ci
+      - run: npm run sync
+      - name: Build debug APK
+        working-directory: tripnest/android
+        run: ./gradlew assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TripNest-debug-apk
+          path: tripnest/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

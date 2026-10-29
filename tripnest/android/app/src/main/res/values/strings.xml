@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TripNest</string>
+    <string name="title_activity_main">TripNest</string>
+    <string name="package_name">com.tripnest.app</string>
+    <string name="custom_url_scheme">com.tripnest.app</string>
+</resources>

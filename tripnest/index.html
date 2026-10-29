@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1a73e8">
+<meta name="theme-color" content="#1a5fd0">
+<meta name="description" content="TripNest – all your trips in one calm place.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>TripNest</title>
 <style>
 :root{
@@ -15,7 +19,7 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0}
 body{font-family:Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;background:#dfe5f5;color:var(--text);
-  display:flex;align-items:center;justify-content:center}
+  display:flex;align-items:center;justify-content:center;overscroll-behavior:none}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer;border:0;background:none}
 :focus-visible{outline:3px solid #7aa7ff;outline-offset:2px}
@@ -24,13 +28,13 @@ button{cursor:pointer;border:0;background:none}
   border-radius:36px;box-shadow:0 20px 60px rgba(20,40,100,.25);display:flex;flex-direction:column}
 @media (max-width:500px){#phone{width:100vw;height:100dvh;border-radius:0;box-shadow:none}}
 
-.screen{position:absolute;inset:0 0 72px 0;overflow-y:auto;padding:0 16px 96px;
+.screen{position:absolute;inset:0 0 calc(72px + env(safe-area-inset-bottom)) 0;overflow-y:auto;padding:0 16px 96px;
   transition:transform .42s var(--ease),opacity .3s;background:var(--surface)}
 .screen.right{transform:translateX(100%);opacity:0;pointer-events:none;visibility:hidden}
 .screen.left{transform:translateX(-30%);opacity:0;pointer-events:none;visibility:hidden}
 .screen.timeline{inset:0 0 0 0;padding-bottom:110px}
 
-.appbar{padding:28px 4px 8px;display:flex;align-items:center;justify-content:space-between}
+.appbar{padding:calc(28px + env(safe-area-inset-top)) 4px 8px;display:flex;align-items:center;justify-content:space-between}
 .appbar h1{font-size:28px;margin:0;font-weight:700;letter-spacing:-.5px}
 .appbar p{margin:2px 0 0;color:var(--muted);font-size:14px}
 .avatar{width:40px;height:40px;border-radius:50%;background:var(--primary-c);color:var(--on-primary-c);
@@ -65,11 +69,11 @@ button{cursor:pointer;border:0;background:none}
 @keyframes rip{to{transform:scale(1);opacity:0}}
 
 /* timeline screen */
-.hero{margin:0 -16px 16px;padding:24px 20px 28px;color:#fff;position:relative;overflow:hidden;border-radius:0 0 32px 32px}
+.hero{margin:0 -16px 16px;padding:calc(24px + env(safe-area-inset-top)) 20px 28px;color:#fff;position:relative;overflow:hidden;border-radius:0 0 32px 32px}
 .hero .back{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.22);color:#fff;font-size:22px;margin-bottom:12px}
 .hero h2{margin:0;font-size:30px;letter-spacing:-.5px}
 .hero p{margin:4px 0 0;opacity:.9}
-.plane{position:absolute;top:18px;left:-40px;font-size:30px;animation:fly 5s linear infinite}
+.plane{position:absolute;top:calc(18px + env(safe-area-inset-top));left:-40px;font-size:30px;animation:fly 5s linear infinite}
 @keyframes fly{0%{transform:translate(0,10px) rotate(8deg)}50%{transform:translate(220px,-6px) rotate(0)}100%{transform:translate(470px,10px) rotate(8deg)}}
 .day{margin:18px 0 8px;font-weight:700;color:var(--primary);font-size:14px;text-transform:uppercase;letter-spacing:.8px}
 .tl{position:relative;padding-left:28px}
@@ -91,13 +95,13 @@ button{cursor:pointer;border:0;background:none}
 .alert.bad .ic{color:var(--warn)}
 
 /* FAB + nav */
-.fab{position:absolute;right:20px;bottom:92px;z-index:5;height:56px;padding:0 20px 0 16px;border-radius:18px;
+.fab{position:absolute;right:20px;bottom:calc(92px + env(safe-area-inset-bottom));z-index:5;height:56px;padding:0 20px 0 16px;border-radius:18px;
   background:var(--primary);color:var(--on-primary);font-weight:600;display:flex;align-items:center;gap:8px;
   box-shadow:0 6px 16px rgba(26,95,208,.4);transition:transform .25s var(--spring),opacity .25s;font-size:16px}
 .fab:active{transform:scale(.92)}
 .fab.hide{transform:scale(0);opacity:0;pointer-events:none}
 .fab .plus{font-size:26px;line-height:1}
-nav{position:absolute;left:0;right:0;bottom:0;height:72px;background:var(--surface-c);display:flex;z-index:6;
+nav{position:absolute;left:0;right:0;bottom:0;height:calc(72px + env(safe-area-inset-bottom));background:var(--surface-c);display:flex;z-index:6;
   padding-bottom:env(safe-area-inset-bottom)}
 .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;color:var(--muted);position:relative}
 .tab .ico{width:60px;height:30px;border-radius:999px;display:grid;place-items:center;font-size:18px;transition:background .3s,transform .3s var(--spring)}
@@ -175,7 +179,14 @@ var ALERTS=[
  {ic:"🚪",t:"Gate change (sample)",s:"JL 774 · now Gate 52 · Tokyo trip",bad:true},
  {ic:"✅",t:"Check-in opens soon",s:"Alfama Boutique Hotel · 13 Nov",bad:false}];
 
-var trips=load(), tab="upcoming", current=null, view="trips", sheetMode=null;
+var trips=load(), tab="upcoming", current=null, view="trips", sheetMode=null, skipPop=false;
+/* Android back button: every sheet / trip screen is one history step */
+function pushState(k){try{history.pushState({k:k},"")}catch(e){}}
+function popOwn(k){try{if(history.state&&history.state.k===k){skipPop=true;history.back()}}catch(e){}}
+window.addEventListener("popstate",function(){
+  if(skipPop){skipPop=false;return}
+  if(sheetMode){closeSheet(true);return}
+  if(view==="detail")setView("trips")});
 
 function load(){try{var r=localStorage.getItem(KEY);if(r){var d=JSON.parse(r);if(Array.isArray(d))return d}}catch(e){}return JSON.parse(JSON.stringify(seed))}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(trips))}catch(e){}}
@@ -254,6 +265,7 @@ function renderAlerts(){
 /* ---------- Navigation ---------- */
 function setView(v){
   view=v;
+  if(v!=="detail")popOwn("detail");
   var m={trips:"s-trips",alerts:"s-alerts",detail:"s-detail"};
   Object.keys(m).forEach(function(k){
     var n=$(m[k]);n.classList.remove("left","right");
@@ -262,7 +274,7 @@ function setView(v){
   $("fabLabel").textContent=v==="detail"?"Add item":"New trip";
   $("fab").classList.toggle("hide",v==="alerts");
 }
-function openTrip(id){current=id;renderDetail();$("s-detail").scrollTop=0;setView("detail")}
+function openTrip(id){current=id;renderDetail();$("s-detail").scrollTop=0;pushState("detail");setView("detail")}
 function closeTrip(){setView("trips")}
 
 /* ---------- Sheet ---------- */
@@ -287,10 +299,10 @@ function openSheet(mode){
   var b=el("button","save ripple","Save");b.type="submit";f.appendChild(b);
   f.addEventListener("submit",function(e){e.preventDefault();submit(err)});
   sh.appendChild(f);wireRipple(sh);
-  $("scrim").classList.add("on");sh.classList.add("on");
+  pushState("sheet");$("scrim").classList.add("on");sh.classList.add("on");
   setTimeout(function(){var first=sh.querySelector("input,select");if(first)first.focus({preventScroll:true})},350);
 }
-function closeSheet(){$("scrim").classList.remove("on");$("sheet").classList.remove("on");sheetMode=null}
+function closeSheet(fromPop){$("scrim").classList.remove("on");$("sheet").classList.remove("on");sheetMode=null;if(fromPop!==true)popOwn("sheet")}
 function v(id){return $(id).value.trim()}
 function submit(err){
   if(sheetMode==="trip"){
@@ -312,12 +324,14 @@ function submit(err){
 var tt;function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){t.classList.remove("on")},2200)}
 
 /* ---------- Wire up ---------- */
-$("scrim").addEventListener("click",closeSheet);
+$("scrim").addEventListener("click",function(){closeSheet()});
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet()});
 $("fab").addEventListener("click",function(){openSheet(view==="detail"?"item":"trip")});
 document.querySelectorAll(".tab").forEach(function(b){b.addEventListener("click",function(){
   var g=b.dataset.go;if(g==="add")openSheet(view==="detail"?"item":"trip");else setView(g)})});
 renderTrips();renderAlerts();setView("trips");wireRipple(document);
+if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)&&!window.Capacitor){
+  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
 })();
 </script>
 </body>
